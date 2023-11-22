@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Margdarshakendra</string>
+
+    <string-array name="userType">
+        <item>User Type</item>
+        <item>Student/JobSeeker</item>
+        <item>Counsellor/Trainer</item>
+    </string-array>
+</resources>
