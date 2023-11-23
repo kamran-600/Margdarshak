@@ -1,9 +1,14 @@
 <resources>
     <string name="app_name">Margdarshakendra</string>
+    <string name="don_t_have_account_regsiter">Don\'t have account?<font color='#FF1E88E5'> Register!</font></string>
+    <string name="already_have_account_login">Already have a account?<font color='#FF1E88E5'> Login!</font></string>
 
     <string-array name="userType">
         <item>User Type</item>
         <item>Student/JobSeeker</item>
         <item>Counsellor/Trainer</item>
     </string-array>
+
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
 </resources>

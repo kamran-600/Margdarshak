@@ -22,12 +22,12 @@ import com.example.margdarshakendra.api.RetrofitInstance
 import com.example.margdarshakendra.broadcastReceivers.SmsBroadcastReceiver
 import com.example.margdarshakendra.databinding.ActivityRegisterBinding
 import com.example.margdarshakendra.models.OtpRequest
-import com.example.margdarshakendra.models.UserRequest
-import com.example.margdarshakendra.repository.UserRepository
+import com.example.margdarshakendra.models.RegisterRequest
+import com.example.margdarshakendra.repository.RegisterRepository
 import com.example.margdarshakendra.utils.Constants.TAG
 import com.example.margdarshakendra.utils.NetworkResult
-import com.example.margdarshakendra.viewmodels.AuthViewModel
-import com.example.margdarshakendra.viewmodels.AuthViewModelFactory
+import com.example.margdarshakendra.viewmodels.RegisterViewModel
+import com.example.margdarshakendra.viewmodels.RegisterViewModelFactory
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import java.util.regex.Pattern
 
@@ -36,10 +36,10 @@ class RegisterActivity : AppCompatActivity() {
     private var _binding: ActivityRegisterBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var authViewModel: AuthViewModel
-    private lateinit var factory: AuthViewModelFactory
-    private lateinit var userRepository: UserRepository
-    private lateinit var smsBroadcastReceiver: SmsBroadcastReceiver
+    private lateinit var registerViewModel: RegisterViewModel
+    private lateinit var factory: RegisterViewModelFactory
+    private lateinit var registerRepository: RegisterRepository
+    private var smsBroadcastReceiver: SmsBroadcastReceiver? = null
 
     private var serverOtp = 0
     private var vMobile = "N"
@@ -49,7 +49,6 @@ class RegisterActivity : AppCompatActivity() {
         _binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        startSmartUserConsent()
 
         /*binding.phoneNo.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
@@ -57,7 +56,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.ccp.registerCarrierNumberEditText(binding.phoneNo)
                     val otpRequest = OtpRequest(binding.ccp.fullNumber)
                     Log.d(TAG, otpRequest.toString())
-                    authViewModel.sendOtp(otpRequest)
+                    registerViewModel.sendOtp(otpRequest)
                     return false   // Focus will change according to the actionId  if true then acc to logic
                 }
                 return true
@@ -68,7 +67,7 @@ class RegisterActivity : AppCompatActivity() {
 
         setSpinnerAdapter()
 
-        authViewModel = getViewModel()
+        registerViewModel = getViewModel()
 
         binding.registerBtn.setOnClickListener {
 
@@ -79,7 +78,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if (!validateDetails()) return@setOnClickListener
 
-            val userRequest = UserRequest(
+            val registerRequest = RegisterRequest(
                 binding.ccp.selectedCountryCode,
                 binding.email.text.toString(),
                 binding.phoneNo.text.toString(),
@@ -87,20 +86,20 @@ class RegisterActivity : AppCompatActivity() {
                 getSelectedUserType()!!,
                 vMobile
             )
-            Log.d(TAG, userRequest.toString())
-            authViewModel.registerUser(
-                userRequest.email,
-                userRequest.user_name,
-                userRequest.user_type,
-                userRequest.user_mobile,
-                userRequest.country_code,
-                userRequest.vmobile,
-                userRequest
+            Log.d(TAG, registerRequest.toString())
+            registerViewModel.registerUser(
+                /*registerRequest.email,
+                registerRequest.user_name,
+                registerRequest.user_type,
+                registerRequest.user_mobile,
+                registerRequest.country_code,
+                registerRequest.vmobile,*/
+                registerRequest
             )
 
         }
 
-        authViewModel.userResponseLiveData.observe(this) {
+        registerViewModel.registerResponseLiveData.observe(this) {
             when (it) {
                 is NetworkResult.Success -> {
                     Toast.makeText(this, it.data?.message ?: "null", Toast.LENGTH_LONG).show()
@@ -134,12 +133,13 @@ class RegisterActivity : AppCompatActivity() {
             Log.d(TAG, "activity " + it.message)*/
         }
 
-        authViewModel.otpResponseLiveData.observe(this) {
+        registerViewModel.otpResponseLiveData.observe(this) {
             when (it) {
                 is NetworkResult.Success -> {
                     serverOtp = it.data?.otp ?: 0
                     Toast.makeText(this, "Otp Sent Successfully", Toast.LENGTH_LONG).show()
                     binding.otpErrorMessage.visibility = GONE
+                    startSmsUserConsent()
                 }
 
                 is NetworkResult.Error -> {
@@ -163,7 +163,7 @@ class RegisterActivity : AppCompatActivity() {
                 binding.ccp.registerCarrierNumberEditText(binding.phoneNo)
                 val otpRequest = OtpRequest(binding.ccp.fullNumber)
                 Log.d(TAG, otpRequest.toString())
-                authViewModel.sendOtp(otpRequest)
+                registerViewModel.sendOtp(otpRequest)
             }
         }
 
@@ -178,44 +178,47 @@ class RegisterActivity : AppCompatActivity() {
 
         }
 
+        binding.loginTxt.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                overrideActivityTransition(OVERRIDE_TRANSITION_OPEN,0,0)
+            }
+            else overridePendingTransition(0,0)
+            finishAffinity()
+        }
+
     }
 
-    /* private fun makeEveryDataNull() {
-         binding.phoneNo.text = null
-         binding.otp1.text = null
-         binding.otp2.text = null
-         binding.otp3.text = null
-         binding.otp4.text = null
-         binding.verifySmsCodeBtn.text = "Verify SMS Code"
-         binding.verifySmsCodeBtn.setBackgroundColor(getColor(R.color.upperBlue))
-         vMobile = "N"
-         serverOtp = 0
-         authViewModel.userResponseLiveData.removeObservers(this)
-         authViewModel.otpResponseLiveData.removeObservers(this)
-         binding.email.text = null
-         binding.userName.text = null
-         binding.userTypeSpinner.setSelection(0, true)
-     }*/
 
-
-    private fun startSmartUserConsent() {
+    private fun startSmsUserConsent() {
         val client = SmsRetriever.getClient(this)
-        client.startSmsUserConsent(null)
+        val task = client.startSmsUserConsent(null)
+        task.addOnSuccessListener {
+            Log.d(TAG, "bCR is started success")
+            registerBroadcastReceiver()
+        }
+        task.addOnFailureListener{
+            Log.d(TAG, it.message.toString())
+            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun registerBroadcastReceiver() {
+
         smsBroadcastReceiver = SmsBroadcastReceiver()
 
-        smsBroadcastReceiver.smsBroadcastReceiverListener =
+        smsBroadcastReceiver!!.smsBroadcastReceiverListener =
             object : SmsBroadcastReceiver.SmsBroadcastReceiverListener {
                 override fun onOtpReceived(intent: Intent?) {
                     if (intent != null) {
                         smsBroadcastReceiverIntent.launch(intent)
                     }
+                    else Toast.makeText(this@RegisterActivity, "intent is null", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onFailure() {
-                    //  Toast.makeText(this@RegisterActivity, "Failed", Toast.LENGTH_SHORT).show()
+                      unregisterReceiver(smsBroadcastReceiver)
+                      Toast.makeText(this@RegisterActivity, "Failed to launch sms intent", Toast.LENGTH_SHORT).show()
                 }
 
             }
@@ -244,6 +247,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
         }
+        else Toast.makeText(this, "error in intent", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -257,6 +261,8 @@ class RegisterActivity : AppCompatActivity() {
                 binding.otp2.setText(otp.toCharArray()[1].toString())
                 binding.otp3.setText(otp.toCharArray()[2].toString())
                 binding.otp4.setText(otp.toCharArray()[3].toString())
+                unregisterReceiver(smsBroadcastReceiver)
+                smsBroadcastReceiver = null
             }
         }
 
@@ -270,15 +276,15 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun getViewModel(): AuthViewModel {
+    private fun getViewModel(): RegisterViewModel {
 
         val userApi = RetrofitInstance.api
 
-        userRepository = UserRepository(userApi)
+        registerRepository = RegisterRepository(userApi)
 
-        factory = AuthViewModelFactory(userRepository)
+        factory = RegisterViewModelFactory(registerRepository)
 
-        return ViewModelProvider(this, factory)[AuthViewModel::class.java]
+        return ViewModelProvider(this, factory)[RegisterViewModel::class.java]
     }
 
     private fun getSelectedUserType(): String? {
@@ -455,14 +461,21 @@ class RegisterActivity : AppCompatActivity() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        registerBroadcastReceiver()
-    }
+
 
     override fun onStop() {
         super.onStop()
-        unregisterReceiver(smsBroadcastReceiver)
+        if(smsBroadcastReceiver != null){
+            unregisterReceiver(smsBroadcastReceiver)
+            smsBroadcastReceiver = null
+        }
+
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

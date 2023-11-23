@@ -358,6 +358,17 @@
             android:text="Register"
             android:textSize="15sp" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/loginTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerBtn"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="30dp"
+            android:text="@string/already_have_account_login"
+            android:textSize="15sp" />
+
 
     </RelativeLayout>
 

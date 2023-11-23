@@ -1,6 +1,6 @@
 package com.example.margdarshakendra.models
 
-data class UserRequest(
+data class RegisterRequest(
     val country_code: String,
     val email: String,
     val user_mobile: String,

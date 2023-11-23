@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.RequiresApi
+import com.example.margdarshakendra.utils.Constants.TAG
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.common.api.Status
@@ -33,10 +35,15 @@ class SmsBroadcastReceiver : BroadcastReceiver() {
                         } else {
                             extras.getParcelable(SmsRetriever.EXTRA_CONSENT_INTENT)
                         }
-                        smsBroadcastReceiverListener.onOtpReceived(messageIntent)
+                        if(messageIntent != null){
+                            smsBroadcastReceiverListener.onOtpReceived(messageIntent)
+                        }
                     }
-                    else{
+                    else if(smsRetrieverStatus.statusCode == CommonStatusCodes.TIMEOUT){
                         smsBroadcastReceiverListener.onFailure()
+                    }
+                    else {
+                        Log.d(TAG, smsRetrieverStatus.statusMessage.toString())
                     }
                 }
 
