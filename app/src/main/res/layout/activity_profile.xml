@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logo"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/m_logo" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@id/logo"
+            android:text="Update Profile"
+            android:textColor="@color/black45"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/spinnerCard1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp">
+
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/userTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/nameCard"
+                android:background="@color/grey_bg"
+                android:foreground="?selectableItemBackground" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/spinnerCard1"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/person_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/userName"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/email_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:maxLength="100"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneNo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/email"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/mobile_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Phone Number"
+            android:inputType="number"
+            android:maxLength="20"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/genderText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phoneNo"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Gender :"
+            android:textColor="@color/black45"
+            android:textSize="15sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/phoneNo"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="18dp"
+            android:layout_toEndOf="@id/genderText"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/maleBtn"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="1dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Male"
+                android:textColor="@drawable/text_color"
+                android:textSize="14sp" />
+
+
+            <RadioButton
+                android:id="@+id/femaleBtn"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/radio_selector"
+                android:button="@android:color/transparent"
+                android:elevation="1dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Female"
+                android:textColor="@drawable/text_color"
+                android:textSize="14sp" />
+
+        </RadioGroup>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/spinnerCard2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioGroup"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="18dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp">
+
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/countryAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/nameCard"
+                android:background="@color/grey_bg"
+                android:completionThreshold="1"
+                android:hint="Select Country"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/spinnerCard3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinnerCard2"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp">
+
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/districtAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/nameCard"
+                android:background="@color/grey_bg"
+                android:completionThreshold="1"
+                android:hint="Select District"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/pinCodeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/spinnerCard3"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pinCode"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="63"
+                android:background="@drawable/box"
+                android:backgroundTint="@color/grey_bg"
+                android:drawableStart="@drawable/pin_icon"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/black45"
+                android:hint="Pin Code"
+                android:inputType="number"
+                android:maxLength="6"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/black45"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp"
+                android:textStyle="normal" />
+
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/postOfficeAutoCompleteView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_weight="37"
+                android:background="@drawable/box"
+                android:backgroundTint="@color/grey_bg"
+                android:completionThreshold="1"
+                android:ellipsize="end"
+                android:hint="Search Pin Code"
+                android:maxLines="2"
+                android:paddingHorizontal="12dp"
+                android:textColor="@color/black45"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dob"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/pinCodeLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableEnd="@drawable/calendar"
+            android:focusable="false"
+            android:hint="Date of Birth"
+            android:inputType="date"
+            android:paddingHorizontal="15dp"
+            android:textColor="@color/black45"
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/preflanguage"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/dob"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/language_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Preferred Language"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/classorexam"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/preflanguage"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/stream_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Class/Exam"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/institute"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/classorexam"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/domain_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Institute"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/specialization"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/institute"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/stream_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Specialization"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/qualification"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/specialization"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/domain_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Qualification"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profilePic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/qualification"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Profile Pic :"
+            android:textColor="@color/black45"
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/camGalCard"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/qualification"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="18dp"
+            android:layout_toEndOf="@id/profilePic"
+            android:backgroundTint="@color/upperBlue"
+            android:elevation="10dp"
+            app:cardCornerRadius="30dp">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/cameraImg"
+                    android:layout_width="20dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="9dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    app:srcCompat="@drawable/camera"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/galleryImg"
+                    android:layout_width="25dp"
+                    android:layout_height="38dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="7dp"
+                    android:layout_weight="1"
+                    android:paddingStart="0dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="11dp"
+                    app:srcCompat="@drawable/gallery"
+                    app:tint="@color/white" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/imageCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/camGalCard"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:visibility="gone"
+            app:cardCornerRadius="20dp">
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageCardImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/aim" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="?selectableItemBackground"
+                android:elevation="0dp"
+                app:cardBackgroundColor="@color/grey_bg"
+                app:cardCornerRadius="30dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clear_icon"
+                    app:tint="@color/black" />
+
+            </androidx.cardview.widget.CardView>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/details"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/imageCard"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/box"
+            android:backgroundTint="@color/grey_bg"
+            android:drawableStart="@drawable/description"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:hint="Enter details"
+            android:inputType="textPersonName"
+            android:maxLines="10"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/details"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="30dp"
+            android:backgroundTint="@color/upperBlue"
+            android:text="Submit"
+            android:textSize="15sp"
+            app:cornerRadius="10dp" />
+
+    </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>

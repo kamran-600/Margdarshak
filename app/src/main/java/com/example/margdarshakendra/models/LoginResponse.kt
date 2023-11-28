@@ -5,5 +5,11 @@ data class LoginResponse(
     val message: String,
     val statusCode: Int,
     val success: Boolean,
-    val token: String
+    val token: String,
+    val email: String,
+    val mobile: String,
+    val profile_updated: Boolean,
+    val usertype: String,
+    val name: String
+
 )

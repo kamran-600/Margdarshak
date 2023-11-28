@@ -7,9 +7,13 @@ import com.example.margdarshakendra.models.LoginRequest
 import com.example.margdarshakendra.models.LoginResponse
 import com.example.margdarshakendra.repository.LoginRepository
 import com.example.margdarshakendra.utils.NetworkResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val loginRepository: LoginRepository) : ViewModel() {
 
     val loginResponseLiveData: LiveData<NetworkResult<LoginResponse>>
         get() = loginRepository.loginResponseLiveData

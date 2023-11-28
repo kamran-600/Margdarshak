@@ -11,9 +11,10 @@ import com.example.margdarshakendra.models.RegisterResponse
 import com.example.margdarshakendra.utils.Constants.TAG
 import com.example.margdarshakendra.utils.NetworkResult
 import org.json.JSONObject
+import javax.inject.Inject
 
 
-class RegisterRepository(private val userApi: UserApi) {
+class RegisterRepository @Inject constructor(private val userApi: UserApi) {
 
     private val _registerResponseLiveData = MutableLiveData<NetworkResult<RegisterResponse>>()
     val registerResponseLiveData: LiveData<NetworkResult<RegisterResponse>>

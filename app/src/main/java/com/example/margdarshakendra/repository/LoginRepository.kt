@@ -9,8 +9,9 @@ import com.example.margdarshakendra.models.LoginResponse
 import com.example.margdarshakendra.utils.Constants
 import com.example.margdarshakendra.utils.NetworkResult
 import org.json.JSONObject
+import javax.inject.Inject
 
-class LoginRepository(private val userApi: UserApi) {
+class LoginRepository @Inject constructor(private val userApi: UserApi) {
 
     private val _loginResponseLiveData = MutableLiveData<NetworkResult<LoginResponse>>()
     val loginResponseLiveData: LiveData<NetworkResult<LoginResponse>>

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:textColor="@color/black45"
-    android:paddingHorizontal="20dp"
+    android:paddingHorizontal="15dp"
     android:drawableEnd="@drawable/arrow_down"
     android:drawableTint="@color/black45"
     android:textSize="15sp" />

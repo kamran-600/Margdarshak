@@ -16,29 +16,28 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.example.margdarshakendra.api.RetrofitInstance
 import com.example.margdarshakendra.broadcastReceivers.SmsBroadcastReceiver
 import com.example.margdarshakendra.databinding.ActivityRegisterBinding
 import com.example.margdarshakendra.models.OtpRequest
 import com.example.margdarshakendra.models.RegisterRequest
-import com.example.margdarshakendra.repository.RegisterRepository
 import com.example.margdarshakendra.utils.Constants.TAG
 import com.example.margdarshakendra.utils.NetworkResult
 import com.example.margdarshakendra.viewmodels.RegisterViewModel
-import com.example.margdarshakendra.viewmodels.RegisterViewModelFactory
 import com.google.android.gms.auth.api.phone.SmsRetriever
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
 
     private var _binding: ActivityRegisterBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var registerViewModel: RegisterViewModel
-    private lateinit var factory: RegisterViewModelFactory
-    private lateinit var registerRepository: RegisterRepository
+    private val registerViewModel by viewModels<RegisterViewModel>()
+   // private lateinit var factory: RegisterViewModelFactory
+   // private lateinit var registerRepository: RegisterRepository
     private var smsBroadcastReceiver: SmsBroadcastReceiver? = null
 
     private var serverOtp = 0
@@ -65,9 +64,9 @@ class RegisterActivity : AppCompatActivity() {
 
         })*/
 
-        setSpinnerAdapter()
+        setUserTypeSpinnerAdapter()
 
-        registerViewModel = getViewModel()
+       // registerViewModel = getViewModel()
 
         binding.registerBtn.setOnClickListener {
 
@@ -80,20 +79,14 @@ class RegisterActivity : AppCompatActivity() {
 
             val registerRequest = RegisterRequest(
                 binding.ccp.selectedCountryCode,
-                binding.email.text.toString(),
-                binding.phoneNo.text.toString(),
-                binding.userName.text.toString(),
+                binding.email.text.toString().trim(),
+                binding.phoneNo.text.toString().trim(),
+                binding.userName.text.toString().trim(),
                 getSelectedUserType()!!,
                 vMobile
             )
             Log.d(TAG, registerRequest.toString())
             registerViewModel.registerUser(
-                /*registerRequest.email,
-                registerRequest.user_name,
-                registerRequest.user_type,
-                registerRequest.user_mobile,
-                registerRequest.country_code,
-                registerRequest.vmobile,*/
                 registerRequest
             )
 
@@ -102,7 +95,7 @@ class RegisterActivity : AppCompatActivity() {
         registerViewModel.registerResponseLiveData.observe(this) {
             when (it) {
                 is NetworkResult.Success -> {
-                    Toast.makeText(this, it.data?.message ?: "null", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, it.data!!.message, Toast.LENGTH_LONG).show()
                     binding.errorMessage.visibility = GONE
                     startActivity(Intent(this, LoginActivity::class.java))
                     finishAffinity()
@@ -136,7 +129,7 @@ class RegisterActivity : AppCompatActivity() {
         registerViewModel.otpResponseLiveData.observe(this) {
             when (it) {
                 is NetworkResult.Success -> {
-                    serverOtp = it.data?.otp ?: 0
+                    serverOtp = it.data!!.otp
                     Toast.makeText(this, "Otp Sent Successfully", Toast.LENGTH_LONG).show()
                     binding.otpErrorMessage.visibility = GONE
                     startSmsUserConsent()
@@ -161,7 +154,7 @@ class RegisterActivity : AppCompatActivity() {
         binding.phoneNo.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus && validatePhoneNumber()) {
                 binding.ccp.registerCarrierNumberEditText(binding.phoneNo)
-                val otpRequest = OtpRequest(binding.ccp.fullNumber)
+                val otpRequest = OtpRequest(binding.ccp.fullNumber.trim())
                 Log.d(TAG, otpRequest.toString())
                 registerViewModel.sendOtp(otpRequest)
             }
@@ -174,6 +167,12 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "OTP Verified", Toast.LENGTH_SHORT).show()
                 binding.verifySmsCodeBtn.setBackgroundColor(getColor(R.color.green))
                 binding.verifySmsCodeBtn.text = "Verified"
+                binding.phoneNo.isEnabled = false
+                binding.ccp.setCcpClickable(false)
+                if(smsBroadcastReceiver != null){
+                    unregisterReceiver(smsBroadcastReceiver)
+                    smsBroadcastReceiver = null
+                }
             }
 
         }
@@ -195,6 +194,10 @@ class RegisterActivity : AppCompatActivity() {
         val task = client.startSmsUserConsent(null)
         task.addOnSuccessListener {
             Log.d(TAG, "bCR is started success")
+            if(smsBroadcastReceiver != null){
+                unregisterReceiver(smsBroadcastReceiver)
+                smsBroadcastReceiver = null
+            }
             registerBroadcastReceiver()
         }
         task.addOnFailureListener{
@@ -213,11 +216,10 @@ class RegisterActivity : AppCompatActivity() {
                     if (intent != null) {
                         smsBroadcastReceiverIntent.launch(intent)
                     }
-                    else Toast.makeText(this@RegisterActivity, "intent is null", Toast.LENGTH_SHORT).show()
                 }
-
                 override fun onFailure() {
                       unregisterReceiver(smsBroadcastReceiver)
+                      smsBroadcastReceiver = null
                       Toast.makeText(this@RegisterActivity, "Failed to launch sms intent", Toast.LENGTH_SHORT).show()
                 }
 
@@ -268,7 +270,7 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun setSpinnerAdapter() {
+    private fun setUserTypeSpinnerAdapter() {
         val userTypeAdapter =
             ArrayAdapter.createFromResource(this, R.array.userType, R.layout.spinner_item)
         userTypeAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
@@ -276,16 +278,16 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun getViewModel(): RegisterViewModel {
+    /*private fun getViewModel(): RegisterViewModel {
 
-        val userApi = RetrofitInstance.api
+        val userApi = RetrofitInstance.userApi
 
         registerRepository = RegisterRepository(userApi)
 
         factory = RegisterViewModelFactory(registerRepository)
 
         return ViewModelProvider(this, factory)[RegisterViewModel::class.java]
-    }
+    }*/
 
     private fun getSelectedUserType(): String? {
         return when (binding.userTypeSpinner.selectedItemPosition) {
@@ -293,11 +295,9 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please Select User Type", Toast.LENGTH_SHORT).show()
                 null
             }
-
             1 -> {
                 "S"
             }
-
             else -> "A"
         }
     }
@@ -469,9 +469,9 @@ class RegisterActivity : AppCompatActivity() {
             unregisterReceiver(smsBroadcastReceiver)
             smsBroadcastReceiver = null
         }
-
-
     }
+    
+    
 
     override fun onDestroy() {
         super.onDestroy()

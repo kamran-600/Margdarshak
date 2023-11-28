@@ -1,7 +1,9 @@
 package com.example.margdarshakendra
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.margdarshakendra.databinding.ActivityDashboardBinding
@@ -15,6 +17,8 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
 
         val toggle = ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolBar, R.string.open_drawer, R.string.close_drawer)
 

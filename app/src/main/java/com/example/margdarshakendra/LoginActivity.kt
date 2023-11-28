@@ -8,53 +8,91 @@ import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.example.margdarshakendra.api.RetrofitInstance
 import com.example.margdarshakendra.databinding.ActivityLoginBinding
 import com.example.margdarshakendra.models.LoginRequest
-import com.example.margdarshakendra.repository.LoginRepository
+import com.example.margdarshakendra.utils.Constants
 import com.example.margdarshakendra.utils.Constants.TAG
 import com.example.margdarshakendra.utils.NetworkResult
+import com.example.margdarshakendra.utils.SharedPreference
+import com.example.margdarshakendra.utils.TokenManager
 import com.example.margdarshakendra.viewmodels.LoginViewModel
-import com.example.margdarshakendra.viewmodels.LoginViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private var _binding: ActivityLoginBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var loginViewModel: LoginViewModel
-    private lateinit var factory: LoginViewModelFactory
-    private lateinit var loginRepository: LoginRepository
+    @Inject
+    lateinit var tokenManager: TokenManager
+
+    @Inject
+    lateinit var sharedPreference: SharedPreference
+
+    private val loginViewModel by viewModels<LoginViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        loginViewModel = getViewModel()
+        if(tokenManager.getToken() != null){
+            if(sharedPreference.getDetail(Constants.PROFILE_UPDATED, "Boolean") == true){
+                startActivity(Intent(this, DashboardActivity::class.java))
+            }
+            else startActivity(Intent(this, ProfileActivity::class.java))
+        }
+
 
         binding.loginBtn.setOnClickListener {
 
             if( ! validateDetails()) return@setOnClickListener
 
             val loginRequest =
-                LoginRequest(binding.email.text.toString(), binding.password.text.toString())
+                LoginRequest(binding.email.text.toString().trim(), binding.password.text.toString().trim())
             Log.d(TAG, loginRequest.toString())
             loginViewModel.loginUser(loginRequest)
 
         }
 
+
+
         loginViewModel.loginResponseLiveData.observe(this) {
             when (it) {
                 is NetworkResult.Success -> {
+                    tokenManager.saveToken(it.data!!.token)
+
+                    Log.d(TAG, it.data.toString())
                     Toast.makeText(
                         this,
-                        it.data?.message.plus(" login Successful") ?: "null",
+                        it.data.message.plus(" login Successful"),
                         Toast.LENGTH_LONG
                     ).show()
                     binding.errorMessage.visibility = View.GONE
-                    startActivity(Intent(this, DashboardActivity::class.java))
+
+                    sharedPreference.saveDetail(Constants.PROFILE_UPDATED, it.data.profile_updated , "Boolean")
+                    sharedPreference.saveDetail(Constants.USEREMAIL, it.data.email , "String")
+                    sharedPreference.saveDetail(Constants.USERMOBILE,it.data.mobile , "String")
+                    sharedPreference.saveDetail(Constants.USERTYPE,it.data.usertype , "String")
+                    sharedPreference.saveDetail(Constants.USERNAME,it.data.name , "String")
+
+
+
+                    if(it.data.profile_updated){
+                        startActivity(Intent(this, DashboardActivity::class.java))
+                    }
+                    else {
+                        val intent = Intent(this, ProfileActivity::class.java)
+                        /*intent.putExtra("email",it.data.email)
+                        intent.putExtra("mobile",it.data.mobile)
+                        intent.putExtra("userType",it.data.usertype)
+                        intent.putExtra("name",it.data.name)*/
+                        startActivity(intent)
+                    }
                     finishAffinity()
                 }
 
@@ -86,12 +124,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun validateDetails() : Boolean {
 
-        if (TextUtils.isEmpty(binding.email.text) || TextUtils.isEmpty(binding.password.text)) {
+        if (TextUtils.isEmpty(binding.email.text?.trim()) || TextUtils.isEmpty(binding.password.text?.trim())) {
             Toast.makeText(this, "Please enter required details", Toast.LENGTH_SHORT).show()
             binding.errorMessage.visibility = View.VISIBLE
             binding.errorMessage.text = "Please enter required details !"
             return false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.text.toString()).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.text.toString().trim()).matches()) {
 
             Toast.makeText(this, "Please enter email in correct pattern", Toast.LENGTH_SHORT).show()
             binding.errorMessage.visibility = View.VISIBLE
@@ -106,16 +144,16 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun getViewModel(): LoginViewModel {
+    /*private fun getViewModel(): LoginViewModel {
 
-        val userApi = RetrofitInstance.api
+        val userApi = RetrofitInstance.userApi
 
         loginRepository = LoginRepository(userApi)
 
         factory = LoginViewModelFactory(loginRepository)
 
         return ViewModelProvider(this, factory)[LoginViewModel::class.java]
-    }
+    }*/
 
     override fun onDestroy() {
         super.onDestroy()

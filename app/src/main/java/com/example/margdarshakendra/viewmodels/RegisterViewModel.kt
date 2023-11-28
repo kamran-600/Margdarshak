@@ -10,10 +10,13 @@ import com.example.margdarshakendra.models.RegisterRequest
 import com.example.margdarshakendra.models.RegisterResponse
 import com.example.margdarshakendra.repository.RegisterRepository
 import com.example.margdarshakendra.utils.NetworkResult
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class RegisterViewModel(private val registerRepository: RegisterRepository) : ViewModel() {
+@HiltViewModel
+class RegisterViewModel @Inject constructor(private val registerRepository: RegisterRepository) : ViewModel() {
 
     val registerResponseLiveData: LiveData<NetworkResult<RegisterResponse>>
         get() = registerRepository.registerResponseLiveData

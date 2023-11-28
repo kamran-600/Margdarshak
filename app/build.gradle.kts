@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-   // kotlin("kapt")
-    //id("com.google.dagger.hilt.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -53,14 +53,15 @@ dependencies {
     // country code picker
     implementation("com.hbb20:ccp:2.7.3")
 
-    /*// hilt dependency
-    implementation("com.google.dagger:hilt-android:2.44")
-    annotationProcessor("com.google.dagger:hilt-android-compiler:2.44")*/
+    // hilt dependency
+    implementation("com.google.dagger:hilt-android:2.48.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 
 
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -74,10 +75,10 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.1")
 
 
+    // auto read otp library
     implementation("com.google.android.gms:play-services-auth-api-phone:18.0.1")
 }
-/*
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
-}*/
+}
