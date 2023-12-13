@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?actionBarSize"
+    android:layout_marginBottom="60dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".assessment_fragments.PsychometricAptitudeAssessmentFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/assessment_icon"
+            android:drawablePadding="5dp"
+            android:textStyle="bold"
+            android:text="Psychometric Aptitude Assessments"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="The Psychometric Aptitude Assessment is conducted to find your best fit career options based on:"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/style_card"
+            android:backgroundTint="#E3DFB8"
+            android:elevation="2dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="What you like to do."
+            android:textColor="@color/black45"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="The Aptitude Assessment helps you discover the type of occupations that you would like and find exciting. You identify and learn about broad interest areas most relevant to yourself. You can use your Aptitude Assessment results to explore the world of work. You receive an accurate, reliable profile of your vocational interests that:"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/arrow_right"
+            android:drawablePadding="5dp"
+            android:paddingHorizontal="10dp"
+            android:text="Provides valuable self-knowledge about your career related interests"
+            android:textColor="@color/black45"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/arrow_right"
+            android:drawablePadding="5dp"
+            android:paddingHorizontal="10dp"
+            android:text="Fosters career awareness, and"
+            android:textColor="@color/black45"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/arrow_right"
+            android:drawablePadding="5dp"
+            android:paddingHorizontal="10dp"
+            android:text="Provides a window to the entire world of work."
+            android:textColor="@color/black45"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="The Aptitude Assessment is based on:"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Rich and extensive research"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Widely accepted and used by counselors"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Easy to use and well authenticated by clients"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Interest items represent a broad variety of occupations and complexity levels"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Extensive and thorough development effort"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Client input during all stages"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Construct validity and reliability evidence"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="Can be self-administered and self-interpreted"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="Aptitude Assessment has a series of questions about activities you might perform at work. All of the questions are of multiple choices.\n\nYou have to read each question carefully and decide whether or not you would like to do the work activity.\n\nAs you answer the questions, try NOT to think about:"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="If you have enough education or training to do the work or"
+            android:textSize="15sp" />
+
+   <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/circle"
+            android:drawablePadding="10dp"
+            android:paddingHorizontal="20dp"
+            android:text="How much money you would make doing the work."
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Just think about if you would like or dislike doing the work."
+            android:textSize="16sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/style_card"
+            android:backgroundTint="#ABEABB"
+            android:elevation="2dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="THIS IS NOT A TEST!"
+            android:textColor="@color/black45"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="There are no right or wrong answers!\n\nPlease take your time answering the questions. There is no need to rush!\n\nYou will not be able to move to the next page until you have answered all the questions.\n\nTo review a screen you have already completed, click on the back button. At any point you can change your answer to a question. Simply use your mouse to move to the question where you want to change your answer. Then select your new answer.\n\nThe only goal is for you to learn about your interests so you can explore work that might be satisfying and rewarding to you.\n\nThe assessment is composed of 180 items describing work activities that represent a wide variety of occupations as well as a broad range of training levels."
+            android:textSize="16sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/style_card"
+            android:backgroundTint="#FBF089"
+            android:elevation="2dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:text="Completion time: 30 minute approx."
+            android:textColor="@color/black45"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="FREE – Give reference of 3 students to know the result."
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startFreeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            app:cornerRadius="15dp"
+            android:text="Start FREE" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>

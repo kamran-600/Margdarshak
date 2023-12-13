@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.margdarshakendra"
+    namespace = "com.margdarshakendra.margdarshak"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.margdarshakendra"
+        applicationId = "com.margdarshakendra.margdarshak"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -46,6 +46,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -74,9 +75,25 @@ dependencies {
     //ViewModels delegation extensions for activity
     implementation("androidx.activity:activity-ktx:1.8.1")
 
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+
 
     // auto read otp library
     implementation("com.google.android.gms:play-services-auth-api-phone:18.0.1")
+
+    // circular image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    // lottie animation
+    implementation("com.airbnb.android:lottie:6.1.0")
+
+    // glide library
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    // skeleton for shimmer effect
+    implementation("com.faltenreich:skeletonlayout:5.0.0")
+
+    //sweetDialog library
+    implementation("com.github.f0ris.sweetalert:library:1.6.2")
 }
 // Allow references to generated code
 kapt {

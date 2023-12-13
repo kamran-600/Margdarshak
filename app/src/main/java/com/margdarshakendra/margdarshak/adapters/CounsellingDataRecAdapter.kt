@@ -1,0 +1,177 @@
+package com.margdarshakendra.margdarshak.adapters
+
+import android.content.Context
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.margdarshakendra.margdarshak.R
+import com.margdarshakendra.margdarshak.databinding.SingleRowClientdataBinding
+import com.margdarshakendra.margdarshak.models.CounsellingDataResponse
+import com.margdarshakendra.margdarshak.utils.Constants.TAG
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+
+class CounsellingDataRecAdapter(
+    private val context: Context,
+    private val makeCall: (Int, String) -> Unit,
+    private val sendCloudMessage: (Int, String) -> Unit,
+    private val sendWhatsappMessage: (Int, String) -> Unit,
+    private val sendEmailMessage: (Int, String) -> Unit
+) :
+    ListAdapter<CounsellingDataResponse.Data, CounsellingDataRecAdapter.ViewHolder>(DiffUtilBack()) {
+
+    class DiffUtilBack : DiffUtil.ItemCallback<CounsellingDataResponse.Data>() {
+        override fun areItemsTheSame(
+            oldItem: CounsellingDataResponse.Data,
+            newItem: CounsellingDataResponse.Data
+        ): Boolean {
+            return oldItem.userID == newItem.userID
+        }
+
+        override fun areContentsTheSame(
+            oldItem: CounsellingDataResponse.Data,
+            newItem: CounsellingDataResponse.Data
+        ): Boolean {
+            return oldItem == newItem
+        }
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val singleRowClientdataBinding =
+            SingleRowClientdataBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(singleRowClientdataBinding)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val counsellingData = getItem(position)
+
+        counsellingData.state.let {
+            holder.binding.state.text = it
+        }
+        counsellingData.district.let {
+            holder.binding.district.text = it
+        }
+        counsellingData.pincode.let {
+            holder.binding.pincode.text = it
+        }
+        holder.binding.name.apply {
+            text = counsellingData.name
+            isSelected = true
+        }
+
+        holder.binding.dataAdvisorName.text = counsellingData.advisor_name
+        holder.binding.followDate.text = counsellingData.date_follow
+        holder.binding.logs.text = counsellingData.log_count.toString()
+        holder.binding.remark.text = counsellingData.remarks
+        holder.binding.status.apply {
+            text = counsellingData.status
+            isSelected = true
+        }
+
+        "log(${counsellingData.log_count})".also { holder.binding.logs.text = it }
+        if (counsellingData.usertype == "S") {
+            "Student".also { holder.binding.userType.text = it }
+        } else "Job Seeker".also { holder.binding.userType.text = it }
+
+        if (counsellingData.mobile_verified == "true") {
+            holder.binding.mobile.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.check_circle,
+                0,
+                0,
+                0
+            )
+        }
+        if (counsellingData.email_verified == "true") {
+            holder.binding.email.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.check_circle,
+                0,
+                0,
+                0
+            )
+        }
+
+        if (counsellingData.usertype == "S") {
+            "Student".also { holder.binding.userType.text = it }
+        } else "".also { holder.binding.userType.text = it }
+
+
+        if (counsellingData.remaining_call_count != null) {
+            holder.binding.callRemaining.text = counsellingData.remaining_call_count.toString()
+        }
+        holder.binding.emailRemaining.text = counsellingData.remaining_email_count.toString()
+        holder.binding.smsRemaining.text = counsellingData.remaining_sms_count.toString()
+        holder.binding.whatsappRemaining.text = counsellingData.remaining_whatsapp_count.toString()
+        holder.binding.whatsappRemaining.text = counsellingData.remaining_whatsapp_count.toString()
+
+        if (counsellingData.pic != null) {
+            Glide.with(context).load(counsellingData.pic).into(holder.binding.profileImage)
+        }
+
+        holder.binding.callRemaining.setOnClickListener {
+            makeCall(counsellingData.userID, counsellingData.name)
+        }
+
+        holder.binding.smsRemaining.setOnClickListener {
+            sendCloudMessage(counsellingData.userID,counsellingData.name)
+        }
+        holder.binding.whatsappRemaining.setOnClickListener {
+            sendWhatsappMessage(counsellingData.userID, counsellingData.name)
+        }
+
+        holder.binding.emailRemaining.setOnClickListener {
+            sendEmailMessage(counsellingData.userID, counsellingData.name)
+        }
+
+        /*val dateFormat = SimpleDateFormat("dd-MM-yy hh:mm a", Locale.getDefault())
+
+        var convertedDate: Date? = null
+        try {
+            if(counsellingData.date_follow  != null){
+                convertedDate =
+                    dateFormat.parse(counsellingData.date_follow)
+            }
+        } catch (e: ParseException) {
+            Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+        }
+
+        if(convertedDate != null){
+
+            Log.d(TAG, convertedDate.toString() )
+            Log.d(TAG, convertedDate.time.toString() )
+            val calendar = Calendar.getInstance()
+            calendar.time = convertedDate
+            calendar.add(Calendar.MINUTE, -10)
+            val timeInMillis = calendar.timeInMillis
+            // Log.d(TAG, dateFormat.format(date) )
+            Log.d(TAG, calendar.time.toString() )
+            Log.d(TAG, timeInMillis.toString() )
+
+            *//*val cal = Calendar.getInstance()
+            cal.add(Calendar.MINUTE, 1)
+            Log.d(TAG, cal.time.toString() )*//*
+
+            scheduleNotification(timeInMillis)
+
+        }
+*/
+
+
+
+
+
+
+    }
+
+    class ViewHolder(val binding: SingleRowClientdataBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+}

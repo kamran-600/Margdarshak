@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/round_dashboard_icon"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/counselling"
+        android:icon="@drawable/counselling"
+        android:title="Counselling" />
+
+    <item
+        android:id="@+id/hiring"
+        android:icon="@drawable/hiring"
+        android:title="Hiring" />
+    <item
+        android:id="@+id/webEmail"
+        android:icon="@drawable/email_icon"
+        android:title="Web Email" />
+    <item
+        android:id="@+id/whatsapp"
+        android:icon="@drawable/whatsapp"
+        android:title="WhatsApp" />
+</menu>

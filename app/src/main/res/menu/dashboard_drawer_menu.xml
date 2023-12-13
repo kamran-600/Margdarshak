@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu>
 
-    <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:icon="@drawable/teams_support_icon"
-        android:title="Test" />
+    <!-- <item android:title="Career Assessment">
+         <menu>
+             <group >
+                 <item
+                     android:id="@+id/aptitude_assessment_free"
+                     android:title="Aptitude Assessment (Free)" />
+                 <item
+                     android:id="@+id/career_report"
+                     android:title="Career Report" />
+                 <item
+                     android:id="@+id/attitude_assessment_free"
+                     android:title="Attitude Assessment (Free)" />
+
+             </group>
+         </menu>
+     </item>-->
+
+
 </menu>

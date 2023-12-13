@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Margdarshakendra</string>
+    <string name="app_name">Margdarshak</string>
     <string name="don_t_have_account_regsiter">Don\'t have account?<font color='#FF1E88E5'> Register!</font></string>
     <string name="already_have_account_login">Already have a account?<font color='#FF1E88E5'> Login!</font></string>
 
@@ -9,9 +9,15 @@
         <item>Counsellor/Trainer</item>
     </string-array>
 
+    <string-array name="smtpArray">
+        <item>GMAIL</item>
+        <item>AWS</item>
+    </string-array>
+
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

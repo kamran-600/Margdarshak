@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/serialNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00000"
+        android:layout_marginHorizontal="10dp"
+        android:textSize="15sp" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_toEndOf="@id/serialNo"
+        android:text="Building kitchen Cabinates Building"
+        android:textSize="15sp" />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/question"
+        android:layout_marginHorizontal="70dp"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/yesBtn"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="Yes"
+            android:textColor="@drawable/text_color"
+            android:textSize="15sp" />
+
+
+        <RadioButton
+            android:id="@+id/noBtn"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginStart="30dp"
+            android:includeFontPadding="false"
+            android:text="No"
+            android:textColor="@drawable/text_color"
+            android:textSize="15sp" />
+
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/radioGroup"
+        android:background="?android:attr/listDivider" />
+
+
+</RelativeLayout>
