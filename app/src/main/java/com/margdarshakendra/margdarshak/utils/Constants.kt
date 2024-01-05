@@ -16,6 +16,8 @@ object Constants {
     const val USERTYPE = "USERTYPE"
     const val USERMOBILE = "USERMOBILE"
 
+    const val USERLOGINID = "USERLOGINID"
+
     const val CHANNELID = "CHANNELID"
     const val NOTIFICATIONID = 100
 
@@ -25,6 +27,7 @@ object Constants {
     const val ATTITUDERATINGCOMPLETED = "ATTITUDERATINGCOMPLETED"
     const val ATTITUDECOMPLETED = "ATTITUDECOMPLETED"
 
+    const val FCMTOKEN = "FCMTOKEN"
 
 
 }

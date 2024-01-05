@@ -1,5 +1,6 @@
 package com.margdarshakendra.margdarshak.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,8 +14,10 @@ import com.margdarshakendra.margdarshak.models.SmsRequest
 import com.margdarshakendra.margdarshak.models.SmsResponse
 import com.margdarshakendra.margdarshak.models.TemplateResponse
 import com.margdarshakendra.margdarshak.repository.DashboardRepository
+import com.margdarshakendra.margdarshak.utils.Constants.TAG
 import com.margdarshakendra.margdarshak.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,8 +25,11 @@ import javax.inject.Inject
 class HiringViewModel @Inject constructor(private val dashboardRepository: DashboardRepository) :
     ViewModel() {
 
-    val hiringDataResponseLiveData: LiveData<NetworkResult<HiringDataResponse>>
-        get() = dashboardRepository.hiringDataResponseLiveData
+
+    val hiringDataResponseLiveData get() = dashboardRepository.hiringDataResponseLiveData
+
+    val hiringDataListLiveData get()  = dashboardRepository.hiringDataListLiveData
+
 
     val callResponseLiveData: LiveData<NetworkResult<CallResponse>>
         get() = dashboardRepository.callResponseLiveData
@@ -41,7 +47,7 @@ class HiringViewModel @Inject constructor(private val dashboardRepository: Dashb
         get() = dashboardRepository.templateResponseLiveData
 
 
-    fun getClientData(dataRequest: DataRequest) {
+    fun getHiringData(dataRequest: DataRequest) {
         viewModelScope.launch {
             dashboardRepository.getHiringData(dataRequest)
         }

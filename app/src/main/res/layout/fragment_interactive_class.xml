@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".progress_meter_tab_fragments.InteractiveClassFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:drawableStart="@drawable/assessment_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Interactive Class"
+            android:textColor="@color/upperBlue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/course_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Select Course/Exam"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/courseAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/box"
+            android:inputType="none"
+            android:completionThreshold="1"
+            android:drawableEnd="@drawable/arrow_down"
+            android:drawableTint="@color/black45"
+            android:hint="Select a Course"
+            android:paddingHorizontal="15dp"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/education_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Select Subject/Module"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/subjectAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/box"
+            android:inputType="none"
+            android:drawableEnd="@drawable/arrow_down"
+            android:drawableTint="@color/black45"
+            android:completionThreshold="1"
+            android:hint="Select a Subject"
+            android:paddingHorizontal="15dp"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/interactiveTeachersRecView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingTop="5dp"
+            android:clipToPadding="true"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/single_row_teacher_desc" />
+
+
+
+
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>

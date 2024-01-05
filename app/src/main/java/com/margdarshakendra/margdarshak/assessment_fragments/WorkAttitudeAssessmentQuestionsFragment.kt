@@ -94,7 +94,7 @@ class WorkAttitudeAssessmentQuestionsFragment : Fragment(),
         )
         skeleton.showSkeleton()
         workAttitudeAssessmentQuestionsFragmentViewModel.attitudeQuestionsDataResponseLiveData.observe(
-            requireActivity()
+            viewLifecycleOwner
         ) {
             when (it) {
                 is NetworkResult.Success -> {
@@ -137,7 +137,7 @@ class WorkAttitudeAssessmentQuestionsFragment : Fragment(),
         }
 
 
-        workAttitudeAssessmentQuestionsFragmentViewModel.saveAttitudeQuestionsResponseLiveData.observe(requireActivity()){
+        workAttitudeAssessmentQuestionsFragmentViewModel.saveAttitudeQuestionsResponseLiveData.observe(viewLifecycleOwner){
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.toString())

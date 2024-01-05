@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginBottom="10dp"
+    app:cardElevation="3dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/actionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Action : "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/actionText"
+            android:text="1111              "
+            android:textSize="15sp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/editSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:paddingHorizontal="5dp"
+            android:paddingBottom="5dp"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/edit_schedule_icon"
+            app:tint="@color/upperBlue" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/courseOrExamText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/action"
+            android:layout_margin="5dp"
+            android:text="Course/Exam : "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/courseOrExam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/courseOrExamText"
+            android:text="Class 12   "
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/subjectText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/courseOrExam"
+            android:layout_margin="5dp"
+            android:text="Subject : "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subjectText"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="Mathematics      "
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lessonsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subject"
+            android:layout_margin="5dp"
+            android:text="Lessons : "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lessonsArray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lessonsText"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="34,35,36,37         "
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/startAndEndDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lessonsArray"
+            android:layout_margin="5dp"
+            android:text="Start And End Date : "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/startAndEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/startAndEndDateText"
+            android:text="12/10/2023"
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/daysText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startAndEndDate"
+            android:layout_margin="5dp"
+            android:text="Days : "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/daysText"
+            android:text="S,M,T,W,T,F,S          "
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/markReceivedText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/days"
+            android:layout_margin="5dp"
+            android:text="Time : "
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@id/markReceivedText"
+            android:text="2949                      "
+            android:textSize="15sp" />
+
+
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

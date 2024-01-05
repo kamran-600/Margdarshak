@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true"
+    tools:context=".progress_meter_tab_fragments.StudyOrganiserFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/innerLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/assessment_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Study-Organizer"
+                android:textColor="@color/upperBlue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/schedule_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Create your study schedule"
+                android:textColor="@color/black45"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/course_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Course/Exam"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/courseAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:inputType="none"
+                android:completionThreshold="1"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:hint="Select a Course"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/education_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Subject"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/subjectAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:inputType="none"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:completionThreshold="1"
+                android:hint="Select a Subject"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/learning_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Lesson"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView
+                android:id="@+id/lessonMultiAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:focusable="false"
+                android:paddingVertical="10dp"
+                android:minHeight="50dp"
+                android:hint="Select a Lesson"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/language_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Language"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/languageAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:completionThreshold="1"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:hint="Select a Language"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/weightage_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Weightage"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/weightageAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:completionThreshold="0"
+                android:hint="Select Weightage"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/calendar"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Start Date"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/startDate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:drawableEnd="@drawable/calendar"
+                android:focusable="false"
+                android:hint="yyyy-mm-dd"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textColor="@color/black45"
+                android:cursorVisible="false"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/calendar"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="End Date"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/endDate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:drawableEnd="@drawable/calendar"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:hint="yyyy-mm-dd"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textColor="@color/black45"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/calendar"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/red_btn_bg_color"
+                android:text="Holiday Days"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/holidayDates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:drawableEnd="@drawable/calendar"
+                android:focusable="false"
+                android:minHeight="50dp"
+                android:cursorVisible="false"
+                android:paddingVertical="10dp"
+                android:hint="Select Holiday Dates"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textColor="@color/black45"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/bookmark_border_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Select either Study days OR Study time"
+                android:textSize="18sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/schedule_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Study Time"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/hour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@drawable/box"
+                    android:hint="00"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/black45"
+                    android:textCursorDrawable="@drawable/form_cursor"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:text="Hours"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/minutes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:background="@drawable/box"
+                    android:hint="00"
+                    android:inputType="none"
+                    android:maxLength="2"
+                    android:focusable="false"
+                    android:cursorVisible="false"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/black45"
+                    android:textCursorDrawable="@drawable/form_cursor"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:text=" Minutes"
+                    android:textSize="15sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/calendar"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Study days"
+                android:textSize="18sp" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/allCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:enabled="false"
+                android:text="All" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/sundayCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:enabled="false"
+                android:text="Sunday" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/mondayCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:enabled="false"
+                android:text="Monday" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/tuesdayCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:enabled="false"
+                android:text="Tuesday" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/wednesdayCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:enabled="false"
+                android:text="Wednesday" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/thursdayCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:enabled="false"
+                android:text="Thursday" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/fridayCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:enabled="false"
+                android:text="Friday" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/saturdayCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:enabled="false"
+                android:text="Saturday" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submitBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/details"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/upperBlue"
+                android:text="Submit"
+                android:textSize="15sp"
+                app:cornerRadius="10dp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/organisedStudyRecView"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+</androidx.core.widget.NestedScrollView>

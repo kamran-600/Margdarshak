@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".StudentHomeFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/smart_aim_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:text="Smart Aim"
+                    android:textColor="@color/white"
+                    app:cornerRadius="5dp"
+                    app:icon="@drawable/aim"
+                    app:iconGravity="textStart" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/smart_aim_btn"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="Career by choice not by chance!\nMost of the students have a let’s see what happens attitude. Either they think about traditional careers or follow casual, half-baked advice of family members, relatives and friends.\n\nYou must define Specific, Measurable, Acceptable, Realistic and Time-specific (SMART) career objectives."
+                    android:textSize="15sp" />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/educationTraining_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:text="Education &amp; Training Pathways"
+                    android:textColor="@color/white"
+                    app:cornerRadius="5dp"
+                    app:icon="@drawable/skills"
+                    app:iconGravity="textStart" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/educationTraining_btn"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="Don’t follow the crowd!\n94% of people first finish the journey (education) and then think about their destination (career). They follow the crowd or get lured by useless courses and training programmes, wasting hard earned money and irreversible time at the career building stage\n\nDecide courses, training and institutes based on SMART aim and financial condition."
+                    android:textSize="15sp" />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/career_aptitude_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:text="Career Aptitude"
+                    android:textColor="@color/white"
+                    app:cornerRadius="5dp"
+                    app:icon="@drawable/career_aptitude"
+                    app:iconGravity="textStart" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/career_aptitude_btn"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="Be what you want to be!\nAptitude Assessment is an authentic, scientifically formulated psychometric tool for students to find their true interests and to match its compatibility with SMART aim."
+                    android:textSize="15sp" />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/work_attitude_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:text="Work Attitude"
+                    android:textColor="@color/white"
+                    app:cornerRadius="5dp"
+                    app:icon="@drawable/work_attitude"
+                    app:iconGravity="textStart" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/work_attitude_btn"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="Listen to your heart &amp; mind!\nThe root cause of frustration and tension in professional life is incompatibility of a job with the attitude of a person.\n\nWork Attitude Assessment helps to identify occupations that you may find satisfying based on the similarity between your work values and the characteristics of the occupations."
+                    android:textSize="15sp" />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/inborn_ability_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:text="Inborn Ability"
+                    android:textColor="@color/white"
+                    app:cornerRadius="5dp"
+                    app:icon="@drawable/database_icon"
+                    app:iconGravity="textStart" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/inborn_ability_btn"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="Don’t teach a fish to climb a tree!\nEvery person has a distinct talent. Dermatoglyphic Analysis helps to identify 9 types of intelligence\n\nDon't compare ourselves with others. If you judge a fish by its ability to climb a tree, it will live its whole life believing that it is stupid."
+                    android:textSize="15sp" />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/learning_styles_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:text="Learning Styles"
+                    android:textColor="@color/white"
+                    app:cornerRadius="5dp"
+                    app:icon="@drawable/learning_style_icon"
+                    app:iconGravity="textStart" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/learning_styles_btn"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="Natural way to acquire knowledge!\nFind which learning style will be best fit for you Visual, Aural, Reading &amp; Writing and Kinaesthetic.\n\nLearning styles give a clue how you can acquire knowledge naturally and more efficiently and removes the 'trial and error' method of parenting."
+                    android:textSize="15sp" />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>

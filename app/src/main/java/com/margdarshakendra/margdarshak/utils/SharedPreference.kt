@@ -27,7 +27,7 @@ class SharedPreference @Inject constructor(@ApplicationContext context: Context)
     }
 
     fun getDetail(key : String, dataType : String?) : Any?{
-        Log.d(TAG, "$key gotton in prefrences")
+        Log.d(TAG, "$key  gotton in prefrences")
         return when (dataType) {
             "Boolean" -> prefs.getBoolean(key, false)
             "Int" -> prefs.getInt(key, -1)
@@ -44,6 +44,12 @@ class SharedPreference @Inject constructor(@ApplicationContext context: Context)
         editor.remove(key)
         editor.apply()
         Log.d(TAG, "$key deleted from prefrences")
+    }
+
+    fun clearAll(){
+        val editor = prefs.edit()
+        editor.clear()
+        editor.apply()
     }
 
     /*fun saveProfileUpdatedFlag(profileUpdatedFlag: Boolean) {

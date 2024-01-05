@@ -36,6 +36,7 @@ class ProfileRepository @Inject constructor(private val addressSearchApi: Addres
 
 
     suspend fun getDistrict(districtRequest: DistrictRequest) {
+        _districtResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val districtListResponse = addressSearchApi.getDistrict(districtRequest)
 
@@ -54,6 +55,7 @@ class ProfileRepository @Inject constructor(private val addressSearchApi: Addres
     }
 
     suspend fun getCountry(countryRequest: CountryRequest) {
+        _pincodeResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val countryListResponse = addressSearchApi.getCountry(countryRequest)
 
@@ -71,6 +73,7 @@ class ProfileRepository @Inject constructor(private val addressSearchApi: Addres
     }
 
     suspend fun getPincode(q : String) {
+        _pincodeResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val pincodeListResponse = addressSearchApi.getPincode(q)
 
@@ -88,6 +91,7 @@ class ProfileRepository @Inject constructor(private val addressSearchApi: Addres
     }
 
     suspend fun userUpdateDetails(userUpdateRequest: UserUpdateRequest) {
+        _userUpdateResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val userUpdateResponse = addressSearchApi.updateUserDetails(userUpdateRequest)
 

@@ -7,9 +7,11 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.google.android.material.snackbar.Snackbar
 import com.margdarshakendra.margdarshak.LoginActivity
 import com.margdarshakendra.margdarshak.R
 import com.margdarshakendra.margdarshak.utils.Constants
@@ -20,12 +22,15 @@ class NotificationReceiver : BroadcastReceiver() {
 
         val i = Intent(context, LoginActivity::class.java)
         intent!!.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val contentText = intent.getStringExtra("contentText")
+        val title = intent.getStringExtra("title")
+        val imageUrl = intent.getStringExtra("imageUrl")
         val pendingIntent = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_IMMUTABLE)
 
         val notification = NotificationCompat.Builder(context!!, Constants.CHANNELID)
-            .setSmallIcon(R.drawable.ic_launcher_background)
-            .setContentTitle(context.getString(R.string.app_name))
-            .setContentText("testing notification")
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(contentText)
             .setAutoCancel(true)
             .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -40,6 +45,8 @@ class NotificationReceiver : BroadcastReceiver() {
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             notificationManager.notify(Constants.NOTIFICATIONID, notification)
+        }else {
+            Toast.makeText(context, "Please allow notification permission in app info/ Setting to receive reminder", Toast.LENGTH_LONG).show()
         }
 
 

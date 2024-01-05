@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="?actionBarSize"
-    android:layout_marginBottom="60dp"
+    android:layout_height="wrap_content"
     tools:context=".assessment_fragments.WorkAttitudeAssessmentFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -54,7 +52,6 @@
             android:textSize="16sp" />
 
 
-
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,7 +73,7 @@
             android:text="Each of the statement that follows has five options. You have to write your preferences in order of importance.\n\n(1=Most important, 5=Least important)\n\n1 2 3 4 5\n\nOrder the following 5 statements from 1 to 5."
             android:textSize="16sp" />
 
-       <com.google.android.material.textview.MaterialTextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -84,14 +81,33 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/startFreeBtn"
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/agreeCheckBox"
             android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="10dp"
-            android:text="Start FREE"
-            app:cornerRadius="15dp" />
+            android:animateLayoutChanges="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/startFreeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start FREE"
+                app:cornerRadius="15dp" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/upperBlue"
+                app:SpinKit_Style="ThreeBounce" />
+
+        </FrameLayout>
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

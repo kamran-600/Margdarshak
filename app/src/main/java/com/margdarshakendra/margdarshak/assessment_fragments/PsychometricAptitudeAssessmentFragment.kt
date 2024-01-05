@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.margdarshakendra.margdarshak.R
@@ -26,7 +27,7 @@ class PsychometricAptitudeAssessmentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding =  FragmentPsychometricAptitudeAssessmentBinding.inflate(inflater, container, false)
 
@@ -41,7 +42,8 @@ class PsychometricAptitudeAssessmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        psychometricAptitudeAssessmentViewModel.startAptitudeAssessmentResponseLiveData.observe(requireActivity()){
+        psychometricAptitudeAssessmentViewModel.startAptitudeAssessmentResponseLiveData.observe(viewLifecycleOwner){
+            binding.spinKit.visibility = View.GONE
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(Constants.TAG, it.data!!.toString())
@@ -55,24 +57,25 @@ class PsychometricAptitudeAssessmentFragment : Fragment() {
                     requireActivity().supportFragmentManager.beginTransaction()
                         .replace(R.id.bReplace, psychometricAptitudeAssessmentQuestionsFragment)
                         .commit()
-
-                    //  startActivity(Intent(this, DashboardActivity::class.java))
-                    // finishAffinity()
                 }
 
                 is NetworkResult.Error -> {
+                    binding.startFreeBtn.visibility = View.VISIBLE
+                    Log.d(Constants.TAG, it.message.toString())
                     if(it.message == "Refrence Pending"){
                         val sweetAlertDialog = SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
                         sweetAlertDialog.titleText = "You have Already attempted this assessment !"
                         sweetAlertDialog.confirmText = "OK"
                         sweetAlertDialog.show()
                     }
-                   // Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.d(Constants.TAG, it.message.toString())
+                    else {
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    }
                 }
 
                 is NetworkResult.Loading -> {
-
+                    binding.spinKit.visibility = View.VISIBLE
+                    binding.startFreeBtn.visibility = View.INVISIBLE
                 }
             }
         }

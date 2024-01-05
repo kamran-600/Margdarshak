@@ -102,11 +102,11 @@ class CounsellingFragment : Fragment() {
         val skeleton: Skeleton =
             binding.counsellingDataRecyclerView.applySkeleton(R.layout.single_row_clientdata, 5)
         skeleton.showSkeleton()
-        counsellingViewModel.counsellingDataResponseLiveData.observe(requireActivity()) {
+        counsellingViewModel.counsellingDataResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
                     skeleton.showOriginal()
-                    Log.d(Constants.TAG, it.data!!.toString())
+                    Log.d(TAG, it.data!!.toString())
 
                     val counsellingDataRecAdapter = CounsellingDataRecAdapter(
                         requireContext(), ::makeCall,
@@ -123,7 +123,7 @@ class CounsellingFragment : Fragment() {
 
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.d(Constants.TAG, it.message.toString())
+                    Log.d(TAG, it.message.toString())
                 }
 
                 is NetworkResult.Loading -> {
@@ -132,11 +132,11 @@ class CounsellingFragment : Fragment() {
             }
         }
 
-        counsellingViewModel.callResponseLiveData.observe(requireActivity()) {
+        counsellingViewModel.callResponseLiveData.observe(viewLifecycleOwner) {
 
             when (it) {
                 is NetworkResult.Success -> {
-                    Log.d(Constants.TAG, it.data!!.data.toString())
+                    Log.d(TAG, it.data!!.data.toString())
                     Toast.makeText(requireContext(), it.data.data.message, Toast.LENGTH_SHORT)
                         .show()
 
@@ -145,7 +145,7 @@ class CounsellingFragment : Fragment() {
 
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.d(Constants.TAG, it.message.toString())
+                    Log.d(TAG, it.message.toString())
                 }
 
                 is NetworkResult.Loading -> {
@@ -154,16 +154,16 @@ class CounsellingFragment : Fragment() {
             }
         }
 
-        counsellingViewModel.crmResponseLiveData.observe(requireActivity()) {
+        counsellingViewModel.crmResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    Log.d(Constants.TAG, it.data!!.data.sms.toString())
+                    Log.d(TAG, it.data!!.data.sms.toString())
                     setFollowDate()
                     setTime()
                     populateStatusSpinner(it.data.data.status)
 
                     if (smsClicked) {
-                        Log.d(Constants.TAG, smsClicked.toString())
+                        Log.d(TAG, smsClicked.toString())
                         populateTemplateSpinnerSms(it.data.data.sms)
                     } else if (whatsappClicked) {
                         populateTemplateSpinnerWhatsApp(it.data.data.whatsapp)
@@ -175,7 +175,7 @@ class CounsellingFragment : Fragment() {
 
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.d(Constants.TAG, it.message.toString())
+                    Log.d(TAG, it.message.toString())
                 }
 
                 is NetworkResult.Loading -> {
@@ -184,21 +184,22 @@ class CounsellingFragment : Fragment() {
             }
         }
 
-        counsellingViewModel.smsResponseLiveData.observe(requireActivity()) {
+        counsellingViewModel.smsResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    Log.d(Constants.TAG, it.data!!.toString())
+                    Log.d(TAG, it.data!!.toString())
                     Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
 
-                    val dateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
+                    /*val dateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
 
                     var date = ""
 
-                    if(callClicked){
-                        date = "${makeCallLayoutBinding.followUpDate.text} ${makeCallLayoutBinding.time.text}"
-                    }
-                    else{
-                        date = "${sendSmsLayoutBinding.followUpDate.text} ${sendSmsLayoutBinding.time.text}"
+                    if (callClicked) {
+                        date =
+                            "${makeCallLayoutBinding.followUpDate.text} ${makeCallLayoutBinding.time.text}"
+                    } else {
+                        date =
+                            "${sendSmsLayoutBinding.followUpDate.text} ${sendSmsLayoutBinding.time.text}"
                     }
 
                     var convertedDate: Date? = null
@@ -209,22 +210,24 @@ class CounsellingFragment : Fragment() {
                     }
 
                     if (convertedDate != null) {
-                        Log.d(Constants.TAG, date)
-                        Log.d(Constants.TAG, convertedDate.toString())
+                        Log.d(TAG, date)
+                        Log.d(TAG, convertedDate.toString())
                         val calendar = Calendar.getInstance()
                         calendar.time = convertedDate
                         calendar.add(Calendar.MINUTE, -10)
                         val timeInMillis = calendar.timeInMillis
-                        Log.d(Constants.TAG, calendar.time.toString())
-                        scheduleNotification(timeInMillis)
+                        Log.d(TAG, calendar.time.toString())
+                        val onlyTimeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+                        scheduleNotification(timeInMillis, onlyTimeFormat.format(calendar.time))
 
-                    }
+                    }*/
 
+                    getCounsellingData()
                 }
 
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.d(Constants.TAG, it.message.toString())
+                    Log.d(TAG, it.message.toString())
                 }
 
                 is NetworkResult.Loading -> {
@@ -233,16 +236,17 @@ class CounsellingFragment : Fragment() {
             }
         }
 
-        counsellingViewModel.emailSmsResponseLiveData.observe(requireActivity()) {
+        counsellingViewModel.emailSmsResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    Log.d(Constants.TAG, it.data!!.toString())
+                    Log.d(TAG, it.data!!.toString())
                     Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
-                   // scheduleNotification(sendEmailLayoutBinding.followUpDate.text)
+                    // scheduleNotification(sendEmailLayoutBinding.followUpDate.text)
 
-                    val dateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
+                   /* val dateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
 
-                    val date = "${sendEmailLayoutBinding.followUpDate.text} ${sendEmailLayoutBinding.time.text}"
+                    val date =
+                        "${sendEmailLayoutBinding.followUpDate.text} ${sendEmailLayoutBinding.time.text}"
 
                     var convertedDate: Date? = null
                     try {
@@ -252,22 +256,27 @@ class CounsellingFragment : Fragment() {
                     }
 
                     if (convertedDate != null) {
-                        Log.d(Constants.TAG, date)
-                        Log.d(Constants.TAG, convertedDate.toString())
+                        Log.d(TAG, date)
+                        Log.d(TAG, convertedDate.toString())
                         val calendar = Calendar.getInstance()
                         calendar.time = convertedDate!!
                         calendar.add(Calendar.MINUTE, -10)
                         val timeInMillis = calendar.timeInMillis
-                        Log.d(Constants.TAG, calendar.time.toString())
-                        scheduleNotification(timeInMillis)
+                        Log.d(TAG, calendar.time.toString())
+
+                        val onlyTimeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+
+                        scheduleNotification(timeInMillis, onlyTimeFormat.format(calendar.time))
                         Log.d(TAG, "scheduled  notification")
 
-                    }
+                    }*/
+
+                    getCounsellingData()
                 }
 
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.d(Constants.TAG, it.message.toString())
+                    Log.d(TAG, it.message.toString())
                 }
 
                 is NetworkResult.Loading -> {
@@ -276,10 +285,10 @@ class CounsellingFragment : Fragment() {
             }
         }
 
-        counsellingViewModel.templateResponseLiveData.observe(requireActivity()) {
+        counsellingViewModel.templateResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
-                    Log.d(Constants.TAG, it.data!!.toString())
+                    Log.d(TAG, it.data!!.toString())
                     if (smsClicked) {
                         sendSmsLayoutBinding.message.setText(it.data.template)
 
@@ -318,8 +327,8 @@ class CounsellingFragment : Fragment() {
                                 uid.toString()
                             )
 
-                            Log.d(Constants.TAG, sendEmailRequest.toString())
-                            Log.d(Constants.TAG, sendEmailLayoutBinding.message.text.toString())
+                            Log.d(TAG, sendEmailRequest.toString())
+                            Log.d(TAG, sendEmailLayoutBinding.message.text.toString())
                             counsellingViewModel.sendEmailMessage(sendEmailRequest)
                             materialAlertDialog.hide()
                         }
@@ -329,7 +338,7 @@ class CounsellingFragment : Fragment() {
 
                 is NetworkResult.Error -> {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
-                    Log.d(Constants.TAG, it.message.toString())
+                    Log.d(TAG, it.message.toString())
                 }
 
                 is NetworkResult.Loading -> {
@@ -353,7 +362,7 @@ class CounsellingFragment : Fragment() {
         for (i in emailTemplates) {
             templateMap[i.template] = i.templateID
         }
-        Log.d(Constants.TAG, templateMap.toString())
+        Log.d(TAG, templateMap.toString())
         val whatsappTemplateAdapter = ArrayAdapter(
             requireContext(), R.layout.spinner_item, templateMap.keys.toList()
         )
@@ -392,7 +401,7 @@ class CounsellingFragment : Fragment() {
         for (i in whatsappTemplates) {
             templateMap[i.template] = i.templateID
         }
-        Log.d(Constants.TAG, templateMap.toString())
+        Log.d(TAG, templateMap.toString())
         val whatsappTemplateAdapter = ArrayAdapter(
             requireContext(), R.layout.spinner_item, templateMap.keys.toList()
         )
@@ -606,7 +615,7 @@ class CounsellingFragment : Fragment() {
         for (i in status) {
             statusMap[i.action] = i.status
         }
-        Log.d(Constants.TAG, statusMap.toString())
+        Log.d(TAG, statusMap.toString())
 
         val statusAdapter =
             ArrayAdapter(requireContext(), R.layout.spinner_item, statusMap.keys.toList())
@@ -630,7 +639,7 @@ class CounsellingFragment : Fragment() {
         for (i in smsTemplates) {
             templateMap[i.template] = i.templateID
         }
-        Log.d(Constants.TAG, templateMap.toString())
+        Log.d(TAG, templateMap.toString())
         val smsTemplateAdapter = ArrayAdapter(
             requireContext(), R.layout.spinner_item, templateMap.keys.toList()
         )
@@ -678,7 +687,7 @@ class CounsellingFragment : Fragment() {
 
         makeCallLayoutBinding.callButton.setOnClickListener {
             val callRequest = CallRequest(uid)
-            Log.d(Constants.TAG, callRequest.toString())
+            Log.d(TAG, callRequest.toString())
             counsellingViewModel.makeCall(callRequest)
         }
         materialAlertDialog.setCanceledOnTouchOutside(false)
@@ -735,7 +744,7 @@ class CounsellingFragment : Fragment() {
                 sendSmsLayoutBinding.time.text.toString(),
                 uid.toString()
             )
-            Log.d(Constants.TAG, smsRequest.toString())
+            Log.d(TAG, smsRequest.toString())
             counsellingViewModel.sendSms(smsRequest)
 
             materialAlertDialog.hide()
@@ -780,7 +789,7 @@ class CounsellingFragment : Fragment() {
                 sendSmsLayoutBinding.time.text.toString(),
                 uid.toString()
             )
-            Log.d(Constants.TAG, smsRequest.toString())
+            Log.d(TAG, smsRequest.toString())
             counsellingViewModel.sendSms(smsRequest)
             materialAlertDialog.hide()
         }
@@ -834,9 +843,9 @@ class CounsellingFragment : Fragment() {
     }
 
 
-    private fun scheduleNotification(timeInMillis: Long) {
+    private fun scheduleNotification(timeInMillis: Long, contentText: String) {
 
-        if(Calendar.getInstance().timeInMillis > timeInMillis){
+        if (Calendar.getInstance().timeInMillis > timeInMillis) {
             return
         }
 
@@ -844,6 +853,7 @@ class CounsellingFragment : Fragment() {
         val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         val notificationIntent = Intent(requireContext(), NotificationReceiver::class.java)
+        notificationIntent.putExtra("contentText", contentText)
 
         val pendingIntent = PendingIntent.getBroadcast(
             requireActivity(), 0, notificationIntent,
@@ -852,11 +862,7 @@ class CounsellingFragment : Fragment() {
 
         try {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (alarmManager.canScheduleExactAlarms())
-                   // Toast.makeText(requireContext(), "true", Toast.LENGTH_SHORT).show()
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
-            } else alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
 
 
         } catch (e: SecurityException) {

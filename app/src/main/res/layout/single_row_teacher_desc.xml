@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginBottom="10dp"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="15dp">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/account_circle" />
+
+        <View
+            android:layout_width="25dp"
+            android:layout_height="1dp"
+            android:layout_below="@id/live_class_link"
+            android:layout_marginTop="28dp"
+            android:background="@color/upperBlue" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/teacherName"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/live_class_link"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="18dp"
+            android:ellipsize="marquee"
+            android:gravity="center_horizontal"
+            android:singleLine="true"
+            android:text="Dr. Alpha"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/upperBlue"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@id/live_class_link"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="28dp"
+            android:layout_toEndOf="@id/teacherName"
+            android:background="@color/upperBlue" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/timeIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/image"
+            app:srcCompat="@drawable/learning_icon"
+            app:tint="@color/upperBlue" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lessonText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/timeIcon"
+            android:text="Lesson"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/lesson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lessonText"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/timeIcon"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="3dp"
+            android:text="Mathematics"
+            android:textSize="13sp" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/lesson"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/image"
+            android:background="#E1E1E1" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/liveIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/image"
+            app:srcCompat="@drawable/live_class_icon"
+            app:tint="@color/upperBlue" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/liveClassText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/liveIcon"
+            android:text="Live Class"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/live_class_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/liveClassText"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/liveIcon"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="3dp"
+            android:maxLines="2"
+            android:text="08:00 AM"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/live_class_link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/live_class_time"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/liveIcon"
+            android:ellipsize="end"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="3dp"
+            android:maxLines="1"
+            android:longClickable="true"
+            android:text="Meeting Not Scheduled"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/teacherName"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:text="Video  : "
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/playIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/teacherName"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/image"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/play_icon" />
+
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/playIcon"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            android:background="#E1E1E1" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="content  : "
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/pdfFile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/line1"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@id/image"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/pdf" />
+
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/pdfFile"
+            android:layout_marginStart="20dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="#E1E1E1" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line2"
+            android:layout_marginStart="20dp"
+            android:text="Test  : "
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/giveTestBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line2"
+            android:layout_marginStart="15dp"
+            android:layout_toEndOf="@id/image">
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:contentDescription="Give Test"
+                android:src="@drawable/give_test_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="13dp"
+                android:layout_toEndOf="@id/giveTestBtn"
+                android:text="Give Test"
+                android:textSize="13sp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/marksPercentage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/giveTestBtn"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/image"
+            android:lineSpacingExtra="3dp"
+            android:text="Marks : 0 %"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/attempts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/marksPercentage"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/image"
+            android:lineSpacingExtra="3dp"
+            android:text="Attempts : 1"
+            android:textSize="13sp" />
+
+
+        <View
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/attempts"
+            android:layout_marginStart="20dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="#E1E1E1" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line3"
+            android:layout_marginStart="20dp"
+            android:text="Activity  : "
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line3"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/image"
+            android:lineSpacingExtra="3dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+
+        <View
+            android:id="@+id/line4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/activity"
+            android:layout_marginStart="20dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="#E1E1E1" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line4"
+            android:layout_marginStart="20dp"
+            android:text="Practical   : "
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/practical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line4"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_toEndOf="@id/image"
+            android:lineSpacingExtra="3dp"
+            android:text=""
+            android:textSize="13sp" />
+
+
+        <View
+            android:id="@+id/line5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/practical"
+            android:layout_marginStart="20dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="#E1E1E1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line5"
+            android:layout_marginStart="20dp"
+            android:text="Queries  : "
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/queries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line5"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@id/image"
+            android:lineSpacingExtra="3dp"
+            android:text=""
+            android:textSize="13sp" />
+
+
+        <!--
+
+
+                    <TextView
+                        android:id="@+id/spec1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_toEndOf="@id/image"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Orthopedics"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="50dp"
+                        android:gravity="end"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+
+
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_toEndOf="@id/image"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Male"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+
+
+
+                    <TextView
+                        android:id="@+id/availabilty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/gender"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="end"
+                        android:layout_marginEnd="50dp"
+                        android:layout_toEndOf="@id/image"
+                        android:layout_marginBottom="12dp"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Available in first meeting"
+                        android:textSize="12sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="1dp"
+                    android:background="#DCC9C9"/>
+        -->
+
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
+

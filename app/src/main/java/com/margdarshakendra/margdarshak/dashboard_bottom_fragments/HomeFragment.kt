@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentHomeBinding.inflate(inflater, container,false)
 
@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         val skeleton: Skeleton =
             binding.clientDataRecyclerView.applySkeleton(R.layout.single_row_clientdata, 5)
         skeleton.showSkeleton()
-        homeViewModel.clientDataResponseLiveData.observe(requireActivity()) {
+        homeViewModel.clientDataResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
                     skeleton.showOriginal()
@@ -66,9 +66,6 @@ class HomeFragment : Fragment() {
 
 
         return binding.root
-    }
-
-    private fun showPopMenu(){
     }
 
     private fun getClientData() {

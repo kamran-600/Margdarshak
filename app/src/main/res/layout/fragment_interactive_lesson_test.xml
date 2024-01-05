@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".progress_meter_tab_fragments.InteractiveLessonTestFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableStart="@drawable/assessment_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Interactive Test"
+            android:textColor="@color/upperBlue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:text="No. of Quetions :"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/questionCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageCard"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/box"
+            android:drawableStart="@drawable/description"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:gravity="center_vertical"
+            android:minHeight="50dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/black45"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Time :"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageCard"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/box"
+            android:drawableStart="@drawable/time_icon"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:gravity="center_vertical"
+            android:minHeight="50dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/black45"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Total Marks :"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/totalMarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageCard"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/box"
+            android:drawableStart="@drawable/description"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:gravity="center_vertical"
+            android:minHeight="50dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/black45"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Negative Marks :"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/negativeMarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageCard"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/box"
+            android:drawableStart="@drawable/description"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/black45"
+            android:gravity="center_vertical"
+            android:minHeight="50dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/black45"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Important Instructions :-"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="1. Your Time Countdown Will begin as soon as you click the 'Begin Test' Button.\n\n2. Your Time Countdown Will begin as soon as you click the 'Begin Test' Button.\n\n3. Your Time Countdown Will begin as soon as you click the 'Begin Test' Button.\n\n4. Your Time Countdown Will begin as soon as you click the 'Begin Test' Button."
+            android:textSize="15sp" />
+
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/agreeCheckBox"
+            android:layout_margin="20dp"
+            android:animateLayoutChanges="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/beginTestBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="Begin Test"
+                app:cornerRadius="10dp" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/upperBlue"
+                app:SpinKit_Style="ThreeBounce" />
+
+        </FrameLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.core.widget.NestedScrollView>

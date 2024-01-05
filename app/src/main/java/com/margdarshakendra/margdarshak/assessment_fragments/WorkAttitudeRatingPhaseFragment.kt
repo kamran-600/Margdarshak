@@ -59,7 +59,7 @@ class WorkAttitudeRatingPhaseFragment : Fragment(), AttitudeRatingQueAdapter.Ada
         )
         skeleton.showSkeleton()
         workAttitudeRatingPhaseFragmentViewModel.attitudeRatingQuestionsDataResponseLiveData.observe(
-            requireActivity()
+            viewLifecycleOwner
         ) {
             when (it) {
                 is NetworkResult.Success -> {
@@ -86,7 +86,7 @@ class WorkAttitudeRatingPhaseFragment : Fragment(), AttitudeRatingQueAdapter.Ada
         }
 
 
-        workAttitudeRatingPhaseFragmentViewModel.saveAttitudeRatingQuesAndFinishTestResponseLiveData.observe(requireActivity()){
+        workAttitudeRatingPhaseFragmentViewModel.saveAttitudeRatingQuesAndFinishTestResponseLiveData.observe(viewLifecycleOwner){
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.toString())

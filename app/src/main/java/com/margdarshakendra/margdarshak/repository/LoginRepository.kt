@@ -18,6 +18,7 @@ class LoginRepository @Inject constructor(private val userApi: UserApi) {
         get() = _loginResponseLiveData
 
     suspend fun loginUser(loginRequest: LoginRequest) {
+        _loginResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val loginResponse = userApi.loginUser(loginRequest)
 

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "152518866357",
+    "project_id": "margdarshak-b7735",
+    "storage_bucket": "margdarshak-b7735.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152518866357:android:e3e32028e9e3fa1bb515fc",
+        "android_client_info": {
+          "package_name": "com.margdarshakendra.margdarshak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvjGVBmQaz3MJq9iE4C9EtKbZC6FlozEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

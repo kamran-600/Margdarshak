@@ -56,7 +56,7 @@ import java.util.Locale
 @AndroidEntryPoint
 class HiringFragment : Fragment() {
 
-    private val hiringViewModel by viewModels<HiringViewModel>()
+    private val hiringViewModel:HiringViewModel by viewModels()
 
     private lateinit var materialAlertDialog: AlertDialog
 
@@ -77,13 +77,15 @@ class HiringFragment : Fragment() {
     private var emailClicked = false
     private var callClicked = false
 
-    lateinit var binding: FragmentHiringBinding
+    private lateinit var binding: FragmentHiringBinding
+
+    private lateinit var hiringDataRecAdapter: HiringDataRecAdapter
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHiringBinding.inflate(inflater, container, false)
 
 
@@ -95,38 +97,44 @@ class HiringFragment : Fragment() {
             SendEmailLayoutBinding.inflate(LayoutInflater.from(requireContext()))
         makeCallLayoutBinding = MakeCallLayoutBinding.inflate(LayoutInflater.from(requireContext()))
 
+
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         getHiringData()
 
+        hiringDataRecAdapter = HiringDataRecAdapter(
+            requireContext(),
+            ::makeCall,
+            ::sendCloudMessage,
+            ::sendWhatsappMessage,
+            ::sendEmailMessage
+        )
+
+        binding.hiringDataRecyclerView.setHasFixedSize(true)
+        binding.hiringDataRecyclerView.adapter = hiringDataRecAdapter
         // show shimmer
         val skeleton: Skeleton =
             binding.hiringDataRecyclerView.applySkeleton(R.layout.single_row_clientdata, 5)
         skeleton.showSkeleton()
-
-        hiringViewModel.hiringDataResponseLiveData.observe(requireActivity()) {
+        hiringViewModel.hiringDataResponseLiveData.observe(viewLifecycleOwner) {
 
             when (it) {
                 is NetworkResult.Success -> {
                     skeleton.showOriginal()
                     Log.d(TAG, it.data!!.toString())
 
-                    val hiringDataList = it.data.data
-                    Log.d(TAG, hiringDataList.toString())
-                    val hiringDataRecAdapter = HiringDataRecAdapter(
-                        requireContext(),
-                        ::makeCall,
-                        ::sendCloudMessage,
-                        ::sendWhatsappMessage,
-                        ::sendEmailMessage
-                    )
+                    hiringDataRecAdapter.submitList(it.data.data)
 
-                    hiringDataRecAdapter.submitList(hiringDataList)
+                    /*hiringViewModel.hiringDataListLiveData.observe(viewLifecycleOwner) { hiringList ->
+                        hiringDataRecAdapter.submitList(hiringList)
+                        Log.d(TAG, "updated\n $hiringList ")
+                    }*/
 
-                    binding.hiringDataRecyclerView.setHasFixedSize(true)
-                    binding.hiringDataRecyclerView.adapter = hiringDataRecAdapter
-
-
-                    //  startActivity(Intent(this, DashboardActivity::class.java))
-                    // finishAffinity()
                 }
 
                 is NetworkResult.Error -> {
@@ -140,7 +148,9 @@ class HiringFragment : Fragment() {
             }
         }
 
-        hiringViewModel.callResponseLiveData.observe(requireActivity()) {
+
+
+        hiringViewModel.callResponseLiveData.observe(viewLifecycleOwner) {
 
             when (it) {
                 is NetworkResult.Success -> {
@@ -161,7 +171,7 @@ class HiringFragment : Fragment() {
             }
         }
 
-        hiringViewModel.crmResponseLiveData.observe(requireActivity()) {
+        hiringViewModel.crmResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.data.sms.toString())
@@ -191,13 +201,13 @@ class HiringFragment : Fragment() {
             }
         }
 
-        hiringViewModel.smsResponseLiveData.observe(requireActivity()) {
+        hiringViewModel.smsResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.toString())
                     Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
 
-
+/*
                     val dateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
 
                     var date = ""
@@ -225,9 +235,14 @@ class HiringFragment : Fragment() {
                         calendar.add(Calendar.MINUTE, -10)
                         val timeInMillis = calendar.timeInMillis
                         Log.d(TAG, calendar.time.toString())
-                        scheduleNotification(timeInMillis)
 
-                    }
+                        val onlyTimeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+                        scheduleNotification(timeInMillis, onlyTimeFormat.format(calendar.time))
+                        Log.d(TAG, onlyTimeFormat.format(calendar.time))
+                    }*/
+
+
+                    getHiringData()
 
                 }
 
@@ -242,13 +257,13 @@ class HiringFragment : Fragment() {
             }
         }
 
-        hiringViewModel.emailSmsResponseLiveData.observe(requireActivity()) {
+        hiringViewModel.emailSmsResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.toString())
                     Toast.makeText(requireContext(), it.data.message, Toast.LENGTH_SHORT).show()
 
-                    val dateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
+                   /* val dateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())
 
                     val date =
                         "${sendEmailLayoutBinding.followUpDate.text} ${sendEmailLayoutBinding.time.text}"
@@ -269,10 +284,14 @@ class HiringFragment : Fragment() {
                         calendar.add(Calendar.MINUTE, -10)
                         val timeInMillis = calendar.timeInMillis
                         Log.d(TAG, calendar.time.toString())
-                        scheduleNotification(timeInMillis)
 
+                        val onlyTimeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
+                        scheduleNotification(timeInMillis, onlyTimeFormat.format(calendar.time))
+                        Log.d(TAG, onlyTimeFormat.format(calendar.time))
 
-                    }
+                    }*/
+
+                    getHiringData()
 
                 }
 
@@ -287,7 +306,7 @@ class HiringFragment : Fragment() {
             }
         }
 
-        hiringViewModel.templateResponseLiveData.observe(requireActivity()) {
+        hiringViewModel.templateResponseLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.toString())
@@ -353,7 +372,6 @@ class HiringFragment : Fragment() {
         }
 
 
-        return binding.root
     }
 
     private fun populateTemplateSpinnerEmail(emailTemplates: List<CRMResponse.Data.Email>) {
@@ -672,7 +690,7 @@ class HiringFragment : Fragment() {
 
     private fun getHiringData() {
         val dataRequest = DataRequest("hiring")
-        hiringViewModel.getClientData(dataRequest)
+        hiringViewModel.getHiringData(dataRequest)
     }
 
     private fun makeCall(uid: Int, hireID: Int, userName: String) {
@@ -849,7 +867,7 @@ class HiringFragment : Fragment() {
         sendEmailLayoutBinding.smtpSpinner.adapter = smtpAdapter
     }
 
-    private fun scheduleNotification(timeInMillis: Long) {
+    private fun scheduleNotification(timeInMillis: Long, contentText: String) {
 
         if (Calendar.getInstance().timeInMillis > timeInMillis) {
             return
@@ -859,6 +877,7 @@ class HiringFragment : Fragment() {
         val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         val notificationIntent = Intent(requireContext(), NotificationReceiver::class.java)
+        notificationIntent.putExtra("contentText", contentText)
 
         val pendingIntent = PendingIntent.getBroadcast(
             requireActivity(), 0, notificationIntent,
@@ -866,13 +885,7 @@ class HiringFragment : Fragment() {
         )
 
         try {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                if (alarmManager.canScheduleExactAlarms())
-                    Toast.makeText(requireContext(), "true", Toast.LENGTH_SHORT).show()
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
-            } else alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
-
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
 
         } catch (e: SecurityException) {
             Toast.makeText(requireContext(), e.message, Toast.LENGTH_SHORT).show()

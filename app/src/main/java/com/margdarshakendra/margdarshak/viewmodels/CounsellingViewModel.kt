@@ -22,23 +22,17 @@ import javax.inject.Inject
 class CounsellingViewModel @Inject constructor(private val dashboardRepository: DashboardRepository) :
     ViewModel() {
 
-    val counsellingDataResponseLiveData: LiveData<NetworkResult<CounsellingDataResponse>>
-        get() = dashboardRepository.counsellingDataResponseLiveData
+    val counsellingDataResponseLiveData get() = dashboardRepository.counsellingDataResponseLiveData
 
-    val callResponseLiveData: LiveData<NetworkResult<CallResponse>>
-        get() = dashboardRepository.callResponseLiveData
+    val callResponseLiveData get() = dashboardRepository.callResponseLiveData
 
-    val crmResponseLiveData: LiveData<NetworkResult<CRMResponse>>
-        get() = dashboardRepository.crmResponseLiveData
+    val crmResponseLiveData get() = dashboardRepository.crmResponseLiveData
 
-    val smsResponseLiveData: LiveData<NetworkResult<SmsResponse>>
-        get() = dashboardRepository.smsResponseLiveData
+    val smsResponseLiveData get() = dashboardRepository.smsResponseLiveData
 
-    val emailSmsResponseLiveData: LiveData<NetworkResult<SmsResponse>>
-        get() = dashboardRepository.emailSmsResponseLiveData
+    val emailSmsResponseLiveData get() = dashboardRepository.emailSmsResponseLiveData
 
-    val templateResponseLiveData: LiveData<NetworkResult<TemplateResponse>>
-        get() = dashboardRepository.templateResponseLiveData
+    val templateResponseLiveData get() = dashboardRepository.templateResponseLiveData
 
 
     fun getCounsellingData(dataRequest: DataRequest) {

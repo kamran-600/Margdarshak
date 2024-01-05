@@ -347,22 +347,39 @@
             app:buttonTint="@color/checkbox_color" />
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/registerBtn"
+
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/agreeCheckBox"
+            android:animateLayoutChanges="true"
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="30dp"
-            android:backgroundTint="@color/upperBlue"
-            android:text="Register"
-            android:textSize="15sp" />
+            android:layout_below="@id/agreeCheckBox"
+            android:layout_height="wrap_content">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/registerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textSize="15sp" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:SpinKit_Style="ThreeBounce"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/upperBlue" />
+
+        </FrameLayout>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/loginTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/registerBtn"
+            android:layout_below="@id/frameLayout"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:paddingBottom="30dp"

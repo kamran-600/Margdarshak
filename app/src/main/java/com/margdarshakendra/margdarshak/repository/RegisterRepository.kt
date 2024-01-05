@@ -60,6 +60,7 @@ class RegisterRepository @Inject constructor(private val userApi: UserApi) {
             _userResponseLiveData.postValue(RegisterResponse(e.message.toString(), -1, false))
         }
 */
+        _registerResponseLiveData.postValue(NetworkResult.Loading())
 
         try {
             val response = userApi.registerUser(

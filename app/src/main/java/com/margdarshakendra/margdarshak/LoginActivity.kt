@@ -7,9 +7,11 @@ import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.github.ybq.android.spinkit.style.DoubleBounce
 import com.margdarshakendra.margdarshak.databinding.ActivityLoginBinding
 import com.margdarshakendra.margdarshak.models.LoginRequest
 import com.margdarshakendra.margdarshak.utils.Constants
@@ -61,9 +63,14 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+       /* val progressBar : ProgressBar = binding.spinKit
+
+        progressBar.indeterminateDrawable = DoubleBounce()
+*/
 
 
         loginViewModel.loginResponseLiveData.observe(this) {
+            binding.spinKit.visibility = View.GONE
             when (it) {
                 is NetworkResult.Success -> {
                     tokenManager.saveToken(it.data!!.token)
@@ -81,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
                     sharedPreference.saveDetail(Constants.USERMOBILE,it.data.mobile , "String")
                     sharedPreference.saveDetail(Constants.USERTYPE,it.data.usertype , "String")
                     sharedPreference.saveDetail(Constants.USERNAME,it.data.name , "String")
+                    sharedPreference.saveDetail(Constants.USERLOGINID,it.data.login_id , "Int")
 
 
 
@@ -99,6 +107,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 is NetworkResult.Error -> {
+                    binding.loginBtn.visibility = View.VISIBLE
                     if(it.message == "Unauthorized"){
                         it.message = "Password does not match !"
                     }
@@ -108,6 +117,8 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 is NetworkResult.Loading -> {
+                    binding.spinKit.visibility = View.VISIBLE
+                    binding.loginBtn.visibility = View.INVISIBLE
                     //Toast.makeText(this, "loading", Toast.LENGTH_SHORT).show()
                 }
             }

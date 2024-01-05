@@ -11,6 +11,8 @@ import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.View.GONE
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -93,6 +95,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         registerViewModel.registerResponseLiveData.observe(this) {
+            binding.spinKit.visibility = GONE
             when (it) {
                 is NetworkResult.Success -> {
                     Toast.makeText(this, it.data!!.message, Toast.LENGTH_LONG).show()
@@ -102,12 +105,15 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
                 is NetworkResult.Error -> {
+                    binding.registerBtn.visibility = VISIBLE
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-                    binding.errorMessage.visibility = View.VISIBLE
+                    binding.errorMessage.visibility = VISIBLE
                     binding.errorMessage.text = it.message
                 }
 
                 is NetworkResult.Loading -> {
+                    binding.spinKit.visibility = VISIBLE
+                    binding.registerBtn.visibility = INVISIBLE
                     //Toast.makeText(this, "loading", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -140,7 +146,7 @@ class RegisterActivity : AppCompatActivity() {
                         it.message = "Mobile already exists!"
                     }
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-                    binding.otpErrorMessage.visibility = View.VISIBLE
+                    binding.otpErrorMessage.visibility = VISIBLE
                     binding.otpErrorMessage.text = it.message
                 }
 

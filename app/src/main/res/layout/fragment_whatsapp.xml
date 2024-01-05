@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="?actionBarSize"
-    android:layout_marginBottom="60dp"
     tools:context=".dashboard_bottom_fragments.WhatsappFragment">
 
     <!-- TODO: Update blank fragment layout -->

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".progress_meter_tab_fragments.CalenderFragment">
+
+    <!--<com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calenderView"
+        android:layout_width="match_parent"
+        app:swipeEnabled="true"
+        app:firstDayOfWeek="sunday"
+        app:headerColor="@color/upperBlue"
+        app:eventsEnabled="true"
+        app:abbreviationsBarColor="@color/upperBlue"
+        app:abbreviationsLabelsColor="@color/white"
+        app:abbreviationsLabelsSize="6sp"
+        app:daysLabelsColor="@color/black45"
+        android:layout_height="match_parent"/>
+-->
+
+
+</RelativeLayout>

@@ -39,7 +39,8 @@ class WorkAttitudeAssessmentFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        workAttitudeAssessmentFragmentViewModel.startAttitudeAssessmentResponseLiveData.observe(requireActivity()){
+        workAttitudeAssessmentFragmentViewModel.startAttitudeAssessmentResponseLiveData.observe(viewLifecycleOwner){
+            binding.spinKit.visibility = View.GONE
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(Constants.TAG, it.data!!.toString())
@@ -57,6 +58,7 @@ class WorkAttitudeAssessmentFragment : Fragment() {
                 }
 
                 is NetworkResult.Error -> {
+                    binding.startFreeBtn.visibility = View.VISIBLE
                     if(it.message == "Refrence Pending"){
                         val sweetAlertDialog = SweetAlertDialog(requireContext(), SweetAlertDialog.WARNING_TYPE)
                         sweetAlertDialog.titleText = "You have Already attempted this assessment !"
@@ -70,7 +72,8 @@ class WorkAttitudeAssessmentFragment : Fragment() {
                 }
 
                 is NetworkResult.Loading -> {
-
+                    binding.spinKit.visibility = View.VISIBLE
+                    binding.startFreeBtn.visibility = View.INVISIBLE
                 }
             }
         }

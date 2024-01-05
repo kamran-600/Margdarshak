@@ -74,7 +74,7 @@ class PsychometricAptitudeAssessmentQuestionsFragment : Fragment(),
             binding.questionsRecyclerView.applySkeleton(R.layout.single_row_question, 3)
         skeleton.showSkeleton()
         psychometricAptitudeAssessmentQuestionsViewModel.questionsDataResponseLiveData.observe(
-            requireActivity()
+            viewLifecycleOwner
         ) {
             when (it) {
                 is NetworkResult.Success -> {
@@ -106,7 +106,7 @@ class PsychometricAptitudeAssessmentQuestionsFragment : Fragment(),
 
 
         psychometricAptitudeAssessmentQuestionsViewModel.saveAptitudeAnswerResponseLiveData.observe(
-            requireActivity()
+            viewLifecycleOwner
         ) {
             when (it) {
                 is NetworkResult.Success -> {

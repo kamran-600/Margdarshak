@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".progress_meter_tab_fragments.InteractiveTestQuestionsFragment">
+
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/questionLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/assessment_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Interactive Test"
+                android:textColor="@color/upperBlue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/timerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Time Left - 06 : 00"
+                android:textColor="@color/red_btn_bg_color"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+
+        </RelativeLayout>
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="10dp"
+            android:background="@color/grey_bg" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/questionNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="123."
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_toEndOf="@id/questionNo"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ru.noties.jlatexmath.JLatexMathView
+                    android:id="@+id/latexQuestion"
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginEnd="10dp" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/question"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="Which of the following functions of HRM deals with 'Collective Bargaining'?"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_gravity="start"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/option1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black45"
+                        android:text="" />
+
+
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/option2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black45"
+                        android:text="Option 2" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/option3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black45"
+                        android:text="Option 3" />
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/option4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black45"
+                        android:text="Option 4" />
+
+                </RadioGroup>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </RelativeLayout>
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexBoxLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            app:alignContent="stretch"
+            app:alignItems="stretch"
+            app:flexWrap="wrap">
+
+            <!-- Add your dynamically created or static views here -->
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/skipBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#D3BD02"
+                android:layout_marginStart="20dp"
+                android:text="Skip" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/nextBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:backgroundTint="@color/green"
+                android:paddingEnd="5dp"
+                android:paddingStart="15dp"
+                android:drawablePadding="0dp"
+                android:drawableTint="@color/white"
+                android:drawableEnd="@drawable/arrow_right_round"
+                android:text= "Save &amp; Next"
+                android:src="@drawable/arrow_right_round" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/finishTestBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="@color/red_btn_bg_color"
+                android:text="Finish" />
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.core.widget.NestedScrollView>

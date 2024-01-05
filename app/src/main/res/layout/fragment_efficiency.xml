@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".progress_meter_tab_fragments.EfficiencyFragment">
+
+    <!--<androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+-->
+<!--
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+-->
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/course_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Course"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/courseAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:completionThreshold="1"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:hint="Select a Course"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/education_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Subject"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/subjectAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:completionThreshold="1"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:hint="Select a Subject"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/learning_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Lesson"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/lessonAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:completionThreshold="1"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:hint="Select a Lesson"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/chartView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+<!--
+
+    </androidx.core.widget.NestedScrollView>
+-->

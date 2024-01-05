@@ -18,6 +18,7 @@ import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.GONE
+import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -224,6 +225,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         profileViewModel.userUpdateResponseLiveData.observe(this) {
+            binding.spinKit.visibility = GONE
             when (it) {
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.toString())
@@ -235,18 +237,20 @@ class ProfileActivity : AppCompatActivity() {
                 }
 
                 is NetworkResult.Error -> {
+                    binding.submitBtn.visibility = VISIBLE
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, it.message.toString())
                 }
 
                 is NetworkResult.Loading -> {
-
+                    binding.spinKit.visibility = VISIBLE
+                    binding.submitBtn.visibility = INVISIBLE
                 }
             }
         }
 
 
-        binding.registerBtn.setOnClickListener {
+        binding.submitBtn.setOnClickListener {
 
             if(getSelectedUserType() == null) return@setOnClickListener
             if(!validateDetails()) return@setOnClickListener
@@ -433,7 +437,7 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         binding.clear.setOnClickListener {
-            binding.imageCard.visibility = View.GONE
+            binding.imageCard.visibility = GONE
             profileImageBase64 = null
             binding.imageCardImage.setImageURI(null)
         }
@@ -580,14 +584,14 @@ class ProfileActivity : AppCompatActivity() {
         setUserTypeSpinnerAdapter()
         if (sharedPreference.getDetail(USERTYPE, "String") == "S") {
             binding.userTypeSpinner.setSelection(1, true)
-            binding.specialization.visibility = View.GONE
-            binding.qualification.visibility = View.GONE
+            binding.specialization.visibility = GONE
+            binding.qualification.visibility = GONE
             binding.specialization.text = null
             binding.qualification.text = null
         } else {
             binding.userTypeSpinner.setSelection(2, true)
-            binding.classorexam.visibility = View.GONE
-            binding.institute.visibility = View.GONE
+            binding.classorexam.visibility = GONE
+            binding.institute.visibility = GONE
             binding.classorexam.text = null
             binding.institute.text = null
         }

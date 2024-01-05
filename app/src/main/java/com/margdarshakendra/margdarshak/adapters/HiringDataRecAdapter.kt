@@ -75,6 +75,12 @@ class HiringDataRecAdapter(
             text = hiringDataList.name
             isSelected = true
         }
+        if(hiringDataList.lateDays != 0){
+            holder.binding.lateDays.text = "Late (${hiringDataList.lateDays}) Days"
+        }
+        else {
+            holder.binding.lateLL.visibility = View.GONE
+        }
         holder.binding.dataAdvisorName.text = hiringDataList.advisor_name
         //  val checkdrawable = ContextCompat.getDrawable(context, R.drawable.check_circle)
         if (hiringDataList.mobile_verified == "true") {
