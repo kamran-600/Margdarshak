@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".progress_meter_tab_fragments.ShowProgressMeterFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/assessment_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Progress Meter"
+                android:textColor="@color/upperBlue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/course_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Course"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/courseAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:completionThreshold="1"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:hint="Select a Course"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/education_icon"
+                android:drawablePadding="5dp"
+                android:drawableTint="@color/upperBlue"
+                android:text="Subject"
+                android:textSize="18sp" />
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/subjectAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/box"
+                android:completionThreshold="1"
+                android:drawableEnd="@drawable/arrow_down"
+                android:drawableTint="@color/black45"
+                android:hint="Select a Subject"
+                android:inputType="none"
+                android:paddingHorizontal="15dp"
+                android:textCursorDrawable="@drawable/form_cursor"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/marksProgressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"
+                android:text="Marks % : " />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/timeProgressText"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:text="Time Spent % : " />
+
+
+            <FrameLayout
+                android:id="@+id/progressMeter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="25dp"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:src="@drawable/thermameter_img">
+
+                </androidx.appcompat.widget.AppCompatImageView>
+
+                <ProgressBar
+                    android:id="@+id/marksProgress"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="54dp"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginEnd="30dp"
+                    android:progressTint="@color/red_btn_bg_color" />
+
+
+                <ProgressBar
+                    android:id="@+id/timeProgress"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="54dp"
+                    android:layout_marginTop="31dp"
+                    android:layout_marginEnd="30dp" />
+
+
+            </FrameLayout>
+
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChartView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp" />
+
+
+            <com.github.anastr.speedviewlib.SpeedView
+                android:id="@+id/speedView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                app:sv_centerCircleColor="@android:color/transparent"
+                app:sv_cutPadding="20dp"
+                app:sv_indicator="NormalSmallIndicator"
+                app:sv_indicatorColor="@color/upperBlue"
+                app:sv_indicatorWidth="7dp"
+                app:sv_markStyle="ROUND"
+                app:sv_maxSpeed="100"
+                app:sv_speedTextPosition="CENTER"
+                app:sv_speedometerMode="TOP"
+                app:sv_speedometerWidth="20dp"
+                app:sv_tickNumber="10"
+                app:sv_tickRotation="true"
+                app:sv_unit="%"
+                app:sv_unitUnderSpeedText="true"
+                app:sv_withTremble="false" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -98,11 +98,12 @@ class ProfileRepository @Inject constructor(private val addressSearchApi: Addres
             if (userUpdateResponse.isSuccessful && userUpdateResponse.body() != null) {
                 _userUpdateResponseLiveData.postValue(NetworkResult.Success(userUpdateResponse.body()!!))
             } else if (userUpdateResponse.errorBody() != null) {
-                val jsonLoginError =
-                    JSONObject(userUpdateResponse.errorBody()!!.charStream().readText())
+
+                val jsonLoginError = JSONObject(userUpdateResponse.errorBody()!!.charStream().readText())
                 _userUpdateResponseLiveData.postValue(NetworkResult.Error(jsonLoginError.getString("message")))
             }
         } catch (e: Exception) {
+            Log.d(TAG, "exception "+e.cause.toString())
             Log.d(TAG, "exception "+e.message.toString())
             _userUpdateResponseLiveData.postValue(NetworkResult.Error(e.message))
         }

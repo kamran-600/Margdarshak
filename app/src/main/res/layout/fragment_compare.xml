@@ -1,14 +1,246 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:fillViewport="true"
+    android:orientation="vertical"
     tools:context=".progress_meter_tab_fragments.CompareFragment">
+    <!--
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">-->
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:drawableStart="@drawable/assessment_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Compare"
+            android:textColor="@color/upperBlue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/course_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Course"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/courseAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/box"
+            android:completionThreshold="1"
+            android:drawableEnd="@drawable/arrow_down"
+            android:drawableTint="@color/black45"
+            android:hint="Select a Course"
+            android:inputType="none"
+            android:paddingHorizontal="15dp"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/education_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Subject"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/subjectAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/box"
+            android:completionThreshold="1"
+            android:drawableEnd="@drawable/arrow_down"
+            android:drawableTint="@color/black45"
+            android:hint="Select a Subject"
+            android:inputType="none"
+            android:paddingHorizontal="15dp"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/learning_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Lesson"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/lessonAutoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/box"
+            android:completionThreshold="1"
+            android:drawableEnd="@drawable/arrow_down"
+            android:drawableTint="@color/black45"
+            android:hint="Select a Lesson"
+            android:inputType="none"
+            android:paddingHorizontal="15dp"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/person_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Add Competitors"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageCard"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/box"
+            android:hint="Search Email"
+            android:inputType="textEmailAddress"
+            android:minHeight="50dp"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/black45"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="15sp"
+            android:textStyle="normal" />
+
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:animateLayoutChanges="true">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/searchedUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Competitors"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/parrotGreen"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/spin_kit"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/upperBlue"
+                app:SpinKit_Style="ThreeBounce" />
+
+        </FrameLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addCompetitorBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Add Competitor"
+            android:visibility="gone"
+            app:cornerRadius="10dp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/person_icon"
+            android:drawablePadding="5dp"
+            android:drawableTint="@color/upperBlue"
+            android:text="Competitors"
+            android:textSize="18sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/competitors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:lineSpacingMultiplier="1.4"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/compareBySubjectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Compare By Subject"
+            app:cornerRadius="10dp" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/compareByLessonBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="Compare By Lesson"
+            app:cornerRadius="10dp" />
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barCharView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="300dp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--  </androidx.core.widget.NestedScrollView>-->
+
+</androidx.core.widget.NestedScrollView>

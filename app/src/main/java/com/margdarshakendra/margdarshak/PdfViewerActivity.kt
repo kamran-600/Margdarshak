@@ -5,18 +5,22 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.faltenreich.skeletonlayout.createSkeleton
 import com.margdarshakendra.margdarshak.databinding.ActivityPdfViewerBinding
 import com.margdarshakendra.margdarshak.utils.Constants.TAG
 import com.rajat.pdfviewer.HeaderData
 import com.rajat.pdfviewer.PdfRendererView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import java.io.IOException
 
 class PdfViewerActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPdfViewerBinding
 
-    @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPdfViewerBinding.inflate(layoutInflater)
@@ -34,7 +38,18 @@ class PdfViewerActivity : AppCompatActivity() {
         binding.pdfWebView.loadUrl(url)*/
 
         if (!pdfUrl.isNullOrBlank()) {
-            binding.pdfView.initWithUrl(pdfUrl, HeaderData(), lifecycleScope, lifecycle)
+
+            try{
+                binding.pdfView.initWithUrl(pdfUrl, HeaderData(),lifecycleScope, lifecycle)
+            }catch (e : Exception){
+                val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                sweetAlertDialog.contentText = e.message
+                sweetAlertDialog.show()
+                sweetAlertDialog.setOnDismissListener {
+                    finish()
+                }
+            }
+
             binding.pdfView.statusListener = object : PdfRendererView.StatusCallBack{
                 override fun onPdfLoadStart() {
                     super.onPdfLoadStart()

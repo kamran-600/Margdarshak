@@ -15,6 +15,7 @@ object Constants {
     const val USERNAME = "USERNAME"
     const val USERTYPE = "USERTYPE"
     const val USERMOBILE = "USERMOBILE"
+    const val USERMEETLINK = "USERMEETLINK"
 
     const val USERLOGINID = "USERLOGINID"
 
@@ -28,6 +29,7 @@ object Constants {
     const val ATTITUDECOMPLETED = "ATTITUDECOMPLETED"
 
     const val FCMTOKEN = "FCMTOKEN"
+    const val ASSOCIATE= "ASSOCIATE"
 
 
 }

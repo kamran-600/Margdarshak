@@ -51,6 +51,12 @@ class LoginActivity : AppCompatActivity() {
             finishAffinity()
         }
 
+        val registrationResponse = intent.getStringExtra("registration_response")
+        if(registrationResponse !=null){
+            binding.responseText.text = registrationResponse
+            binding.responseText.visibility = View.VISIBLE
+        }
+
 
         binding.loginBtn.setOnClickListener {
 
@@ -63,10 +69,9 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
-       /* val progressBar : ProgressBar = binding.spinKit
-
-        progressBar.indeterminateDrawable = DoubleBounce()
-*/
+        binding.forgetPasswordBtn.setOnClickListener {
+            startActivity(Intent(this, ForgetPasswordActivity::class.java))
+        }
 
 
         loginViewModel.loginResponseLiveData.observe(this) {
@@ -89,8 +94,7 @@ class LoginActivity : AppCompatActivity() {
                     sharedPreference.saveDetail(Constants.USERTYPE,it.data.usertype , "String")
                     sharedPreference.saveDetail(Constants.USERNAME,it.data.name , "String")
                     sharedPreference.saveDetail(Constants.USERLOGINID,it.data.login_id , "Int")
-
-
+                    sharedPreference.saveDetail(Constants.ASSOCIATE, it.data.associate, "Int")
 
                     if(it.data.profile_updated){
                         startActivity(Intent(this, DashboardActivity::class.java))

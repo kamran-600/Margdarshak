@@ -27,13 +27,18 @@
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
                 android:gravity="center_vertical"
+                android:background="@color/white"
                 app:layout_scrollFlags="scroll|enterAlways"
+                app:buttonGravity="center_vertical"
+                android:elevation="5dp"
+                app:contentInsetStart="5dp"
+                app:contentInsetStartWithNavigation="5dp"
                 app:menu="@menu/toolbar_menu">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="?actionBarSize"
                     android:src="@drawable/margdarshakendra_logo" />
 
@@ -106,15 +111,16 @@
                 android:id="@+id/bottomNavigationView"
                 style="@style/Widget.MaterialComponents.BottomNavigationView"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/table_bg"
                 app:elevation="10dp"
+                app:itemHorizontalTranslationEnabled="true"
                 app:itemIconTint="@drawable/bottom_icon"
                 app:itemRippleColor="@color/grey_bg"
                 app:itemTextAppearanceActiveBoldEnabled="false"
-                app:itemTextColor="@color/upperBlue"
-                app:labelVisibilityMode="auto"
+                app:itemTextColor="@color/checkbox_color"
+                app:labelVisibilityMode="labeled"
                 app:menu="@menu/bottom_menu" />
 
         </RelativeLayout>
@@ -126,9 +132,54 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:fitsSystemWindows="true"
             app:menu="@menu/dashboard_drawer_menu"
-            app:drawerLayoutCornerSize="10dp" />
+            app:drawerLayoutCornerSize="10dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginVertical="20dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/account_circle" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/profileImage"
+                android:ellipsize="marquee"
+                android:layout_marginVertical="40dp"
+                android:layout_toRightOf="@id/profileImage"
+                android:singleLine="true"
+                android:text="User Name"
+                android:textColor="@color/black45"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+
+            <ExpandableListView
+                android:id="@+id/expandableListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/profileImage"
+                android:indicatorRight="?android:attr/expandableListPreferredChildIndicatorRight"
+                android:divider="@color/grey_bg"
+                android:dividerHeight="0.5dp" />
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.navigation.NavigationView>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

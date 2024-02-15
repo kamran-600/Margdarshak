@@ -1,19 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:id="@+id/swipeRefresh"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".dashboard_bottom_fragments.HiringFragment">
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/hiringDataRecyclerView"
+    <!--<androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+        android:layout_height="wrap_content">-->
 
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/isFilteredOrAllText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="All"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="4dp"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium"
+            android:backgroundTint="@color/upperBlue"
+            android:background="@drawable/style_card2" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/filterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:textSize="16sp"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/filter_alt_icon"
+            android:fontFamily="sans-serif-medium"
+            android:foreground="?selectableItemBackground"
+            android:background="@drawable/name_bg" />
+
+
+        <!--
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:drawableStart="@drawable/course_icon"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/upperBlue"
+                    android:text="Employer"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/employerAutoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/box"
+                    android:completionThreshold="1"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:drawableTint="@color/black45"
+                    android:hint="Select a Employer"
+                    android:inputType="none"
+                    android:paddingHorizontal="15dp"
+                    android:textCursorDrawable="@drawable/form_cursor"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:drawableStart="@drawable/education_icon"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/upperBlue"
+                    android:text="Employer Post"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/empPostAutoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/box"
+                    android:completionThreshold="1"
+                    android:drawableEnd="@drawable/arrow_down"
+                    android:drawableTint="@color/black45"
+                    android:hint="Select a Position"
+                    android:inputType="none"
+                    android:paddingHorizontal="15dp"
+                    android:textCursorDrawable="@drawable/form_cursor"
+                    android:textSize="15sp" />
+        -->
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hiringDataRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/single_row_data"
+            android:layout_below="@id/isFilteredOrAllText"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+    </RelativeLayout>
+
+    <!--</androidx.core.widget.NestedScrollView>-->
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

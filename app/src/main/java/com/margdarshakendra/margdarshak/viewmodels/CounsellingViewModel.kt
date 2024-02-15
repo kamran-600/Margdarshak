@@ -1,19 +1,14 @@
 package com.margdarshakendra.margdarshak.viewmodels
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.margdarshakendra.margdarshak.models.CRMResponse
+import androidx.paging.cachedIn
 import com.margdarshakendra.margdarshak.models.CallRequest
-import com.margdarshakendra.margdarshak.models.CallResponse
-import com.margdarshakendra.margdarshak.models.CounsellingDataResponse
-import com.margdarshakendra.margdarshak.models.DataRequest
+import com.margdarshakendra.margdarshak.models.InductionRequest
 import com.margdarshakendra.margdarshak.models.SendEmailRequest
+import com.margdarshakendra.margdarshak.models.ShortListUserRequest
 import com.margdarshakendra.margdarshak.models.SmsRequest
-import com.margdarshakendra.margdarshak.models.SmsResponse
-import com.margdarshakendra.margdarshak.models.TemplateResponse
 import com.margdarshakendra.margdarshak.repository.DashboardRepository
-import com.margdarshakendra.margdarshak.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -22,7 +17,16 @@ import javax.inject.Inject
 class CounsellingViewModel @Inject constructor(private val dashboardRepository: DashboardRepository) :
     ViewModel() {
 
+    val counsellingPagingFlow = dashboardRepository.getHiringOrHiringFilteredOrCounsellingPagingData("counselling").cachedIn(viewModelScope)
+
     val counsellingDataResponseLiveData get() = dashboardRepository.counsellingDataResponseLiveData
+    val filteredPostsDataLiveData get() = dashboardRepository.filteredPostsDataLiveData
+
+    val shortListUserResponseLiveData get() = dashboardRepository.shortListUserResponseLiveData
+
+    val emailSearchResponseLiveData get() = dashboardRepository.emailSearchLiveData
+
+    val inductionResponseLiveData get() = dashboardRepository.inductionResponseLiveData
 
     val callResponseLiveData get() = dashboardRepository.callResponseLiveData
 
@@ -35,11 +39,36 @@ class CounsellingViewModel @Inject constructor(private val dashboardRepository: 
     val templateResponseLiveData get() = dashboardRepository.templateResponseLiveData
 
 
-    fun getCounsellingData(dataRequest: DataRequest) {
+    fun getCounsellingData(mode: String, position : Int) {
         viewModelScope.launch {
-            dashboardRepository.getCounsellingData(dataRequest)
+            dashboardRepository.getCounsellingData(mode, position)
         }
     }
+
+    fun getFilterPosts(employerId: Int) {
+        viewModelScope.launch {
+            dashboardRepository.getFilteredPostsData(employerId)
+        }
+    }
+
+    fun shortListUser(shortListUserRequest: ShortListUserRequest) {
+        viewModelScope.launch {
+            dashboardRepository.shortListUser(shortListUserRequest)
+        }
+    }
+
+    fun emailSearch(email:String) {
+        viewModelScope.launch {
+            dashboardRepository.searchEmail(email)
+        }
+    }
+
+    fun inductionRequest(inductionRequest: InductionRequest) {
+        viewModelScope.launch {
+            dashboardRepository.inductionRequest(inductionRequest)
+        }
+    }
+
 
     fun makeCall(callRequest: CallRequest) {
         viewModelScope.launch {

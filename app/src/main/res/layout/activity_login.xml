@@ -18,7 +18,11 @@
             android:layout_height="35dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:src="@drawable/m_logo" />
+
+
+
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
@@ -32,13 +36,32 @@
             android:textStyle="bold" />
 
 
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/responseText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:lineSpacingMultiplier="1.3"
+            android:background="@drawable/style_card2"
+            android:backgroundTint="#6FAEE4"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+
+
         <androidx.cardview.widget.CardView
             android:id="@+id/emailCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/logo"
+            android:layout_below="@id/responseText"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             app:cardCornerRadius="5dp"
             app:cardElevation="0dp">
 
@@ -149,10 +172,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/frameLayout"
-            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:paddingVertical="10dp"
+            android:text="@string/don_t_have_account_regsiter"
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/forgetPasswordBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/registerTxt"
             android:layout_centerHorizontal="true"
             android:paddingBottom="30dp"
-            android:text="@string/don_t_have_account_regsiter"
+            android:paddingTop="10dp"
+            android:textColor="#FF9800"
+            android:text="Forget Password?"
             android:textSize="15sp" />
 
     </RelativeLayout>

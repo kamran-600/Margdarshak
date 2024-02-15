@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.margdarshakendra.margdarshak.progress_meter_tab_fragments.CalenderFragment
-import com.margdarshakendra.margdarshak.progress_meter_tab_fragments.CheckProgressMeterFragment
+import com.margdarshakendra.margdarshak.progress_meter_tab_fragments.ShowProgressMeterFragment
 import com.margdarshakendra.margdarshak.progress_meter_tab_fragments.CompareFragment
 import com.margdarshakendra.margdarshak.progress_meter_tab_fragments.EfficiencyFragment
 import com.margdarshakendra.margdarshak.progress_meter_tab_fragments.InteractiveClassFragment
@@ -36,7 +36,7 @@ class TabPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter
             3 -> EfficiencyFragment()
             4 -> PerformanceFragment()
             5 -> CompareFragment()
-            6 -> CheckProgressMeterFragment()
+            6 -> ShowProgressMeterFragment()
             7 -> CalenderFragment()
             else -> throw IllegalArgumentException("Invalid tab position")
         }

@@ -3,7 +3,8 @@ package com.margdarshakendra.margdarshak.models
 data class ClientDataResponse(
     val `data`: List<Data>,
     val statusCode: Int,
-    val success: Boolean
+    val success: Boolean,
+    val employers: List<Employer?>?
 ) {
     data class Data(
         val userID: Int,
@@ -20,5 +21,9 @@ data class ClientDataResponse(
         val position: String?,
         val email_verified: String,
         val mobile_verified: String
+    )
+    data class Employer(
+        val userID: Int,
+        val name: String
     )
 }

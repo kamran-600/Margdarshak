@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="3"
+            android:src="@drawable/m_logo" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="33dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="User Name"
+            android:textSize="18sp" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/cancel_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="3"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/clear_icon"
+            app:tint="@color/black" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Test Date"
+        android:textSize="18sp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/testDate"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/pinCodeLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/box"
+        android:drawableEnd="@drawable/calendar"
+        android:focusable="false"
+        android:hint="yyyy-mm-dd"
+        android:inputType="none"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/black45"
+        android:cursorVisible="false"
+        android:textSize="15sp" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/skillText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Skill"
+        android:textSize="18sp" />
+
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:id="@+id/skillAutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/box"
+        android:completionThreshold="1"
+        android:drawableEnd="@drawable/arrow_down"
+        android:drawableTint="@color/black45"
+        android:hint="Select a Skill"
+        android:inputType="none"
+        android:paddingHorizontal="15dp"
+        android:textSize="15sp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:text="Close"
+            app:cornerRadius="5dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A64BAF50"
+            android:layout_marginStart="15dp"
+            android:elevation="0dp"
+            android:text="Submit"
+            app:cornerRadius="5dp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

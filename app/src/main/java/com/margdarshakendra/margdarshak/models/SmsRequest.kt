@@ -7,7 +7,7 @@ data class SmsRequest(
     val date: String,
     val hireID: Int?,
     val remark: String,
-    val status: String,
+    val status: String?,
     val template_id: String?,
     val time: String,
     val uid: String

@@ -7,7 +7,10 @@
     <color name="upperBlue">#FF1E88E5</color>
     <color name="grey_bg">#E8E8E8</color>
     <color name="green">#C91CCA23</color>
+    <color name="parrotGreen">#68DA7A</color>
     <color name="card_bg">#86E8E8E8</color>
     <color name="card_bg2">#00BCD4</color>
+    <color name="forgetPassCardColor">#6FAEE4</color>
+    <color name="orange">#EAAE58</color>
 
 </resources>

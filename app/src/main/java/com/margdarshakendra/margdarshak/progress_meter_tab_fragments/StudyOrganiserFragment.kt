@@ -513,6 +513,7 @@ class StudyOrganiserFragment : Fragment(), OrganisedStudyAdapter.AdapterCallback
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.toString())
                     editableData = it.data.editable_data
+                    binding.root.smoothScrollTo(0,0)
                     binding.innerLL.visibility = View.VISIBLE
 
                     binding.startDate.setText(editableData!!.date_start)
@@ -666,7 +667,6 @@ class StudyOrganiserFragment : Fragment(), OrganisedStudyAdapter.AdapterCallback
         }
 
     }
-
 
     private fun validateAllDetails(): Boolean {
         if (courseId == 0) {

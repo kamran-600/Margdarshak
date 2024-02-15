@@ -98,9 +98,12 @@ class RegisterActivity : AppCompatActivity() {
             binding.spinKit.visibility = GONE
             when (it) {
                 is NetworkResult.Success -> {
-                    Toast.makeText(this, it.data!!.message, Toast.LENGTH_LONG).show()
+                    Log.d(TAG, it.data!!.toString())
+                    Toast.makeText(this, it.data.message, Toast.LENGTH_LONG).show()
                     binding.errorMessage.visibility = GONE
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.putExtra("registration_response", it.data.message)
+                    startActivity(intent)
                     finishAffinity()
                 }
 
@@ -273,7 +276,6 @@ class RegisterActivity : AppCompatActivity() {
                 smsBroadcastReceiver = null
             }
         }
-
     }
 
     private fun setUserTypeSpinnerAdapter() {

@@ -230,7 +230,7 @@ class ProfileActivity : AppCompatActivity() {
                 is NetworkResult.Success -> {
                     Log.d(TAG, it.data!!.toString())
                     sharedPreference.saveDetail(Constants.PROFILE_UPDATED, true, "Boolean")
-
+                    Toast.makeText(this, "Profile Updated Successfully", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, DashboardActivity::class.java))
                     finishAffinity()
 
@@ -279,7 +279,7 @@ class ProfileActivity : AppCompatActivity() {
                 binding.preflanguage.text.toString().trim()
             )
 
-           // Log.d(TAG, userUpdateRequest.toString())
+            Log.d(TAG, userUpdateRequest.toString())
 
             profileViewModel.updateUserDetails(userUpdateRequest)
         }
@@ -443,8 +443,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private val cameraPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+    private val cameraPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
             if (it) {
                 cameraLauncher.launch(captureImageUri)
             } else {
@@ -487,7 +486,7 @@ class ProfileActivity : AppCompatActivity() {
                 getBase64Image(galleryImageUri)
                 binding.imageCardImage.setImageURI(galleryImageUri)
                 binding.imageCard.visibility = View.VISIBLE
-                binding.imageCard.setOnClickListener { _ ->
+                binding.imageCard.setOnClickListener { 
                     val help: Array<String> =
                         galleryImageUri.toString().split("media".toRegex())
                             .dropLastWhile { it.isEmpty() }
@@ -501,45 +500,32 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
 
-
         }
 
-    @SuppressLint("ClickableViewAccessibility")
     private fun setDOB() {
-        binding.dob.setOnTouchListener { v, event ->
-            val DRAWABLE_LEFT = 0
-            val DRAWABLE_TOP = 1
-            val DRAWABLE_RIGHT = 2
-            val DRAWABLE_BOTTOM = 3
-            if (event.action === MotionEvent.ACTION_UP) {
-                if (event.rawX <= binding.dob.right + binding.dob.compoundDrawables[DRAWABLE_RIGHT].bounds.width()
-                ) {
-                    val calendar = Calendar.getInstance()
-                    val datePickerDialog = DatePickerDialog(
-                        this,
-                        { view: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
-                            var month = month
-                            val dob = String.format(
-                                Locale.ENGLISH,
-                                "%4d-%2d-%2d",
-                                year,
-                                ++month,
-                                dayOfMonth
-                            )
-                            binding.dob.setText(dob)
-                        },
-                        calendar[Calendar.YEAR],
-                        calendar[Calendar.MONTH],
-                        calendar[Calendar.DAY_OF_MONTH]
+        binding.dob.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { view: DatePicker?, year: Int, month: Int, dayOfMonth: Int ->
+                    var month1 = month
+                    val dob = String.format(
+                        Locale.ENGLISH,
+                        "%4d-%02d-%02d",
+                        year,
+                        ++month1,
+                        dayOfMonth
                     )
-                    datePickerDialog.show()
-                    return@setOnTouchListener true
-                }
-            }
-            false
+                    binding.dob.setText(dob)
+                },
+                calendar[Calendar.YEAR],
+                calendar[Calendar.MONTH],
+                calendar[Calendar.DAY_OF_MONTH]
+            )
+            datePickerDialog.show()
         }
-    }
 
+    }
     private fun getDistrict() {
 
         val districtRequest = DistrictRequest("getDistrict")

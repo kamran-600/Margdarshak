@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/importLatestEmails"
+        android:title="Import Latest Emails" />
+
+    <item
+        android:id="@+id/inbox"
+        android:title="Inbox" />
+
+    <item
+        android:id="@+id/sentbox"
+        android:title="Sentbox" />
+
+</menu>

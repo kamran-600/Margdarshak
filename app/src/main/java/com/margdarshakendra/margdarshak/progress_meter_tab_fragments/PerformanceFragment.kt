@@ -185,8 +185,8 @@ class PerformanceFragment : Fragment() {
 
 
                     val dataSet = MyBarDataset(entries, "Marks", marksList)
-                    //dataSet.setColors(*ColorTemplate.MATERIAL_COLORS)
-                    dataSet.setColors(ColorTemplate.rgb("#e74c3c"), ColorTemplate.rgb("#2ecc71"), ColorTemplate.rgb("#f1c40f"))
+                    //dataSet.setColors(*ColorTemplate.MATERIAL_COLORS)ColorTemplate.rgb("#f1c40f")// yellow
+                    dataSet.setColors(ColorTemplate.rgb("#e74c3c"), ColorTemplate.rgb("#2ecc71"))  // green , red
                     dataSet.valueTextColor = Color.BLACK
                     dataSet.valueTextSize = 10f
 
@@ -212,6 +212,10 @@ class PerformanceFragment : Fragment() {
                         xAxis.position = XAxis.XAxisPosition.BOTTOM
                         setFitBars(true)
                     }
+
+                    /*while(!binding.chartView.isFullyZoomedOut){
+                        binding.chartView.zoomOut()
+                    }*/
 
 
                     /*val list = arrayListOf<BarEntry>()
@@ -306,8 +310,8 @@ class PerformanceFragment : Fragment() {
 
 
                     val dataSet = MyBarDataset(entries, "Marks" , marksList)
-                    //dataSet.setColors(*ColorTemplate.MATERIAL_COLORS)
-                    dataSet.setColors(ColorTemplate.rgb("#e74c3c"), ColorTemplate.rgb("#2ecc71"), ColorTemplate.rgb("#f1c40f"))
+                    //dataSet.setColors(*ColorTemplate.MATERIAL_COLORS)  ColorTemplate.rgb("#f1c40f")// yellow
+                    dataSet.setColors(ColorTemplate.rgb("#e74c3c"), ColorTemplate.rgb("#2ecc71"))  //  red, green
                     dataSet.valueTextColor = Color.BLACK
                     dataSet.valueTextSize = 10f
 
@@ -334,6 +338,10 @@ class PerformanceFragment : Fragment() {
                         xAxis.position = XAxis.XAxisPosition.BOTTOM
                         setFitBars(true)
                     }
+
+                    /*while(!binding.chartView.isFullyZoomedOut){
+                        binding.chartView.zoomOut()
+                    }*/
 
 
                 }
@@ -390,11 +398,11 @@ class PerformanceFragment : Fragment() {
         override fun getColor(index: Int): Int {
             val c = credits[index]
             return if (c < 0) {
+                Log.d(TAG, "$c Red")
                 mColors[0]
-            } else if (c < 13) {
+            }  else {
+                Log.d(TAG, "$c Green")
                 mColors[1]
-            } else {
-                mColors[2]
             }
         }
     }

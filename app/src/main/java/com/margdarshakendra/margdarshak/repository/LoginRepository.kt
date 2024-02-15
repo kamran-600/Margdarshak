@@ -25,11 +25,12 @@ class LoginRepository @Inject constructor(private val userApi: UserApi) {
             if (loginResponse.isSuccessful && loginResponse.body() != null) {
                 _loginResponseLiveData.postValue(NetworkResult.Success(loginResponse.body()!!))
             } else if (loginResponse.errorBody() != null) {
+                Log.d(Constants.TAG, loginResponse.errorBody().toString())
                 val jsonLoginError = JSONObject(loginResponse.errorBody()!!.charStream().readText())
                 _loginResponseLiveData.postValue(NetworkResult.Error(jsonLoginError.getString("message")))
             }
         } catch (e: Exception) {
-            Log.d(Constants.TAG, e.message.toString())
+            Log.d(Constants.TAG, e.toString())
             _loginResponseLiveData.postValue(NetworkResult.Error(e.message))
         }
     }

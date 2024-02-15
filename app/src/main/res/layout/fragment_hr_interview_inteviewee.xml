@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".interview_fragments.HrInterviewIntevieweeFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:drawableStart="@drawable/assessment_icon"
+        android:drawablePadding="5dp"
+        android:drawableTint="@color/upperBlue"
+        android:text="HR Interview"
+        android:textColor="@color/upperBlue"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/hrInterviewQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Please Wait...                                                                    "
+        android:textColor="@color/black45"
+        android:textSize="18sp" />
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

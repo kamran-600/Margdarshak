@@ -1,0 +1,1046 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    app:cardElevation="3dp"
+    app:cardBackgroundColor="#D3EBFF"
+    android:layout_marginVertical="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/userType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="10dp"
+            android:background="@drawable/name_bg"
+            android:gravity="center"
+            android:text="userType"
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/morePopMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="?actionBarItemBackground"
+            android:padding="3dp"
+            android:src="@drawable/more_vertical"
+            android:tint="@color/black45" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userType"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/table_bg"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#601C1B1F"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/position"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:ellipsize="marquee"
+                        android:singleLine="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp"
+                        android:textSize="15sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="1dp"
+                    android:foreground="#601C1B1F"
+                    android:background="#601C1B1F" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/account_circle" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/name_bg"
+                    android:ellipsize="marquee"
+                    android:gravity="start"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:singleLine="true"
+                    android:text="Mr. Alpha"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="UP"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/district"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Ambedkar Nagar"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/pincode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
+                    android:text="224122"
+                    android:textSize="15sp" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_bg"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#601C1B1F"/>
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/Verified"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:layout_margin="10dp"
+                            android:text="Verified"
+                            android:textSize="15sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="1dp"
+                        android:foreground="#601C1B1F"
+                        android:background="#601C1B1F"/>
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:layout_margin="10dp"
+                        android:drawablePadding="5dp"
+                        android:text="Email"
+                        android:textSize="15sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:layout_margin="10dp"
+                        android:drawablePadding="5dp"
+                        android:text="Mobile"
+                        android:textSize="15sp" />
+
+                    <View
+                        android:id="@+id/homeCompliment1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:visibility="gone"
+                        android:foreground="#601C1B1F"
+                        android:background="#601C1B1F"/>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/homeCompliment2"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/table_bg"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/userClassORQualification"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:ellipsize="marquee"
+                            android:layout_margin="10dp"
+                            android:text="     "
+                            android:textSize="15sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                   <androidx.appcompat.widget.LinearLayoutCompat
+                       android:id="@+id/homeCompliment3"
+                        android:layout_width="match_parent"
+                       android:orientation="vertical"
+                       android:visibility="gone"
+                        android:layout_height="wrap_content">
+
+                       <View
+                           android:layout_width="match_parent"
+                           android:layout_height="1dp"
+                           android:foreground="#601C1B1F"
+                           android:background="#601C1B1F"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/instituteORSpec"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_margin="10dp"
+                            android:maxLines="3"
+                            android:autoLink="all"
+                            android:ellipsize="end"
+                            android:text="     "
+                            android:textSize="15sp" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll1"
+            android:orientation="horizontal">
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_bg"
+                android:layout_weight="1">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/logs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_margin="10dp"
+                    android:text="logs"
+                    android:textColor="@color/green"
+                    android:textSize="15sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/table_bg"
+                android:layout_weight="1">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:gravity="start"
+                    android:layout_margin="10dp"
+                    android:text="status"
+                    android:textSize="15sp" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll2"
+            android:orientation="horizontal">
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/table_bg">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:layout_margin="10dp"
+                    android:text="remark"
+                    android:textSize="15sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/table_bg"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/followDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_margin="10dp"
+                    android:text="00/00/2201"
+                    android:textSize="15sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll3"
+            android:orientation="horizontal">
+
+            &lt;!&ndash;<com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dataAdvisorName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="4dp"
+                android:layout_margin="10dp"
+                android:text="Mr. Beta"
+                android:textSize="15sp" />&ndash;&gt;
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/table_bg">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/dataAdvisorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:layout_margin="10dp"
+                    android:text="Mr. Beta"
+                    android:textSize="15sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/lateLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:background="@drawable/table_bg"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lateDays"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_margin="8dp"
+                    android:text="Late (1) Days"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:background="@drawable/red_bg"
+                    android:textSize="15sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll4"
+            android:layout_marginHorizontal="5dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/callRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:textSize="15sp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                app:icon="@drawable/call_icon"
+                app:iconGravity="textTop"
+                app:iconPadding="3dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/emailRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:textSize="15sp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                app:icon="@drawable/email_icon"
+                app:iconGravity="textTop"
+                app:iconPadding="3dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/smsRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:textSize="15sp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                app:icon="@drawable/message_icon"
+                app:iconGravity="textTop"
+                app:iconPadding="3dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/whatsappRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                android:textSize="15sp"
+                app:icon="@drawable/whatsapp"
+                app:iconGravity="textTop"
+                app:iconPadding="3dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </RelativeLayout>
+
+
+    &lt;!&ndash; <TableLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:stretchColumns="1,2,3,4,5">
+
+
+         <TableRow>
+
+
+             <de.hdodenhof.circleimageview.CircleImageView
+                 android:id="@+id/profileImage"
+                 android:layout_width="50dp"
+                 android:layout_height="50dp"
+                 android:layout_marginHorizontal="10dp"
+                 android:layout_marginVertical="10dp"
+                 android:src="@drawable/account_circle" />
+
+
+             <com.google.android.material.textview.MaterialTextView
+                 android:id="@+id/clientData"
+                 android:layout_column="1"
+                 android:gravity="center"
+                 android:padding="10dp"
+                 android:textSize="11sp" />
+
+             <com.google.android.material.textview.MaterialTextView
+                 android:id="@+id/userType"
+                 android:layout_column="1"
+                 android:gravity="center"
+                 android:padding="10dp"
+                 android:textSize="11sp" />
+
+             <com.google.android.material.textview.MaterialTextView
+                 android:id="@+id/location"
+                 android:layout_column="1"
+                 android:gravity="center"
+                 android:padding="10dp"
+                 android:textSize="11sp" />
+
+             <com.google.android.material.textview.MaterialTextView
+                 android:id="@+id/classorexam"
+                 android:layout_column="1"
+                 android:gravity="center"
+                 android:padding="10dp"
+                 android:textSize="11sp" />
+
+         </TableRow>
+
+     </TableLayout>
+ &ndash;&gt;
+</com.google.android.material.card.MaterialCardView>-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="@color/white"
+    android:layout_marginVertical="7dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/userType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/orange_bg"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="userType"
+            android:textSize="15sp" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/morePopMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="?actionBarItemBackground"
+            android:padding="3dp"
+            android:src="@drawable/more_vertical"
+            android:tint="@color/black45" />
+
+        <RelativeLayout
+            android:id="@+id/imageRl"
+            android:layout_width="match_parent"
+            android:layout_below="@id/userType"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:layout_marginHorizontal="10dp"
+                app:shapeAppearance="@style/circleShape"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/account_circle" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_toEndOf="@id/profileImage"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:text="N/A"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="15sp" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/name_bg"
+                    android:layout_toEndOf="@id/profileImage"
+                    android:layout_below="@id/position"
+                    android:ellipsize="marquee"
+                    android:gravity="start"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="4dp"
+                    android:singleLine="true"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Mr. Alpha"
+                    android:textSize="15sp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:ellipsize="marquee"
+                    android:layout_below="@id/name"
+                    android:layout_toEndOf="@id/profileImage"
+                    android:singleLine="true"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="8dp"
+                    android:text="N/A"
+                    android:textSize="15sp" />
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageRl"
+            android:orientation="horizontal">
+
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profileImage"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/alegreya_sans"
+                android:ellipsize="marquee"
+                android:gravity="start"
+                android:singleLine="true"
+                android:text="Email Verified"
+                android:textSize="17sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:drawablePadding="5dp"
+                android:gravity="start"
+                android:fontFamily="@font/alegreya_sans"
+                android:text="Mobile Verified"
+                android:textSize="17sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll1"
+            android:orientation="horizontal">
+
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/logs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_margin="10dp"
+                    android:text="logs"
+                    android:textColor="@color/green"
+                    android:textSize="15sp" />
+
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:layout_margin="10dp"
+                    android:text="status"
+                    android:textSize="15sp" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll2"
+            android:orientation="horizontal">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:layout_margin="10dp"
+                    android:text="remark"
+                    android:textSize="15sp" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/followDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="00/00/2201"
+                    android:textSize="15sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll3"
+            android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/dataAdvisorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:text="Mr. Beta"
+                    android:textSize="15sp" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lateDays"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/white"
+                    android:paddingHorizontal="5dp"
+                    android:paddingVertical="2dp"
+                    android:background="@drawable/red_bg"
+                    android:textSize="15sp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ll5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll4"
+            android:layout_marginHorizontal="5dp"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/callRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_bg"
+                android:drawableTop="@drawable/call_icon"
+                android:elevation="0dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:padding="3dp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/emailRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_bg"
+                android:drawableTop="@drawable/email_icon"
+                android:elevation="0dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:padding="3dp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/smsRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_bg"
+                android:drawableTop="@drawable/message_icon"
+                android:elevation="0dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:padding="3dp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/whatsappRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/oval_bg"
+                android:drawableTop="@drawable/whatsapp_icon"
+                android:drawableTint="@color/white"
+                android:elevation="0dp"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:padding="3dp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <!--<com.google.android.material.button.MaterialButton
+                android:id="@+id/callRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:textSize="15sp"
+                android:text="123"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                app:icon="@drawable/call_icon"
+                app:iconGravity="textTop"
+                app:iconPadding="3dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/emailRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:textSize="15sp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                app:icon="@drawable/email_icon"
+                app:iconGravity="textTop"
+                app:iconPadding="3dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/smsRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:textSize="15sp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                app:icon="@drawable/message_icon"
+                app:iconGravity="textTop"
+                app:iconPadding="3dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/whatsappRemaining"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+                android:textSize="15sp"
+                app:icon="@drawable/whatsapp"
+                app:iconGravity="textTop"
+                app:iconPadding="3dp" />-->
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </RelativeLayout>
+
+
+    <!-- <TableLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:stretchColumns="1,2,3,4,5">
+
+
+         <TableRow>
+
+
+             <de.hdodenhof.circleimageview.CircleImageView
+                 android:id="@+id/profileImage"
+                 android:layout_width="50dp"
+                 android:layout_height="50dp"
+                 android:layout_marginHorizontal="10dp"
+                 android:layout_marginVertical="10dp"
+                 android:src="@drawable/account_circle" />
+
+
+             <com.google.android.material.textview.MaterialTextView
+                 android:id="@+id/clientData"
+                 android:layout_column="1"
+                 android:gravity="center"
+                 android:padding="10dp"
+                 android:textSize="11sp" />
+
+             <com.google.android.material.textview.MaterialTextView
+                 android:id="@+id/userType"
+                 android:layout_column="1"
+                 android:gravity="center"
+                 android:padding="10dp"
+                 android:textSize="11sp" />
+
+             <com.google.android.material.textview.MaterialTextView
+                 android:id="@+id/location"
+                 android:layout_column="1"
+                 android:gravity="center"
+                 android:padding="10dp"
+                 android:textSize="11sp" />
+
+             <com.google.android.material.textview.MaterialTextView
+                 android:id="@+id/classorexam"
+                 android:layout_column="1"
+                 android:gravity="center"
+                 android:padding="10dp"
+                 android:textSize="11sp" />
+
+         </TableRow>
+
+     </TableLayout>
+ -->
+</com.google.android.material.card.MaterialCardView>

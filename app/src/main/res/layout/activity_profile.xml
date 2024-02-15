@@ -292,7 +292,8 @@
             android:drawableEnd="@drawable/calendar"
             android:focusable="false"
             android:hint="Date of Birth"
-            android:inputType="date"
+            android:inputType="none"
+            android:cursorVisible="false"
             android:paddingHorizontal="15dp"
             android:textColor="@color/black45"
             android:textSize="15sp" />

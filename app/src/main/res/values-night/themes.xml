@@ -1,7 +1,33 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Margdarshakendra" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!--<item name="fontFamily">@font/andika</item>
+        <item name="android:includeFontPadding">false</item>-->
+
+        <item name="colorPrimary">@color/upperBlue</item>
+        <item name="colorAccent">@color/upperBlue</item>
+        <item name="android:datePickerStyle">@style/datePicker</item>
+        <item name="pdfView_disableScreenshots">true</item>
     </style>
+
+    <style name="Theme.Margdarshakendra" parent="Base.Theme.Margdarshakendra" >
+
+    </style>
+
+    <style name="datePicker" parent="android:Widget.Material.Light.DatePicker">
+        <item name="android:datePickerMode">calendar</item>
+    </style>
+    <style name="circleShape" parent="ShapeAppearance.Material3.Corner.Medium">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+
 </resources>

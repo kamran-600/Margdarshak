@@ -1,24 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".progress_meter_tab_fragments.CalenderFragment">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <!--<com.applandeo.materialcalendarview.CalendarView
         android:id="@+id/calenderView"
         android:layout_width="match_parent"
-        app:swipeEnabled="true"
-        app:firstDayOfWeek="sunday"
-        app:headerColor="@color/upperBlue"
-        app:eventsEnabled="true"
+        android:layout_height="match_parent"
         app:abbreviationsBarColor="@color/upperBlue"
         app:abbreviationsLabelsColor="@color/white"
         app:abbreviationsLabelsSize="6sp"
         app:daysLabelsColor="@color/black45"
-        android:layout_height="match_parent"/>
--->
+        app:firstDayOfWeek="sunday"
+        app:headerColor="@color/upperBlue"
+        app:swipeEnabled="true" />-->
+
+    <RelativeLayout
+        android:id="@+id/mainLayout1"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:text="Subject Wise Calender"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/moreOptionsMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp"
+            android:background="?actionBarItemBackground"
+            android:padding="3dp"
+            android:src="@drawable/more_vertical"
+            android:tint="@color/black45" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/mainLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/monthlyWise"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monthly Wise" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/weeklyWise"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Weekly Wise" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mainLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/prevMonthBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="20dp"
+                    android:background="?actionBarItemBackground"
+                    android:src="@drawable/arrow_left"
+                    android:tint="@color/black" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/yearMonthText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@id/titlesContainer"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/nextMonthBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="20dp"
+                    android:background="?actionBarItemBackground"
+                    android:src="@drawable/arrow_right_round" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include
+                android:id="@+id/titlesContainer"
+                layout="@layout/calendar_day_titles_container" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mainLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="3dp">
+
+        <com.kizitonwose.calendar.view.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:cv_dayViewResource="@layout/calendar_cell_layout" />
+
+        <com.kizitonwose.calendar.view.WeekCalendarView
+            android:id="@+id/weekCalendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:cv_dayViewResource="@layout/calendar_cell_layout" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <!--<com.google.android.material.textview.MaterialTextView
+        android:id="@+id/apiLevel26Text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="This Feature is available from Api level 26"
+        android:textSize="16sp"
+        android:visibility="gone" />-->
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/todayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="start"
+        android:includeFontPadding="false"
+        android:text="Today"
+        android:textSize="16sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/lessonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/todayText"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="20dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="start"
+        android:includeFontPadding="false"
+        android:textSize="16sp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>

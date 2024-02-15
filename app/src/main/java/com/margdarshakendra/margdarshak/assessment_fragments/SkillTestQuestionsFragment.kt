@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.google.android.flexbox.FlexboxLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textview.MaterialTextView
 import com.margdarshakendra.margdarshak.DashboardActivity
 import com.margdarshakendra.margdarshak.R
@@ -303,10 +304,11 @@ class SkillTestQuestionsFragment : Fragment() {
                         } else {
                             HomeFragment()
                         }
-                        sweetAlertDialog.setOnDismissListener {dialog ->
+                        sweetAlertDialog.setOnDismissListener {
                             requireActivity().supportFragmentManager.beginTransaction()
                                 .replace(R.id.bReplace, home)
                                 .commit()
+                            requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView).menu.findItem(R.id.home).isChecked = true
                         }
                         sweetAlertDialog.show()
                     }

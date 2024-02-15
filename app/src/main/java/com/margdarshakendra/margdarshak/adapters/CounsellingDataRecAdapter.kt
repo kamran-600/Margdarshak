@@ -1,67 +1,48 @@
 package com.margdarshakendra.margdarshak.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
 import com.margdarshakendra.margdarshak.R
-import com.margdarshakendra.margdarshak.databinding.SingleRowClientdataBinding
+import com.margdarshakendra.margdarshak.databinding.SingleRowDataBinding
 import com.margdarshakendra.margdarshak.models.CounsellingDataResponse
-import com.margdarshakendra.margdarshak.utils.Constants.TAG
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
+import com.margdarshakendra.margdarshak.models.HiringDataResponse
+import kotlinx.coroutines.Dispatchers
 
 class CounsellingDataRecAdapter(
     private val context: Context,
     private val makeCall: (Int, String) -> Unit,
     private val sendCloudMessage: (Int, String) -> Unit,
     private val sendWhatsappMessage: (Int, String) -> Unit,
-    private val sendEmailMessage: (Int, String) -> Unit
+    private val sendEmailMessage: (Int, String) -> Unit,
+    private val showPopMenu: (View, Int, String) -> Unit
 ) :
-    ListAdapter<CounsellingDataResponse.Data, CounsellingDataRecAdapter.ViewHolder>(DiffUtilBack()) {
-
-    class DiffUtilBack : DiffUtil.ItemCallback<CounsellingDataResponse.Data>() {
-        override fun areItemsTheSame(
-            oldItem: CounsellingDataResponse.Data,
-            newItem: CounsellingDataResponse.Data
-        ): Boolean {
-            return oldItem.userID == newItem.userID
-        }
-
-        override fun areContentsTheSame(
-            oldItem: CounsellingDataResponse.Data,
-            newItem: CounsellingDataResponse.Data
-        ): Boolean {
-            return oldItem == newItem
-        }
-
-    }
+    PagingDataAdapter<HiringDataResponse.ApiData.HiringData, CounsellingDataRecAdapter.ViewHolder>(COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val singleRowClientdataBinding =
-            SingleRowClientdataBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(singleRowClientdataBinding)
+        val singleRowDataBinding =
+            SingleRowDataBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(singleRowDataBinding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val counsellingData = getItem(position)
+        val counsellingData = getItem(position) ?: return
+        holder.binding.position.visibility = View.GONE
+        holder.binding.lateDays.visibility = View.GONE
 
-        counsellingData.state.let {
-            holder.binding.state.text = it
-        }
-        counsellingData.district.let {
-            holder.binding.district.text = it
-        }
-        counsellingData.pincode.let {
-            holder.binding.pincode.text = it
+        val address = listOf(counsellingData.district, counsellingData.state, counsellingData.pincode)
+
+        holder.binding.address.apply {
+            text = address.filterNotNull().joinToString(", ")
+            isSelected = true
         }
         holder.binding.name.apply {
             text = counsellingData.name
@@ -70,7 +51,7 @@ class CounsellingDataRecAdapter(
 
         holder.binding.dataAdvisorName.text = counsellingData.advisor_name
         holder.binding.followDate.text = counsellingData.date_follow
-        holder.binding.logs.text = counsellingData.log_count.toString()
+
         holder.binding.remark.text = counsellingData.remarks
         holder.binding.status.apply {
             text = counsellingData.status
@@ -82,6 +63,8 @@ class CounsellingDataRecAdapter(
             "Student".also { holder.binding.userType.text = it }
         } else "Job Seeker".also { holder.binding.userType.text = it }
 
+        holder.binding.mobile.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+        holder.binding.email.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
         if (counsellingData.mobile_verified == "true") {
             holder.binding.mobile.setCompoundDrawablesWithIntrinsicBounds(
                 R.drawable.check_circle,
@@ -90,9 +73,25 @@ class CounsellingDataRecAdapter(
                 0
             )
         }
+        else{
+            holder.binding.mobile.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.cancel_icon,
+                0,
+                0,
+                0
+            )
+        }
+
         if (counsellingData.email_verified == "true") {
             holder.binding.email.setCompoundDrawablesWithIntrinsicBounds(
                 R.drawable.check_circle,
+                0,
+                0,
+                0
+            )
+        }else{
+            holder.binding.email.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.cancel_icon,
                 0,
                 0,
                 0
@@ -111,17 +110,23 @@ class CounsellingDataRecAdapter(
         holder.binding.smsRemaining.text = counsellingData.remaining_sms_count.toString()
         holder.binding.whatsappRemaining.text = counsellingData.remaining_whatsapp_count.toString()
         holder.binding.whatsappRemaining.text = counsellingData.remaining_whatsapp_count.toString()
+/*
 
-        if (counsellingData.pic != null) {
-            Glide.with(context).load(counsellingData.pic).into(holder.binding.profileImage)
+        Glide.with(context).load(counsellingData.pic).placeholder(R.drawable.account_circle).into(holder.binding.profileImage)
+*/
+
+        holder.binding.profileImage.load(counsellingData.pic) {
+            placeholder(R.drawable.account_circle)
+            error(R.drawable.account_circle)
+            crossfade(true)
+            transformations(CircleCropTransformation())
         }
-
         holder.binding.callRemaining.setOnClickListener {
             makeCall(counsellingData.userID, counsellingData.name)
         }
 
         holder.binding.smsRemaining.setOnClickListener {
-            sendCloudMessage(counsellingData.userID,counsellingData.name)
+            sendCloudMessage(counsellingData.userID, counsellingData.name)
         }
         holder.binding.whatsappRemaining.setOnClickListener {
             sendWhatsappMessage(counsellingData.userID, counsellingData.name)
@@ -129,6 +134,10 @@ class CounsellingDataRecAdapter(
 
         holder.binding.emailRemaining.setOnClickListener {
             sendEmailMessage(counsellingData.userID, counsellingData.name)
+        }
+
+        holder.binding.morePopMenu.setOnClickListener { view ->
+            showPopMenu(view, counsellingData.userID, counsellingData.name)
         }
 
         /*val dateFormat = SimpleDateFormat("dd-MM-yy hh:mm a", Locale.getDefault())
@@ -165,13 +174,28 @@ class CounsellingDataRecAdapter(
 */
 
 
-
-
-
-
     }
 
-    class ViewHolder(val binding: SingleRowClientdataBinding) :
+    class ViewHolder(val binding: SingleRowDataBinding) :
         RecyclerView.ViewHolder(binding.root)
 
+
+    companion object{
+        private val COMPARATOR = object : DiffUtil.ItemCallback<HiringDataResponse.ApiData.HiringData>(){
+            override fun areItemsTheSame(
+                oldItem: HiringDataResponse.ApiData.HiringData,
+                newItem: HiringDataResponse.ApiData.HiringData
+            ): Boolean {
+                return oldItem.userID == newItem.userID
+            }
+
+            override fun areContentsTheSame(
+                oldItem: HiringDataResponse.ApiData.HiringData,
+                newItem: HiringDataResponse.ApiData.HiringData
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+        }
+    }
 }

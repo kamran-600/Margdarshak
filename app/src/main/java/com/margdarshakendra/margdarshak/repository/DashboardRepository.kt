@@ -3,6 +3,9 @@ package com.margdarshakendra.margdarshak.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
 import com.margdarshakendra.margdarshak.api.DashboardApi
 import com.margdarshakendra.margdarshak.models.AttitudeQuestionsResponse
 import com.margdarshakendra.margdarshak.models.AttitudeRatingQuesResponse
@@ -11,9 +14,14 @@ import com.margdarshakendra.margdarshak.models.CalenderSchedulesResponse
 import com.margdarshakendra.margdarshak.models.CallRequest
 import com.margdarshakendra.margdarshak.models.CallResponse
 import com.margdarshakendra.margdarshak.models.ClientDataResponse
-import com.margdarshakendra.margdarshak.models.CounsellingDataResponse
-import com.margdarshakendra.margdarshak.models.DataRequest
+import com.margdarshakendra.margdarshak.models.CommunicationTestsResponse
+import com.margdarshakendra.margdarshak.models.ComparisonResponse
 import com.margdarshakendra.margdarshak.models.EditOrganisedStudyScheduleResponse
+import com.margdarshakendra.margdarshak.models.EmailSearchResponse
+import com.margdarshakendra.margdarshak.models.GetCommunicatiionTestIDResponse
+import com.margdarshakendra.margdarshak.models.GetComparisonDataRequest
+import com.margdarshakendra.margdarshak.models.GetFilterPostsResponse
+import com.margdarshakendra.margdarshak.models.GetForCounsellingRequest
 import com.margdarshakendra.margdarshak.models.GetInteractiveQuestionRequest
 import com.margdarshakendra.margdarshak.models.GetOraniserLangaugesReponse
 import com.margdarshakendra.margdarshak.models.GetOrganisedStudySchedulesResponse
@@ -26,7 +34,17 @@ import com.margdarshakendra.margdarshak.models.GetOrganiserSubjectsRequest
 import com.margdarshakendra.margdarshak.models.GetOrganiserSubjectsResponse
 import com.margdarshakendra.margdarshak.models.GetOrganiserUtilRequest
 import com.margdarshakendra.margdarshak.models.GetOrganiserWeightagesResponse
+import com.margdarshakendra.margdarshak.models.GiveCommunicationTestLinkRequest
+import com.margdarshakendra.margdarshak.models.GiveDocsUploadLinkRequest
+import com.margdarshakendra.margdarshak.models.GiveSkillTestLinkRequest
 import com.margdarshakendra.margdarshak.models.HiringDataResponse
+import com.margdarshakendra.margdarshak.models.HiringFilteredDataResponse
+import com.margdarshakendra.margdarshak.models.HiringSkillsResponse
+import com.margdarshakendra.margdarshak.models.HrInterviewQuesResponse
+import com.margdarshakendra.margdarshak.models.HrInterviewQuesUtilRequest
+import com.margdarshakendra.margdarshak.models.HrInterviewQuesUtilResponse
+import com.margdarshakendra.margdarshak.models.HrIntervieweeQuestionResponse
+import com.margdarshakendra.margdarshak.models.InductionRequest
 import com.margdarshakendra.margdarshak.models.InteractiveCoursesResponse
 import com.margdarshakendra.margdarshak.models.InteractiveSubjectsResponse
 import com.margdarshakendra.margdarshak.models.InteractiveTeachersRequest
@@ -40,6 +58,8 @@ import com.margdarshakendra.margdarshak.models.OrganisedStudyScheduleRequest
 import com.margdarshakendra.margdarshak.models.OrganisedStudyScheduleResponse
 import com.margdarshakendra.margdarshak.models.PerformanceLessonWiseResponse
 import com.margdarshakendra.margdarshak.models.PerformanceSubjectWiseResponse
+import com.margdarshakendra.margdarshak.models.ProgressMarksAndTimeResponse
+import com.margdarshakendra.margdarshak.models.ProgressMeterDataResponse
 import com.margdarshakendra.margdarshak.models.QuestionsResponse
 import com.margdarshakendra.margdarshak.models.SaveAptitudeAnswerRequest
 import com.margdarshakendra.margdarshak.models.SaveAptitudeAnswerResponse
@@ -53,7 +73,9 @@ import com.margdarshakendra.margdarshak.models.SaveInteractiveAnsResponse
 import com.margdarshakendra.margdarshak.models.SaveInteractiveAnswerRequest
 import com.margdarshakendra.margdarshak.models.SaveSkillTestAnswerRequest
 import com.margdarshakendra.margdarshak.models.SaveSkillTestAnswerResponse
+import com.margdarshakendra.margdarshak.models.ScheduleNotificationRequest
 import com.margdarshakendra.margdarshak.models.SendEmailRequest
+import com.margdarshakendra.margdarshak.models.ShortListUserRequest
 import com.margdarshakendra.margdarshak.models.SkillResponse
 import com.margdarshakendra.margdarshak.models.SkillTestQuestionResponse
 import com.margdarshakendra.margdarshak.models.SmsRequest
@@ -61,17 +83,26 @@ import com.margdarshakendra.margdarshak.models.SmsResponse
 import com.margdarshakendra.margdarshak.models.StartAssessmentRequest
 import com.margdarshakendra.margdarshak.models.StartAssessmentResponse
 import com.margdarshakendra.margdarshak.models.StartAttitudeAssessmentResponse
+import com.margdarshakendra.margdarshak.models.StartHrInterviewRequest
+import com.margdarshakendra.margdarshak.models.StartHrInterviewResponse
 import com.margdarshakendra.margdarshak.models.StartInteractiveTestRequest
 import com.margdarshakendra.margdarshak.models.StartInteractiveTestResponse
 import com.margdarshakendra.margdarshak.models.StartSkillTestRequest
 import com.margdarshakendra.margdarshak.models.StartSkillTestResponse
 import com.margdarshakendra.margdarshak.models.TemplateResponse
+import com.margdarshakendra.margdarshak.models.UpdateCommunicationTimerRequest
+import com.margdarshakendra.margdarshak.models.UpdateCommunicationTimerResponse
 import com.margdarshakendra.margdarshak.models.UpdateTimerRequest
 import com.margdarshakendra.margdarshak.models.UpdateTimerResponse
 import com.margdarshakendra.margdarshak.models.UserAccessResponse
+import com.margdarshakendra.margdarshak.models.WebEmailsResponse
+import com.margdarshakendra.margdarshak.paging.DataPagingSource
 import com.margdarshakendra.margdarshak.utils.Constants.TAG
 import com.margdarshakendra.margdarshak.utils.NetworkResult
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.json.JSONObject
+import retrofit2.http.Part
 import javax.inject.Inject
 
 class DashboardRepository @Inject constructor(private val dashboardApi: DashboardApi) {
@@ -84,10 +115,52 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
         get() = _logoutResponseLiveData
 
     private val _hiringDataResponseLiveData = MutableLiveData<NetworkResult<HiringDataResponse>>()
-    val hiringDataResponseLiveData get() = _hiringDataResponseLiveData
+    val hiringDataResponseLiveData: LiveData<NetworkResult<HiringDataResponse>>
+        get() = _hiringDataResponseLiveData
 
-    private val _hiringDataListLiveData = MutableLiveData<List<HiringDataResponse.Data>>()
-    val hiringDataListLiveData get() = _hiringDataListLiveData
+    private val _hiringFilteredDataLiveData = MutableLiveData<NetworkResult<HiringFilteredDataResponse>>()
+    val hiringFilteredDataLiveData: LiveData<NetworkResult<HiringFilteredDataResponse>> get() = _hiringFilteredDataLiveData
+
+
+    private val _filteredPostsDataLiveData =
+        MutableLiveData<NetworkResult<GetFilterPostsResponse>>()
+    val filteredPostsDataLiveData: LiveData<NetworkResult<GetFilterPostsResponse>> get() = _filteredPostsDataLiveData
+
+
+    private val _hiringSkillsLiveData = MutableLiveData<NetworkResult<HiringSkillsResponse>>()
+    val hiringSkillsLiveData: LiveData<NetworkResult<HiringSkillsResponse>>
+        get() = _hiringSkillsLiveData
+
+
+    private val _giveHiringSkillTestLinkLiveData = MutableLiveData<NetworkResult<SmsResponse>>()
+    val giveHiringSkillTestLinkLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _giveHiringSkillTestLinkLiveData
+
+
+    private val _giveHiringInterviewTestLinkLiveData = MutableLiveData<NetworkResult<SmsResponse>>()
+    val giveHiringInterviewTestLinkLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _giveHiringInterviewTestLinkLiveData
+
+
+
+    private val _inductionResponseLiveData = MutableLiveData<NetworkResult<SmsResponse>>()
+    val inductionResponseLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _inductionResponseLiveData
+
+
+    private val _communicationTestsLiveData = MutableLiveData<NetworkResult<CommunicationTestsResponse>>()
+    val communicationTestsLiveData: LiveData<NetworkResult<CommunicationTestsResponse>>
+        get() = _communicationTestsLiveData
+
+
+    private val _giveCommunicationTestLinkResponseLiveData = MutableLiveData<NetworkResult<SmsResponse>>()
+    val giveCommunicationTestLinkResponseLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _giveCommunicationTestLinkResponseLiveData
+
+
+    private val _giveDocsUploadLinkResponseLiveData = MutableLiveData<NetworkResult<SmsResponse>>()
+    val giveDocsUploadLinkResponseLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _giveDocsUploadLinkResponseLiveData
 
 
     private val _callResponseLiveData = MutableLiveData<NetworkResult<CallResponse>>()
@@ -111,11 +184,20 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
         get() = _templateResponseLiveData
 
     private val _counsellingDataResponseLiveData =
-        MutableLiveData<NetworkResult<CounsellingDataResponse>>()
-    val counsellingDataResponseLiveData get() = _counsellingDataResponseLiveData
+        MutableLiveData<NetworkResult<HiringDataResponse>>()
+    val counsellingDataResponseLiveData: LiveData<NetworkResult<HiringDataResponse>> get() = _counsellingDataResponseLiveData
+
+
+    private val _shortListUserResponseLiveData = MutableLiveData<NetworkResult<SmsResponse>>()
+    val shortListUserResponseLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _shortListUserResponseLiveData
 
     private val _clientDataResponseLiveData = MutableLiveData<NetworkResult<ClientDataResponse>>()
-    val clientDataResponseLiveData get() = _clientDataResponseLiveData
+    val clientDataResponseLiveData: LiveData<NetworkResult<ClientDataResponse>> get() = _clientDataResponseLiveData
+
+
+    private val _getForCounsellingResponseLiveData = MutableLiveData<NetworkResult<SmsResponse>>()
+    val getForCounsellingResponseLiveData: LiveData<NetworkResult<SmsResponse>> get() = _getForCounsellingResponseLiveData
 
 
     private val _startAptitudeAssessmentResponseLiveData =
@@ -316,6 +398,111 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
     val calenderSchedulesLiveData: LiveData<NetworkResult<CalenderSchedulesResponse>>
         get() = _calenderSchedulesLiveData
 
+    private val _progressMeterLiveData =
+        MutableLiveData<NetworkResult<ProgressMeterDataResponse>>()
+
+    val progressMeterLiveData: LiveData<NetworkResult<ProgressMeterDataResponse>>
+        get() = _progressMeterLiveData
+
+    private val _progressMarksAndTimeLiveData =
+        MutableLiveData<NetworkResult<ProgressMarksAndTimeResponse>>()
+
+    val progressMarksAndTimeLiveData: LiveData<NetworkResult<ProgressMarksAndTimeResponse>>
+        get() = _progressMarksAndTimeLiveData
+
+    private val _emailSearchLiveData =
+        MutableLiveData<NetworkResult<EmailSearchResponse>>()
+
+    val emailSearchLiveData: LiveData<NetworkResult<EmailSearchResponse>>
+        get() = _emailSearchLiveData
+
+
+    private val _comparisonLiveData =
+        MutableLiveData<NetworkResult<ComparisonResponse>>()
+
+    val comparisonLiveData: LiveData<NetworkResult<ComparisonResponse>>
+        get() = _comparisonLiveData
+
+
+    private val _startHrInterviewLiveData =
+        MutableLiveData<NetworkResult<StartHrInterviewResponse>>()
+
+    val startHrInterviewLiveData: LiveData<NetworkResult<StartHrInterviewResponse>>
+        get() = _startHrInterviewLiveData
+
+    private val _hrInterviewQuesLiveData =
+        MutableLiveData<NetworkResult<HrInterviewQuesResponse>>()
+
+    val hrInterviewQuesLiveData: LiveData<NetworkResult<HrInterviewQuesResponse>>
+        get() = _hrInterviewQuesLiveData
+
+    private val _hrInterviewQuesUtilsLiveData =
+        MutableLiveData<NetworkResult<HrInterviewQuesUtilResponse>>()
+
+    val hrInterviewQuesUtilsLiveData: LiveData<NetworkResult<HrInterviewQuesUtilResponse>>
+        get() = _hrInterviewQuesUtilsLiveData
+
+
+    private val _hrIntervieweeQuesLiveData =
+        MutableLiveData<NetworkResult<HrIntervieweeQuestionResponse>>()
+
+    val hrIntervieweeQuesLiveData: LiveData<NetworkResult<HrIntervieweeQuestionResponse>>
+        get() = _hrIntervieweeQuesLiveData
+
+
+    private val _webEmailsLiveData =
+        MutableLiveData<NetworkResult<WebEmailsResponse>>()
+
+    val webEmailsLiveData: LiveData<NetworkResult<WebEmailsResponse>>
+        get() = _webEmailsLiveData
+
+
+    private val _importedWebEmailsLiveData =
+        MutableLiveData<NetworkResult<SmsResponse>>()
+
+    val importedWebEmailsLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _importedWebEmailsLiveData
+
+
+    private val _hireTestIdLiveData =
+        MutableLiveData<NetworkResult<GetCommunicatiionTestIDResponse>>()
+
+    val hireTestIdLiveData: LiveData<NetworkResult<GetCommunicatiionTestIDResponse>>
+        get() = _hireTestIdLiveData
+
+    private val _updateCommunicationTimerLiveData =
+        MutableLiveData<NetworkResult<UpdateCommunicationTimerResponse>>()
+
+    val updateCommunicationTimerLiveData: LiveData<NetworkResult<UpdateCommunicationTimerResponse>>
+        get() = _updateCommunicationTimerLiveData
+
+
+    private val _submitCommunicationTestLiveData =
+        MutableLiveData<NetworkResult<SmsResponse>>()
+
+    val submitCommunicationTestLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _submitCommunicationTestLiveData
+
+
+    private val _submitDocsUploadLiveData =
+        MutableLiveData<NetworkResult<SmsResponse>>()
+
+    val submitDocsUploadLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _submitDocsUploadLiveData
+
+    private val _scheduleNotificationLiveData =
+        MutableLiveData<NetworkResult<SmsResponse>>()
+
+    val scheduleNotificationLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _scheduleNotificationLiveData
+
+
+    private val _deleteNotificationLiveData =
+        MutableLiveData<NetworkResult<SmsResponse>>()
+
+    val deleteNotificationLiveData: LiveData<NetworkResult<SmsResponse>>
+        get() = _deleteNotificationLiveData
+
     suspend fun getUserAccess() {
         try {
             val userAccessResponse = dashboardApi.getUserAccess()
@@ -335,6 +522,7 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
     }
 
     suspend fun logout(logoutRequest: LogoutRequest) {
+        _logoutResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val logoutResponse = dashboardApi.logout(logoutRequest)
 
@@ -352,15 +540,22 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
         }
     }
 
-    suspend fun getHiringData(dataRequest: DataRequest) {
-        Log.d(TAG, "getHiringData method called")
+    fun getHiringOrHiringFilteredOrCounsellingPagingData(mode : String? = null, employerId: Int? = null, postId: Int? = null) = Pager(
+        config = PagingConfig(
+            pageSize = 10,
+            maxSize = 100,
+        ),
+        pagingSourceFactory = { DataPagingSource(dashboardApi, mode, employerId, postId)},
+    ).flow
+
+    suspend fun getHiringData(mode: String, pageNo : Int) {
+        _hiringDataResponseLiveData.postValue(NetworkResult.Loading())
 
         try {
-            val hiringDataResponse = dashboardApi.getHiringData(dataRequest)
+
+            val hiringDataResponse = dashboardApi.getHiringData(mode, pageNo)
 
             if (hiringDataResponse.isSuccessful && hiringDataResponse.body() != null) {
-                _hiringDataListLiveData.postValue(hiringDataResponse.body()!!.data)
-                Log.d(TAG, "hiring list \n" + _hiringDataListLiveData.value.toString())
                 _hiringDataResponseLiveData.postValue(NetworkResult.Success(hiringDataResponse.body()!!))
             } else if (hiringDataResponse.errorBody() != null) {
                 val jsonHiringError =
@@ -380,8 +575,298 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
         }
     }
 
-    suspend fun makeCall(callRequest: CallRequest) {
+    /*suspend fun getHiringFilteredData(employerId: Int, postId: Int, pageNo: Int) {
 
+        _hiringFilteredDataLiveData.postValue(NetworkResult.Loading())
+        try {
+            val hiringFilteredDataResponse = dashboardApi.getHiringFilteredData(employerId, postId, pageNo)
+
+            if (hiringFilteredDataResponse.isSuccessful && hiringFilteredDataResponse.body() != null) {
+                _hiringFilteredDataLiveData.postValue(
+                    NetworkResult.Success(
+                        hiringFilteredDataResponse.body()!!
+                    )
+                )
+            } else if (hiringFilteredDataResponse.errorBody() != null) {
+                val jsonHiringError =
+                    JSONObject(hiringFilteredDataResponse.errorBody()!!.charStream().readText())
+                _hiringFilteredDataLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _hiringFilteredDataLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }*/
+
+
+    suspend fun getFilteredPostsData(employerId: Int) {
+
+        _filteredPostsDataLiveData.postValue(NetworkResult.Loading())
+        try {
+            val hiringFilteredPostsResponse = dashboardApi.getFilterPostsData(employerId)
+
+            if (hiringFilteredPostsResponse.isSuccessful && hiringFilteredPostsResponse.body() != null) {
+                _filteredPostsDataLiveData.postValue(
+                    NetworkResult.Success(
+                        hiringFilteredPostsResponse.body()!!
+                    )
+                )
+            } else if (hiringFilteredPostsResponse.errorBody() != null) {
+                val jsonHiringError =
+                    JSONObject(hiringFilteredPostsResponse.errorBody()!!.charStream().readText())
+                _filteredPostsDataLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _filteredPostsDataLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+    suspend fun giveHiringSkillTestLink(giveSkillTestLinkRequest: GiveSkillTestLinkRequest) {
+
+        _giveHiringSkillTestLinkLiveData.postValue(NetworkResult.Loading())
+        try {
+            val giveSkillTestLinkResponse =
+                dashboardApi.giveHiringSkillTestLink(giveSkillTestLinkRequest)
+
+            if (giveSkillTestLinkResponse.isSuccessful && giveSkillTestLinkResponse.body() != null) {
+
+                _giveHiringSkillTestLinkLiveData.postValue(
+                    NetworkResult.Success(
+                        giveSkillTestLinkResponse.body()!!
+                    )
+                )
+            } else if (giveSkillTestLinkResponse.errorBody() != null) {
+                Log.d(TAG, giveSkillTestLinkResponse.errorBody().toString())
+                val jsonHiringError =
+                    JSONObject(giveSkillTestLinkResponse.errorBody()!!.charStream().readText())
+                _giveHiringSkillTestLinkLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _giveHiringSkillTestLinkLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun giveHiringInterviewLink(giveSkillTestLinkRequest: GiveSkillTestLinkRequest) {
+        _giveHiringInterviewTestLinkLiveData.postValue(NetworkResult.Loading())
+        try {
+            val giveHiringInterviewLinkResponse =
+                dashboardApi.giveHiringInterviewLink(giveSkillTestLinkRequest)
+
+            if (giveHiringInterviewLinkResponse.isSuccessful && giveHiringInterviewLinkResponse.body() != null) {
+
+                _giveHiringInterviewTestLinkLiveData.postValue(
+                    NetworkResult.Success(
+                        giveHiringInterviewLinkResponse.body()!!
+                    )
+                )
+            } else if (giveHiringInterviewLinkResponse.errorBody() != null) {
+                Log.d(TAG, giveHiringInterviewLinkResponse.errorBody().toString())
+                val jsonHiringError =
+                    JSONObject(
+                        giveHiringInterviewLinkResponse.errorBody()!!.charStream().readText()
+                    )
+                _giveHiringInterviewTestLinkLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _giveHiringInterviewTestLinkLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun inductionRequest(inductionRequest: InductionRequest) {
+        _inductionResponseLiveData.postValue(NetworkResult.Loading())
+        try {
+            val inductionResponse =
+                dashboardApi.inductionRequest(inductionRequest)
+
+            if (inductionResponse.isSuccessful && inductionResponse.body() != null) {
+
+                _inductionResponseLiveData.postValue(
+                    NetworkResult.Success(
+                        inductionResponse.body()!!
+                    )
+                )
+            } else if (inductionResponse.errorBody() != null) {
+                Log.d(TAG, inductionResponse.errorBody().toString())
+                val jsonHiringError =
+                    JSONObject(
+                        inductionResponse.errorBody()!!.charStream().readText()
+                    )
+                _inductionResponseLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _inductionResponseLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getCommunicationTests() {
+        _communicationTestsLiveData.postValue(NetworkResult.Loading())
+        try {
+            val communicationTestsResponse =
+                dashboardApi.getCommunicationTests()
+
+            if (communicationTestsResponse.isSuccessful && communicationTestsResponse.body() != null) {
+
+                _communicationTestsLiveData.postValue(
+                    NetworkResult.Success(
+                        communicationTestsResponse.body()!!
+                    )
+                )
+            } else if (communicationTestsResponse.errorBody() != null) {
+                Log.d(TAG, communicationTestsResponse.errorBody().toString())
+                val jsonHiringError =
+                    JSONObject(
+                        communicationTestsResponse.errorBody()!!.charStream().readText()
+                    )
+                _communicationTestsLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _communicationTestsLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+    suspend fun giveCommunicationTestLink(giveCommunicationTestLinkRequest:GiveCommunicationTestLinkRequest) {
+        _giveCommunicationTestLinkResponseLiveData.postValue(NetworkResult.Loading())
+        try {
+            val communicationTestsResponse =
+                dashboardApi.giveCommunicationTestLink(giveCommunicationTestLinkRequest)
+
+            if (communicationTestsResponse.isSuccessful && communicationTestsResponse.body() != null) {
+
+                _giveCommunicationTestLinkResponseLiveData.postValue(
+                    NetworkResult.Success(
+                        communicationTestsResponse.body()!!
+                    )
+                )
+            } else if (communicationTestsResponse.errorBody() != null) {
+                Log.d(TAG, communicationTestsResponse.errorBody().toString())
+                val jsonHiringError =
+                    JSONObject(
+                        communicationTestsResponse.errorBody()!!.charStream().readText()
+                    )
+                _giveCommunicationTestLinkResponseLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _giveCommunicationTestLinkResponseLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun giveDocsUploadLink(giveDocsUploadLinkRequest: GiveDocsUploadLinkRequest) {
+        _giveDocsUploadLinkResponseLiveData.postValue(NetworkResult.Loading())
+        try {
+            val docsUploadLinkResponse =
+                dashboardApi.giveDocsUploadLink(giveDocsUploadLinkRequest)
+
+            if (docsUploadLinkResponse.isSuccessful && docsUploadLinkResponse.body() != null) {
+
+                _giveDocsUploadLinkResponseLiveData.postValue(
+                    NetworkResult.Success(
+                        docsUploadLinkResponse.body()!!
+                    )
+                )
+            } else if (docsUploadLinkResponse.errorBody() != null) {
+                Log.d(TAG, docsUploadLinkResponse.errorBody().toString())
+                val jsonHiringError =
+                    JSONObject(
+                        docsUploadLinkResponse.errorBody()!!.charStream().readText()
+                    )
+                Log.d(TAG, jsonHiringError.toString())
+                _giveDocsUploadLinkResponseLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _giveDocsUploadLinkResponseLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getHiringSkills() {
+        _hiringSkillsLiveData.postValue(NetworkResult.Loading())
+        try {
+            val hiringSkillsResponse = dashboardApi.getHiringSkills()
+
+            if (hiringSkillsResponse.isSuccessful && hiringSkillsResponse.body() != null) {
+
+                _hiringSkillsLiveData.postValue(NetworkResult.Success(hiringSkillsResponse.body()!!))
+            } else if (hiringSkillsResponse.errorBody() != null) {
+                val jsonHiringError =
+                    JSONObject(hiringSkillsResponse.errorBody()!!.charStream().readText())
+                _hiringSkillsLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonHiringError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _hiringSkillsLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+    suspend fun makeCall(callRequest: CallRequest) {
+        _callResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val callResponse = dashboardApi.makeCall(callRequest)
 
@@ -419,7 +904,7 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
     }
 
     suspend fun sendSms(smsRequest: SmsRequest) {
-
+        _smsResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val smsResponse = dashboardApi.sendMessage(smsRequest)
 
@@ -438,7 +923,7 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
     }
 
     suspend fun sendEmailMessage(sendEmailRequest: SendEmailRequest) {
-
+        _emailSmsResponseLiveData.postValue(NetworkResult.Loading())
         try {
             val smsResponse = dashboardApi.sendEmailMessage(sendEmailRequest)
 
@@ -476,10 +961,10 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
     }
 
 
-    suspend fun getCounsellingData(dataRequest: DataRequest) {
-
+    suspend fun getCounsellingData(mode: String, position: Int) {
+        _counsellingDataResponseLiveData.postValue(NetworkResult.Loading())
         try {
-            val counsellingDataResponse = dashboardApi.getCounsellingData(dataRequest)
+            val counsellingDataResponse = dashboardApi.getCounsellingData(mode, position)
 
             if (counsellingDataResponse.isSuccessful && counsellingDataResponse.body() != null) {
                 _counsellingDataResponseLiveData.postValue(
@@ -505,10 +990,40 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
         }
     }
 
-    suspend fun getClientData(dataRequest: DataRequest) {
+    suspend fun shortListUser(shortListUserRequest: ShortListUserRequest) {
 
+        _shortListUserResponseLiveData.postValue(NetworkResult.Loading())
         try {
-            val clientDataResponse = dashboardApi.getClientData(dataRequest)
+            val shortListUserResponse = dashboardApi.shortListUser(shortListUserRequest)
+
+            if (shortListUserResponse.isSuccessful && shortListUserResponse.body() != null) {
+                _shortListUserResponseLiveData.postValue(
+                    NetworkResult.Success(
+                        shortListUserResponse.body()!!
+                    )
+                )
+            } else if (shortListUserResponse.errorBody() != null) {
+                val jsonLoginError =
+                    JSONObject(shortListUserResponse.errorBody()!!.charStream().readText())
+                _shortListUserResponseLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonLoginError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _shortListUserResponseLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+    suspend fun getClientData(mode: String) {
+        _clientDataResponseLiveData.postValue(NetworkResult.Loading())
+        try {
+            val clientDataResponse = dashboardApi.getClientData(mode)
 
             if (clientDataResponse.isSuccessful && clientDataResponse.body() != null) {
                 _clientDataResponseLiveData.postValue(
@@ -531,6 +1046,36 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
         } catch (e: Exception) {
             Log.d(TAG, e.message.toString())
             _clientDataResponseLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getForCounselling(getForCounsellingRequest: GetForCounsellingRequest) {
+        _getForCounsellingResponseLiveData.postValue(NetworkResult.Loading())
+        try {
+            val getForCounsellingResponse = dashboardApi.getForCounselling(getForCounsellingRequest)
+
+            if (getForCounsellingResponse.isSuccessful && getForCounsellingResponse.body() != null) {
+                _getForCounsellingResponseLiveData.postValue(
+                    NetworkResult.Success(
+                        getForCounsellingResponse.body()!!
+                    )
+                )
+            } else if (getForCounsellingResponse.errorBody() != null) {
+                val jsonError =
+                    JSONObject(getForCounsellingResponse.errorBody()!!.charStream().readText())
+                _getForCounsellingResponseLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _getForCounsellingResponseLiveData.postValue(NetworkResult.Error(e.message))
         }
     }
 
@@ -1677,6 +2222,556 @@ class DashboardRepository @Inject constructor(private val dashboardApi: Dashboar
             _calenderSchedulesLiveData.postValue(NetworkResult.Error(e.message))
         }
     }
+
+    suspend fun getProgressMeterData(getOrganiserSubjectsRequest: GetOrganiserSubjectsRequest) {
+        _progressMeterLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val progressMeterDataResponse =
+                dashboardApi.getProgressMeterData(getOrganiserSubjectsRequest)
+
+            if (progressMeterDataResponse.isSuccessful && progressMeterDataResponse.body() != null) {
+                _progressMeterLiveData.postValue(
+                    NetworkResult.Success(
+                        progressMeterDataResponse.body()!!
+                    )
+                )
+            } else if (progressMeterDataResponse.errorBody() != null) {
+                Log.d(TAG, progressMeterDataResponse.errorBody()!!.string())
+                val jsonError =
+                    JSONObject(
+                        progressMeterDataResponse.errorBody()!!.charStream().readText()
+                    )
+                _progressMeterLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _progressMeterLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getProgressMarksAndTime(getOrganiserLessonsRequest: GetOrganiserLessonsRequest) {
+        _progressMarksAndTimeLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val progressMarksAndTimeResponse =
+                dashboardApi.getProgressMarksAndTime(getOrganiserLessonsRequest)
+
+            if (progressMarksAndTimeResponse.isSuccessful && progressMarksAndTimeResponse.body() != null) {
+                _progressMarksAndTimeLiveData.postValue(
+                    NetworkResult.Success(
+                        progressMarksAndTimeResponse.body()!!
+                    )
+                )
+            } else if (progressMarksAndTimeResponse.errorBody() != null) {
+                Log.d(TAG, progressMarksAndTimeResponse.errorBody()!!.string())
+                val jsonError =
+                    JSONObject(
+                        progressMarksAndTimeResponse.errorBody()!!.charStream().readText()
+                    )
+                _progressMarksAndTimeLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _progressMarksAndTimeLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun searchEmail(email: String) {
+        _emailSearchLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val searchEmailResponse =
+                dashboardApi.searchEmail(email)
+
+            if (searchEmailResponse.isSuccessful && searchEmailResponse.body() != null) {
+                _emailSearchLiveData.postValue(
+                    NetworkResult.Success(
+                        searchEmailResponse.body()!!
+                    )
+                )
+            } else if (searchEmailResponse.errorBody() != null) {
+                Log.d(TAG, searchEmailResponse.errorBody()!!.string())
+                val jsonError =
+                    JSONObject(
+                        searchEmailResponse.errorBody()!!.charStream().readText()
+                    )
+                _emailSearchLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _emailSearchLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getComparisonDataRequest(getComparisonDataRequest: GetComparisonDataRequest) {
+        _comparisonLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val comparisonDataResponse =
+                dashboardApi.getComparisonDataRequest(getComparisonDataRequest)
+
+            if (comparisonDataResponse.isSuccessful && comparisonDataResponse.body() != null) {
+                _comparisonLiveData.postValue(
+                    NetworkResult.Success(
+                        comparisonDataResponse.body()!!
+                    )
+                )
+            } else if (comparisonDataResponse.errorBody() != null) {
+                Log.d(TAG, comparisonDataResponse.errorBody()!!.string())
+                val jsonError =
+                    JSONObject(
+                        comparisonDataResponse.errorBody()!!.charStream().readText()
+                    )
+                _comparisonLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _comparisonLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+    suspend fun startHrInterviewRequest(startHrInterviewRequest: StartHrInterviewRequest) {
+        _startHrInterviewLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val startHrInterviewResponse =
+                dashboardApi.startHrInterviewRequest(startHrInterviewRequest)
+
+            if (startHrInterviewResponse.isSuccessful && startHrInterviewResponse.body() != null) {
+                _startHrInterviewLiveData.postValue(
+                    NetworkResult.Success(
+                        startHrInterviewResponse.body()!!
+                    )
+                )
+            } else if (startHrInterviewResponse.errorBody() != null) {
+                Log.d(TAG, startHrInterviewResponse.errorBody()!!.string())
+                val jsonError =
+                    JSONObject(
+                        startHrInterviewResponse.errorBody()!!.charStream().readText()
+                    )
+                _startHrInterviewLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _startHrInterviewLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+    suspend fun getHrInterviewQuestions(resultId: Int) {
+        _hrInterviewQuesLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val hrInterviewQuesResponse =
+                dashboardApi.getHrInterviewQuestions(resultId)
+
+            if (hrInterviewQuesResponse.isSuccessful && hrInterviewQuesResponse.body() != null) {
+                _hrInterviewQuesLiveData.postValue(
+                    NetworkResult.Success(
+                        hrInterviewQuesResponse.body()!!
+                    )
+                )
+            } else if (hrInterviewQuesResponse.errorBody() != null) {
+                Log.d(TAG, hrInterviewQuesResponse.errorBody()!!.string())
+                val jsonError =
+                    JSONObject(
+                        hrInterviewQuesResponse.errorBody()!!.charStream().readText()
+                    )
+                _hrInterviewQuesLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _hrInterviewQuesLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+    suspend fun setHrInterviewQuesData(hrInterviewQuesUtilRequest: HrInterviewQuesUtilRequest) {
+        _hrInterviewQuesUtilsLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val hrInterviewUtilResponse =
+                dashboardApi.setHrInterviewQuesData(hrInterviewQuesUtilRequest)
+
+            if (hrInterviewUtilResponse.isSuccessful && hrInterviewUtilResponse.body() != null) {
+                _hrInterviewQuesUtilsLiveData.postValue(
+                    NetworkResult.Success(
+                        hrInterviewUtilResponse.body()!!
+                    )
+                )
+            } else if (hrInterviewUtilResponse.errorBody() != null) {
+                Log.d(TAG, hrInterviewUtilResponse.errorBody()!!.string())
+                val jsonError =
+                    JSONObject(
+                        hrInterviewUtilResponse.errorBody()!!.charStream().readText()
+                    )
+                _hrInterviewQuesUtilsLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _hrInterviewQuesUtilsLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getHrIntervieweeQues() {
+        _hrIntervieweeQuesLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val hrIntervieweeQuesResponse =
+                dashboardApi.getHrIntervieweeQues()
+
+            if (hrIntervieweeQuesResponse.isSuccessful && hrIntervieweeQuesResponse.body() != null) {
+                _hrIntervieweeQuesLiveData.postValue(
+                    NetworkResult.Success(
+                        hrIntervieweeQuesResponse.body()!!
+                    )
+                )
+            } else if (hrIntervieweeQuesResponse.errorBody() != null) {
+                Log.d(TAG, hrIntervieweeQuesResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    hrIntervieweeQuesResponse.errorBody()!!.charStream().readText()
+                )
+                Log.d(TAG, jsonError.toString())
+                _hrIntervieweeQuesLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _hrIntervieweeQuesLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getWebEmails(category: String) {
+        _webEmailsLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val webEmailsResponse =
+                dashboardApi.getWebEmails(category)
+
+            if (webEmailsResponse.isSuccessful && webEmailsResponse.body() != null) {
+                _webEmailsLiveData.postValue(
+                    NetworkResult.Success(
+                        webEmailsResponse.body()!!
+                    )
+                )
+            } else if (webEmailsResponse.errorBody() != null) {
+                Log.d(TAG, webEmailsResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    webEmailsResponse.errorBody()!!.charStream().readText()
+                )
+                Log.d(TAG, jsonError.toString())
+                _webEmailsLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _webEmailsLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getImportedWebEmails() {
+        _importedWebEmailsLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val importedWebEmailsResponse =
+                dashboardApi.getImportedWebEmails()
+
+            if (importedWebEmailsResponse.isSuccessful && importedWebEmailsResponse.body() != null) {
+                _importedWebEmailsLiveData.postValue(
+                    NetworkResult.Success(
+                        importedWebEmailsResponse.body()!!
+                    )
+                )
+            } else if (importedWebEmailsResponse.errorBody() != null) {
+                Log.d(TAG, importedWebEmailsResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    importedWebEmailsResponse.errorBody()!!.charStream().readText()
+                )
+                Log.d(TAG, jsonError.toString())
+                _importedWebEmailsLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _importedWebEmailsLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun getHireTestId() {
+        _hireTestIdLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val communicationTestIDResponse =
+                dashboardApi.getHireTestId()
+
+            if (communicationTestIDResponse.isSuccessful && communicationTestIDResponse.body() != null) {
+                _hireTestIdLiveData.postValue(
+                    NetworkResult.Success(
+                        communicationTestIDResponse.body()!!
+                    )
+                )
+            } else if (communicationTestIDResponse.errorBody() != null) {
+                Log.d(TAG, communicationTestIDResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    communicationTestIDResponse.errorBody()!!.charStream().readText()
+                )
+                Log.d(TAG, jsonError.toString())
+                _hireTestIdLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _hireTestIdLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun updateCommunicationTestTimer(updateCommunicationTimerRequest:UpdateCommunicationTimerRequest) {
+        _updateCommunicationTimerLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val updateCommunicationTimerResponse =
+                dashboardApi.updateCommunicationTestTimer(updateCommunicationTimerRequest)
+            if (updateCommunicationTimerResponse.isSuccessful && updateCommunicationTimerResponse.body() != null) {
+                _updateCommunicationTimerLiveData.postValue(
+                    NetworkResult.Success(
+                        updateCommunicationTimerResponse.body()!!
+                    )
+                )
+            } else if (updateCommunicationTimerResponse.errorBody() != null) {
+               // Log.d(TAG, updateCommunicationTimerResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    updateCommunicationTimerResponse.errorBody()!!.charStream().readText().trim()
+                )
+               // Log.d(TAG, jsonError.toString())
+                _updateCommunicationTimerLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _updateCommunicationTimerLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+    suspend fun submitCommunicationTest(hiretestID: RequestBody, answer:RequestBody, fileupload: MultipartBody.Part) {
+        _submitCommunicationTestLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val updateCommunicationTimerResponse =
+                dashboardApi.submitCommunicationTest(hiretestID, answer, fileupload)
+            if (updateCommunicationTimerResponse.isSuccessful && updateCommunicationTimerResponse.body() != null) {
+                _submitCommunicationTestLiveData.postValue(
+                    NetworkResult.Success(
+                        updateCommunicationTimerResponse.body()!!
+                    )
+                )
+            } else if (updateCommunicationTimerResponse.errorBody() != null) {
+                Log.d(TAG, updateCommunicationTimerResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    updateCommunicationTimerResponse.errorBody()!!.charStream().readText()
+                )
+                Log.d(TAG, jsonError.toString())
+                _submitCommunicationTestLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _submitCommunicationTestLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+
+    suspend fun submitDocsUpload(@Part photoId: MultipartBody.Part,
+                                        @Part panCard: MultipartBody.Part?= null,
+                                        @Part hac: MultipartBody.Part?= null,
+                                        @Part pc: MultipartBody.Part?= null,
+                                        @Part lac: MultipartBody.Part?=null) {
+
+        _submitDocsUploadLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val docsUploadResponse =
+                dashboardApi.submitDocsUpload(photoId, panCard, hac, pc, lac)
+            if (docsUploadResponse.isSuccessful && docsUploadResponse.body() != null) {
+                _submitDocsUploadLiveData.postValue(
+                    NetworkResult.Success(
+                        docsUploadResponse.body()!!
+                    )
+                )
+            } else if (docsUploadResponse.errorBody() != null) {
+                Log.d(TAG, docsUploadResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    docsUploadResponse.errorBody()!!.charStream().readText()
+                )
+                Log.d(TAG, jsonError.toString())
+                _submitDocsUploadLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _submitDocsUploadLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
+
+
+    suspend fun scheduleNotification(scheduleNotificationRequest: ScheduleNotificationRequest) {
+
+        _scheduleNotificationLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val scheduleNotificationResponse =
+                dashboardApi.scheduleNotification(scheduleNotificationRequest)
+            if (scheduleNotificationResponse.isSuccessful && scheduleNotificationResponse.body() != null) {
+                _scheduleNotificationLiveData.postValue(
+                    NetworkResult.Success(
+                        scheduleNotificationResponse.body()!!
+                    )
+                )
+            } else if (scheduleNotificationResponse.errorBody() != null) {
+                Log.d(TAG, scheduleNotificationResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    scheduleNotificationResponse.errorBody()!!.charStream().readText()
+                )
+                Log.d(TAG, jsonError.toString())
+                _scheduleNotificationLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _scheduleNotificationLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+    suspend fun deleteNotification(notifyId : Int) {
+
+        _scheduleNotificationLiveData.postValue(NetworkResult.Loading())
+
+        try {
+            val deleteNotificationResponse =
+                dashboardApi.deleteNotification(notifyId)
+            if (deleteNotificationResponse.isSuccessful && deleteNotificationResponse.body() != null) {
+                _scheduleNotificationLiveData.postValue(
+                    NetworkResult.Success(
+                        deleteNotificationResponse.body()!!
+                    )
+                )
+            } else if (deleteNotificationResponse.errorBody() != null) {
+                Log.d(TAG, deleteNotificationResponse.errorBody()!!.string())
+                val jsonError = JSONObject(
+                    deleteNotificationResponse.errorBody()!!.charStream().readText()
+                )
+                Log.d(TAG, jsonError.toString())
+                _scheduleNotificationLiveData.postValue(
+                    NetworkResult.Error(
+                        jsonError.getString(
+                            "message"
+                        )
+                    )
+                )
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message.toString())
+            _scheduleNotificationLiveData.postValue(NetworkResult.Error(e.message))
+        }
+    }
+
+
 
 
 }

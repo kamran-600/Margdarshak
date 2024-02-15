@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:paddingTop="10dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/serialNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_marginHorizontal="10dp"
+        android:textSize="15sp" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_toEndOf="@id/serialNo"
+        android:text="Building kitchen Cabinates"
+        android:textSize="15sp" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/question"
+        android:layout_marginHorizontal="50dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/AskBtn"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:text="Ask"
+            android:textColor="@drawable/text_color"
+            android:textSize="12sp" />
+
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/rankAutoCompleteTextView"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/radio_normal"
+            android:singleLine="true"
+            android:completionThreshold="1"
+            android:layout_weight="1"
+            android:elevation="1dp"
+            android:drawableEnd="@drawable/arrow_down"
+            android:drawableTint="@color/upperBlue"
+            android:hint="Rank"
+            android:visibility="gone"
+            android:textColor="@color/black45"
+            android:inputType="none"
+            android:paddingHorizontal="15dp"
+            android:textCursorDrawable="@drawable/form_cursor"
+            android:textSize="13sp" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/resetAskBtn"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:elevation="1dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginStart="30dp"
+            android:text="Reset Ask"
+            android:textAllCaps="false"
+            android:textColor="@drawable/text_color"
+            android:textSize="13sp" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/radioGroup"
+        android:background="?android:attr/listDivider" />
+
+
+</RelativeLayout>

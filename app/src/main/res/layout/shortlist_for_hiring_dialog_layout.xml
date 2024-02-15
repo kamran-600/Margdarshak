@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="3"
+            android:src="@drawable/m_logo" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="23dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="User Name"
+            android:textSize="18sp" />
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/cancel_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="3"
+            android:background="?actionBarItemBackground"
+            android:src="@drawable/clear_icon"
+            app:tint="@color/black" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:id="@+id/employerAutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/box"
+        android:completionThreshold="1"
+        android:drawableEnd="@drawable/arrow_down"
+        android:drawableTint="@color/black45"
+        android:hint="Select a Employer"
+        android:inputType="none"
+        android:paddingHorizontal="15dp"
+        android:textCursorDrawable="@drawable/form_cursor"
+        android:textSize="15sp" />
+
+
+    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        android:id="@+id/empPostAutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:background="@drawable/box"
+        android:completionThreshold="1"
+        android:drawableEnd="@drawable/arrow_down"
+        android:drawableTint="@color/black45"
+        android:hint="Select a Position"
+        android:inputType="none"
+        android:paddingHorizontal="15dp"
+        android:textCursorDrawable="@drawable/form_cursor"
+        android:textSize="15sp" />
+
+
+    <RelativeLayout
+        android:id="@+id/buttonRl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="20dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF5722"
+            android:text="Close"
+            android:layout_alignParentStart="true"
+            app:cornerRadius="10dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A64BAF50"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="15dp"
+            android:elevation="0dp"
+            android:text="Submit"
+            app:cornerRadius="10dp" />
+
+    </RelativeLayout>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

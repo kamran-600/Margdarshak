@@ -33,7 +33,7 @@ class WorkAttitudeRatingPhaseFragment : Fragment(), AttitudeRatingQueAdapter.Ada
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentWorkAttitudeRatingPhaseBinding.inflate(inflater, container, false)
 

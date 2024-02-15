@@ -19,8 +19,8 @@
         android:id="@+id/webEmail"
         android:icon="@drawable/email_icon"
         android:title="Web Email" />
-    <item
+    <!--<item
         android:id="@+id/whatsapp"
         android:icon="@drawable/whatsapp"
-        android:title="WhatsApp" />
+        android:title="WhatsApp" />-->
 </menu>

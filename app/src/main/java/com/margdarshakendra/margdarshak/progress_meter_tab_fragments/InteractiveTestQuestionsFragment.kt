@@ -226,14 +226,21 @@ class InteractiveTestQuestionsFragment : Fragment() {
                 }
                 sweetAlertDialog.cancelText = "Only Save"
                 sweetAlertDialog.setCancelClickListener {
-                    if (getRemainingSeconds() != 0) {
-                        val saveInteractiveAnswerRequest = SaveInteractiveAnswerRequest(
-                            selectedOption!!, mcqID, resultId, "S", testID, getRemainingSeconds()
-                        )
-                        Log.d(TAG, saveInteractiveAnswerRequest.toString())
-                        interactiveTestQuestionsViewModel.saveInteractiveAnswerRequest(
-                            saveInteractiveAnswerRequest
-                        )
+                    if (getRemainingSeconds() != 0 ) {
+                        
+                        if (selectedOption != null){
+                            val saveInteractiveAnswerRequest = SaveInteractiveAnswerRequest(
+                                selectedOption!!, mcqID, resultId, "S", testID, getRemainingSeconds()
+                            )
+                            Log.d(TAG, saveInteractiveAnswerRequest.toString())
+                            interactiveTestQuestionsViewModel.saveInteractiveAnswerRequest(
+                                saveInteractiveAnswerRequest
+                            )
+                        }
+                        else{
+                            Toast.makeText(requireContext(), "Please Select Any Option", Toast.LENGTH_SHORT).show()
+                        }
+                        
                     } else Toast.makeText(
                         requireContext(),
                         "Timer is Over, Now Please Finish the test",

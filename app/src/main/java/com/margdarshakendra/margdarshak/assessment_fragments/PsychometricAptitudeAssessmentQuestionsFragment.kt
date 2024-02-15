@@ -11,11 +11,14 @@ import androidx.fragment.app.viewModels
 import cn.pedant.SweetAlert.SweetAlertDialog
 import com.faltenreich.skeletonlayout.Skeleton
 import com.faltenreich.skeletonlayout.applySkeleton
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.margdarshakendra.margdarshak.R
+import com.margdarshakendra.margdarshak.StudentHomeFragment
 import com.margdarshakendra.margdarshak.adapters.AptitudeQuestionsAdapter
 import com.margdarshakendra.margdarshak.dashboard_bottom_fragments.HomeFragment
 import com.margdarshakendra.margdarshak.databinding.FragmentPsychometricAptitudeAssessmentQuestionsBinding
 import com.margdarshakendra.margdarshak.models.SaveAptitudeAnswerRequest
+import com.margdarshakendra.margdarshak.utils.Constants
 import com.margdarshakendra.margdarshak.utils.Constants.QUESTIONPAGENO
 import com.margdarshakendra.margdarshak.utils.Constants.TAG
 import com.margdarshakendra.margdarshak.utils.NetworkResult
@@ -43,7 +46,7 @@ class PsychometricAptitudeAssessmentQuestionsFragment : Fragment(),
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentPsychometricAptitudeAssessmentQuestionsBinding.inflate(
             inflater,
@@ -128,9 +131,17 @@ class PsychometricAptitudeAssessmentQuestionsFragment : Fragment(),
                         sweetAlertDialog.show()
                         sweetAlertDialog.confirmText = "Go To Home Page"
                         sweetAlertDialog.contentTextSize = 8
-                        sweetAlertDialog.setConfirmClickListener {
-                            requireActivity().supportFragmentManager.beginTransaction().replace(R.id.bReplace, HomeFragment()).commit()
-                            sweetAlertDialog.hide()
+                        val home =
+                            if (sharedPreference.getDetail(Constants.USERTYPE, "String") == "S") {
+                                StudentHomeFragment()
+                            } else {
+                                HomeFragment()
+                            }
+                        sweetAlertDialog.setOnDismissListener {
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.bReplace, home)
+                                .commit()
+                            requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView).menu.findItem(R.id.home).isChecked = true
                         }
                     }
                 }
@@ -186,10 +197,6 @@ class PsychometricAptitudeAssessmentQuestionsFragment : Fragment(),
                 Toast.makeText(requireContext(), "Please Attempt Every Question", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-
-
-
-
             if (page_no < 8) {
                 getQuestions(result_id, ++page_no)
             }

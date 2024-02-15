@@ -1,23 +1,18 @@
 package com.margdarshakendra.margdarshak.viewmodels
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.margdarshakendra.margdarshak.models.CRMResponse
+import androidx.paging.cachedIn
 import com.margdarshakendra.margdarshak.models.CallRequest
-import com.margdarshakendra.margdarshak.models.CallResponse
-import com.margdarshakendra.margdarshak.models.HiringDataResponse
-import com.margdarshakendra.margdarshak.models.DataRequest
+import com.margdarshakendra.margdarshak.models.GiveCommunicationTestLinkRequest
+import com.margdarshakendra.margdarshak.models.GiveDocsUploadLinkRequest
+import com.margdarshakendra.margdarshak.models.GiveSkillTestLinkRequest
+import com.margdarshakendra.margdarshak.models.InductionRequest
 import com.margdarshakendra.margdarshak.models.SendEmailRequest
+import com.margdarshakendra.margdarshak.models.ShortListUserRequest
 import com.margdarshakendra.margdarshak.models.SmsRequest
-import com.margdarshakendra.margdarshak.models.SmsResponse
-import com.margdarshakendra.margdarshak.models.TemplateResponse
 import com.margdarshakendra.margdarshak.repository.DashboardRepository
-import com.margdarshakendra.margdarshak.utils.Constants.TAG
-import com.margdarshakendra.margdarshak.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,30 +23,109 @@ class HiringViewModel @Inject constructor(private val dashboardRepository: Dashb
 
     val hiringDataResponseLiveData get() = dashboardRepository.hiringDataResponseLiveData
 
-    val hiringDataListLiveData get()  = dashboardRepository.hiringDataListLiveData
+    val hiringFilteredDataLiveData get()  = dashboardRepository.hiringFilteredDataLiveData
+
+    val filteredPostsDataLiveData get()  = dashboardRepository.filteredPostsDataLiveData
+
+    val shortListUserResponseLiveData get() = dashboardRepository.shortListUserResponseLiveData
+
+    val hiringSkillsLiveData get() = dashboardRepository.hiringSkillsLiveData
+    val giveHiringSkillTestLinkLiveData get() = dashboardRepository.giveHiringSkillTestLinkLiveData
+    val giveHiringInterviewTestLinkLiveData get() = dashboardRepository.giveHiringInterviewTestLinkLiveData
+    val communicationTestsLiveData get() = dashboardRepository.communicationTestsLiveData
+    val giveCommunicationTestLinkResponseLiveData get() = dashboardRepository.giveCommunicationTestLinkResponseLiveData
+    val giveDocsUploadLinkResponseLiveData get() = dashboardRepository.giveDocsUploadLinkResponseLiveData
+
+    val emailSearchResponseLiveData get() = dashboardRepository.emailSearchLiveData
+
+    val inductionResponseLiveData get() = dashboardRepository.inductionResponseLiveData
+
+    val callResponseLiveData get() = dashboardRepository.callResponseLiveData
+
+    val crmResponseLiveData get() = dashboardRepository.crmResponseLiveData
+
+    val smsResponseLiveData get() = dashboardRepository.smsResponseLiveData
+
+    val emailSmsResponseLiveData get() = dashboardRepository.emailSmsResponseLiveData
+
+    val templateResponseLiveData get() = dashboardRepository.templateResponseLiveData
 
 
-    val callResponseLiveData: LiveData<NetworkResult<CallResponse>>
-        get() = dashboardRepository.callResponseLiveData
-
-    val crmResponseLiveData: LiveData<NetworkResult<CRMResponse>>
-        get() = dashboardRepository.crmResponseLiveData
-
-    val smsResponseLiveData: LiveData<NetworkResult<SmsResponse>>
-        get() = dashboardRepository.smsResponseLiveData
-
-    val emailSmsResponseLiveData: LiveData<NetworkResult<SmsResponse>>
-        get() = dashboardRepository.emailSmsResponseLiveData
-
-    val templateResponseLiveData: LiveData<NetworkResult<TemplateResponse>>
-        get() = dashboardRepository.templateResponseLiveData
+    fun hiringOrFilteredPagingFlow(mode : String?= null, employerId: Int?= null, postId: Int?= null) = dashboardRepository.getHiringOrHiringFilteredOrCounsellingPagingData(mode, employerId, postId).cachedIn(viewModelScope)
 
 
-    fun getHiringData(dataRequest: DataRequest) {
+    fun getHiringData(mode:String,pageNo: Int) {
         viewModelScope.launch {
-            dashboardRepository.getHiringData(dataRequest)
+            dashboardRepository.getHiringData(mode, pageNo)
         }
     }
+
+  /*  fun getHiringFilteredData(employerId: Int, postId: Int) {
+        viewModelScope.launch {
+            dashboardRepository.getHiringFilteredData(employerId, postId)
+        }
+    }
+*/
+    fun getFilteredPostsData(employerId: Int) {
+        viewModelScope.launch {
+            dashboardRepository.getFilteredPostsData(employerId)
+        }
+    }
+
+    fun shortListUser(shortListUserRequest: ShortListUserRequest) {
+        viewModelScope.launch {
+            dashboardRepository.shortListUser(shortListUserRequest)
+        }
+    }
+
+    fun getHiringSkills() {
+        viewModelScope.launch {
+            dashboardRepository.getHiringSkills()
+        }
+    }
+
+    fun giveHiringSkillTestLink(giveSkillTestLinkRequest : GiveSkillTestLinkRequest) {
+        viewModelScope.launch {
+            dashboardRepository.giveHiringSkillTestLink(giveSkillTestLinkRequest)
+        }
+    }
+
+    fun giveHiringInterviewLink(giveSkillTestLinkRequest : GiveSkillTestLinkRequest) {
+        viewModelScope.launch {
+            dashboardRepository.giveHiringInterviewLink(giveSkillTestLinkRequest)
+        }
+    }
+
+    fun getCommunicationTests() {
+        viewModelScope.launch {
+            dashboardRepository.getCommunicationTests()
+        }
+    }
+
+    fun giveCommunicationTestLink(giveCommunicationTestLinkRequest: GiveCommunicationTestLinkRequest) {
+        viewModelScope.launch {
+            dashboardRepository.giveCommunicationTestLink(giveCommunicationTestLinkRequest)
+        }
+    }
+
+    fun giveDocsUploadLink(giveDocsUploadLinkRequest: GiveDocsUploadLinkRequest) {
+        viewModelScope.launch {
+            dashboardRepository.giveDocsUploadLink(giveDocsUploadLinkRequest)
+        }
+    }
+
+    fun emailSearch(email:String) {
+        viewModelScope.launch {
+            dashboardRepository.searchEmail(email)
+        }
+    }
+
+    fun inductionRequest(inductionRequest:InductionRequest) {
+        viewModelScope.launch {
+            dashboardRepository.inductionRequest(inductionRequest)
+        }
+    }
+
 
     fun makeCall(callRequest: CallRequest) {
         viewModelScope.launch {

@@ -82,7 +82,7 @@ class AttitudeQuestionsAdapter(private val context: Context) :
             updatedPosition = 0
             holder.binding.serialNo.text = "?"
         }else {
-            holder.binding.root.setBackgroundColor(context.getColor(R.color.green))
+            holder.binding.root.setBackgroundColor(context.getColor(R.color.parrotGreen))
         }
 
         holder.binding.root.setOnClickListener {
@@ -96,7 +96,7 @@ class AttitudeQuestionsAdapter(private val context: Context) :
                 val movedItem = items.removeAt(holder.absoluteAdapterPosition)
                 items.add(updatedPosition, movedItem)
                // Log.d(TAG, "${holder.absoluteAdapterPosition} to $updatedPosition")
-                holder.binding.root.setBackgroundColor(context.getColor(R.color.green))
+                holder.binding.root.setBackgroundColor(context.getColor(R.color.parrotGreen))
                 holder.binding.serialNo.text = "${++updatedPosition}"
 
                 submitList(items)

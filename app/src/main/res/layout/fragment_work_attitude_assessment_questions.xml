@@ -16,9 +16,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:background="@drawable/style_card2"
-            android:backgroundTint="#51D3C7"
+            android:backgroundTint="@color/card_bg2"
             android:layout_margin="10dp"
-            android:paddingVertical="15dp"
+            android:paddingVertical="10dp"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textview.MaterialTextView
@@ -29,7 +29,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="2dp"
-                android:gravity="center_horizontal"
+                android:gravity="start"
                 android:paddingHorizontal="20dp"
                 android:text="In my ideal job, it is important that:"
                 android:textColor="@color/white"
@@ -37,14 +37,15 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/deSelectAllBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/headingTxt"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="20dp"
-                android:text="Deselect All" />
+            android:id="@+id/deSelectAllBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/headingTxt"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="#F85A28"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="20dp"
+            android:text="Deselect All" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/pageNo"

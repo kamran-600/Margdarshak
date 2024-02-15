@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".interview_fragments.DocsUploadFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:contentPadding="10dp"
+            android:animateLayoutChanges="true"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/photoIdText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/upload_file_icon"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/red_btn_bg_color"
+                    android:text="Photo Id"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/choosePhotoId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose File"
+                    app:cornerRadius="10dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:layout_below="@id/text"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/white"
+                    android:textStyle="normal" />
+
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Aadhar card or Driving Licence or Voter Card"
+                    android:layout_below="@+id/photoIdText"
+                    android:textColor="@color/black45"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/photoIdCard"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/choosePhotoId"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/clearPhotoId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="210dp"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/clear_icon"
+                            app:tint="@color/black" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/photoIdImage"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:foreground="@drawable/box"
+                            android:padding="2dp"
+                            android:src="@drawable/video_file_icon"
+                            android:tint="@color/upperBlue" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/photoIdTitle"
+                            android:layout_width="135dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_toEndOf="@+id/photoIdImage"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/photoIdType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/photoIdTitle"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/photoIdImage"
+                            android:text="Mp4" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/photoIdSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/photoIdType"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/photoIdImage" />
+
+                    </RelativeLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:contentPadding="10dp"
+            android:animateLayoutChanges="true"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/panCardText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/upload_file_icon"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/red_btn_bg_color"
+                    android:text="Pan Card"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/choosePanCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose File"
+                    app:cornerRadius="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/panCardText"
+                    android:textStyle="normal" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/panCard"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/choosePanCard"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/clearPanCard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="210dp"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/clear_icon"
+                            app:tint="@color/black" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/panCardImage"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:foreground="@drawable/box"
+                            android:padding="2dp"
+                            android:src="@drawable/video_file_icon"
+                            android:tint="@color/upperBlue" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/panCardTitle"
+                            android:layout_width="135dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_toEndOf="@+id/panCardImage"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/panCardType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/panCardTitle"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/panCardImage"
+                            android:text="Mp4" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/panCardSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/panCardType"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/panCardImage" />
+
+                    </RelativeLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:contentPadding="10dp"
+            android:animateLayoutChanges="true"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/hacText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/upload_file_icon"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/red_btn_bg_color"
+                    android:text="Highest Academic Certificate"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chooseHAC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose File"
+                    app:cornerRadius="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/hacText"
+                    android:textColor="@color/white"
+                    android:textStyle="normal" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/hacCard"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/chooseHAC"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/clearHAC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="210dp"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/clear_icon"
+                            app:tint="@color/black" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/hacImage"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:foreground="@drawable/box"
+                            android:padding="2dp"
+                            android:src="@drawable/video_file_icon"
+                            android:tint="@color/upperBlue" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/hacTitle"
+                            android:layout_width="135dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_toEndOf="@+id/hacImage"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/hacType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/hacTitle"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/hacImage"
+                            android:text="Mp4" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/hacSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/hacType"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/hacImage" />
+
+                    </RelativeLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:contentPadding="10dp"
+            android:animateLayoutChanges="true"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/pcText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/upload_file_icon"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/red_btn_bg_color"
+                    android:text="Professional Certificate"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/choosePC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose File"
+                    app:cornerRadius="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/pcText"
+                    android:textColor="@color/white"
+                    android:textStyle="normal" />
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/pcCard"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/choosePC"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/clearPC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="210dp"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/clear_icon"
+                            app:tint="@color/black" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/pcImage"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:foreground="@drawable/box"
+                            android:padding="2dp"
+                            android:src="@drawable/video_file_icon"
+                            android:tint="@color/upperBlue" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/pcTitle"
+                            android:layout_width="135dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_toEndOf="@+id/pcImage"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/pcType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/pcTitle"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/pcImage"
+                            android:text="Mp4" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/pcSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/pcType"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/pcImage" />
+
+                    </RelativeLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="10dp"
+            app:contentPadding="10dp"
+            android:animateLayoutChanges="true"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/lacText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/upload_file_icon"
+                    android:drawablePadding="5dp"
+                    android:drawableTint="@color/red_btn_bg_color"
+                    android:text="Last Experience Certificate"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/chooseLAC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose File"
+                    app:cornerRadius="10dp"
+                    android:backgroundTint="@color/upperBlue"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/lacText"
+                    android:textColor="@color/white"
+                    android:textStyle="normal" />
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/lacCard"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/chooseLAC"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="@color/white">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginVertical="10dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/clearLAC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="210dp"
+                            android:background="?selectableItemBackgroundBorderless"
+                            android:src="@drawable/clear_icon"
+                            app:tint="@color/black" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/lacImage"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:foreground="@drawable/box"
+                            android:padding="2dp"
+                            android:src="@drawable/video_file_icon"
+                            android:tint="@color/upperBlue" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/lacTitle"
+                            android:layout_width="135dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_toEndOf="@+id/lacImage"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/lacType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lacTitle"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/lacImage"
+                            android:text="Mp4"/>
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/lacSize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lacType"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/lacImage" />
+
+                    </RelativeLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submitBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="20dp"
+            android:backgroundTint="@color/green"
+            app:cornerRadius="10dp" />
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>

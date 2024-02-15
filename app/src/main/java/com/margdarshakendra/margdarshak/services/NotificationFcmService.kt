@@ -7,28 +7,28 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.provider.Telephony.Sms.Intents
-import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.AlarmManagerCompat
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequest
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.Worker
+import androidx.work.WorkerParameters
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.margdarshakendra.margdarshak.LoginActivity
 import com.margdarshakendra.margdarshak.R
 import com.margdarshakendra.margdarshak.broadcastReceivers.NotificationReceiver
 import com.margdarshakendra.margdarshak.utils.Constants
 import com.margdarshakendra.margdarshak.utils.Constants.TAG
 import com.margdarshakendra.margdarshak.utils.NotificationUtils
-import com.margdarshakendra.margdarshak.utils.SharedPreference
-import org.json.JSONException
-import org.json.JSONObject
+import com.margdarshakendra.margdarshak.work_manager.NotificationWorker
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.Duration
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
-import javax.inject.Inject
+import java.util.concurrent.TimeUnit
 
 class NotificationFcmService : FirebaseMessagingService() {
 
@@ -61,6 +61,7 @@ class NotificationFcmService : FirebaseMessagingService() {
 
         handleDataMessage(remoteMessage.data, title, message)
 
+
     }
 
     private fun handleDataMessage(data : Map<String, String>, title: String, message: String) {
@@ -70,7 +71,19 @@ class NotificationFcmService : FirebaseMessagingService() {
             val imageUrl = data["url"]
             val timestamp = data["time"]!!
 
-           scheduleNotification(getTimeMilliSecBefore10Minutes(timestamp), title, message, imageUrl)
+            /*   val inputData = Data.Builder()
+                .putLong("timestamp", getTimeMilliSecBefore10Minutes(timestamp))
+                .putString("title", title)
+                .putString("message", message)
+                .putString("imageUrl", imageUrl)
+                .build()
+
+
+            val workRequest = PeriodicWorkRequestBuilder<NotificationWorker>(3, TimeUnit.MINUTES ).setInputData(inputData).setInitialDelay(getInitialDelay(timestamp), TimeUnit.MILLISECONDS).build()
+            WorkManager.getInstance(applicationContext).enqueue(workRequest)
+            */
+
+            scheduleNotification(getTimeMilliSecBefore10Minutes(timestamp), title, message, imageUrl)
 
             /*val resultIntent = Intent(applicationContext, LoginActivity::class.java)
             // check for image attachment
@@ -87,11 +100,9 @@ class NotificationFcmService : FirebaseMessagingService() {
 
     }
 
-    private fun scheduleNotification(timeInMillis: Long,title: String, message: String, imageUrl: String?) {
+    private fun scheduleNotification(timeInMillis: Long, title: String, message: String, imageUrl: String?) {
 
 
-
-        createNotificationChannel()
         val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         val notificationIntent = Intent(applicationContext, NotificationReceiver::class.java)
@@ -100,26 +111,31 @@ class NotificationFcmService : FirebaseMessagingService() {
         notificationIntent.putExtra("contentText", message)
         notificationIntent.putExtra("title", title)
         notificationIntent.putExtra("imageUrl", imageUrl)
+        val notifyId = System.currentTimeMillis().toString()
+        notificationIntent.putExtra("notifyId", notifyId)
+
+        Log.d(TAG, message)
+        Log.d(TAG, title)
+        Log.d(TAG, imageUrl.toString())
+        Log.d(TAG, notifyId)
 
         val pendingIntent = PendingIntent.getBroadcast(
-            applicationContext, 0, notificationIntent,
+            applicationContext, System.currentTimeMillis().toInt(), notificationIntent,
             PendingIntent.FLAG_IMMUTABLE
         )
 
         try {
             if (Calendar.getInstance().timeInMillis > timeInMillis) {
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, Calendar.getInstance().timeInMillis, pendingIntent)
+                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, Calendar.getInstance().timeInMillis, pendingIntent)
             }
-            else alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
+            else alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
 
         } catch (e: SecurityException) {
             Toast.makeText(applicationContext, e.message, Toast.LENGTH_SHORT).show()
         }
     }
 
-
-
-    private fun createNotificationChannel() {
+    fun createNotificationChannel() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = getString(R.string.app_name)
@@ -185,5 +201,24 @@ class NotificationFcmService : FirebaseMessagingService() {
         }
 
         return 0
+    }
+
+    private fun getInitialDelay(timeStamp: String): Long {
+        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
+        try {
+            val date = format.parse(timeStamp)
+            if (date != null) {
+                val calender = Calendar.getInstance()
+                Log.d(TAG, date.toString())
+                calender.time = date
+                calender.add(Calendar.MINUTE, -9)
+                Log.d(TAG, calender.time.toString())
+                return calender.timeInMillis - System.currentTimeMillis()
+            }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+        return 0L
     }
 }

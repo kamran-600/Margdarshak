@@ -10,8 +10,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit.Builder
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -30,9 +32,10 @@ class NetworkModule {
     @Singleton
     @Provides
     fun providesOkHttpClient(tokenInterceptor: TokenInterceptor): OkHttpClient {
-        return OkHttpClient.Builder().addInterceptor(tokenInterceptor).build()
+        return OkHttpClient.Builder().addInterceptor(tokenInterceptor).addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build()
     }
 
+    //.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
 
     @Singleton
     @Provides
@@ -53,7 +56,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providesUserAccessApi(okHttpClient: OkHttpClient, retrofitBuilder: Builder) : DashboardApi{
+    fun providesDashboardApi(okHttpClient: OkHttpClient, retrofitBuilder: Builder) : DashboardApi{
         return retrofitBuilder.client(okHttpClient).build().create(DashboardApi::class.java)
     }
 

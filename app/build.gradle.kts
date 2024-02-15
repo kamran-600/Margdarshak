@@ -14,9 +14,8 @@ android {
         applicationId = "com.margdarshakendra.margdarshak"
         minSdk = 24
         targetSdk = 34
-        versionCode = 2
-        versionName = "1.1"
-        multiDexEnabled = true
+        versionCode = 10
+        versionName = "1.9"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
@@ -33,16 +32,20 @@ android {
         }
     }
     compileOptions {
+        // Enable support for the new language APIs
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 dependencies {
 
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -51,8 +54,7 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
-    implementation("com.google.firebase:firebase-messaging:23.4.0")
-    implementation("com.google.firebase:firebase-analytics:21.5.0")
+    implementation("com.google.firebase:firebase-messaging-ktx:23.4.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -64,11 +66,11 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 
-
     // retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     // coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -79,7 +81,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
     //ViewModels delegation extensions for activity
-    implementation("androidx.activity:activity-ktx:1.8.1")
+    implementation("androidx.activity:activity-ktx:1.8.2")
 
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
@@ -108,25 +110,44 @@ dependencies {
     implementation("com.github.ybq:Android-SpinKit:1.4.0")
 
     // pdf viewer
-    implementation("com.github.afreakyelf:Pdf-Viewer:2.0.4")
+    implementation("com.github.afreakyelf:Pdf-Viewer:2.0.5")
 
     // charts
-    /// implementation("com.github.highcharts:highcharts-android:11.2.0")
     implementation("com.github.PhilJay:MPAndroidChart:3.1.0")
-    //  implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
-    //implementation("com.github.AAChartModel:AAChartCore-Kotlin")
 
+
+    // render math jax format of text
     implementation("ru.noties:jlatexmath-android:0.2.0")
     // for Cyrillic symbols
     implementation("ru.noties:jlatexmath-android-font-cyrillic:0.2.0")
     // for Greek symbols
     implementation("ru.noties:jlatexmath-android-font-greek:0.2.0")
 
-    implementation("com.applandeo:material-calendar-view:1.9.0-rc04")
 
     implementation("com.kizitonwose.calendar:view:2.4.1")
 
 
+    // speedView
+    implementation("com.github.anastr:speedviewlib:1.6.1")
+
+    // CameraX  Library
+    val camerax_version = "1.4.0-alpha03"
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    // If you want to additionally use the CameraX VideoCapture library
+    implementation("androidx.camera:camera-video:${camerax_version}")
+    // If you want to additionally use the CameraX View class
+    implementation("androidx.camera:camera-view:${camerax_version}")
+
+     // work manager
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    // paging lib
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation("androidx.paging:paging-common-ktx:3.2.1")
+
+    // image Loading Library
+    implementation("io.coil-kt:coil:2.5.0")
 
 }
 // Allow references to generated code

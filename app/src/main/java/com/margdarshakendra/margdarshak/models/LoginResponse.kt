@@ -10,6 +10,7 @@ data class LoginResponse(
     val mobile: String,
     val profile_updated: Boolean,
     val usertype: String,
-    val name: String
+    val name: String,
+    val associate: Int
 
 )

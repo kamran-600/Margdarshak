@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/shortList"
+        android:title="ShortList" />
+
+    <item
+        android:id="@+id/giveSkillTestLink"
+        android:title="Give Skill Test Link" />
+
+    <item
+        android:id="@+id/giveInterviewLink"
+        android:title="Give Interview Link" />
+
+    <item
+        android:id="@+id/giveDocsUploadLink"
+        android:title="Give Docs Upload Link" />
+
+    <item
+        android:id="@+id/startInterview"
+        android:title="Start Interview" />
+
+    <item
+        android:id="@+id/interview"
+        android:title="Interview" />
+
+    <item
+        android:id="@+id/giveCommunicationTestLink"
+        android:title="Give Communication Test Link" />
+
+
+</menu>

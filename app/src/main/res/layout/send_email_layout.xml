@@ -126,6 +126,8 @@
             android:textCursorDrawable="@drawable/form_cursor"
             android:textSize="15sp"
             android:textStyle="normal" />
+
+
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -155,11 +157,21 @@
             android:textSize="15sp"
             android:textStyle="normal" />
 
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/addFooterFlag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Footer ?"
+            android:checked="true"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp" />
+
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:text="Remarks"
             android:textSize="18sp" />
 
