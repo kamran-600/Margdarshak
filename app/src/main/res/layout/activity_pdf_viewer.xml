@@ -16,11 +16,13 @@
         app:SpinKit_Color="@color/upperBlue"
         app:SpinKit_Style="MultiplePulse" />
 
+<!--
 
     <com.rajat.pdfviewer.PdfRendererView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+-->
 
 
     <!--<WebView

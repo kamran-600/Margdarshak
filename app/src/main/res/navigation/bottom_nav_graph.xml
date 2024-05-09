@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.margdarshakendra.margdarshak.dashboard_bottom_fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/counsellingFragment"
+        android:name="com.margdarshakendra.margdarshak.dashboard_bottom_fragments.CounsellingFragment"
+        android:label="fragment_counselling"
+        tools:layout="@layout/fragment_counselling" />
+    <fragment
+        android:id="@+id/hiringFragment"
+        android:name="com.margdarshakendra.margdarshak.dashboard_bottom_fragments.HiringFragment"
+        android:label="fragment_hiring"
+        tools:layout="@layout/fragment_hiring" />
+    <fragment
+        android:id="@+id/webEmailFragment"
+        android:name="com.margdarshakendra.margdarshak.dashboard_bottom_fragments.WebEmailFragment"
+        android:label="fragment_web_email"
+        tools:layout="@layout/fragment_web_email" />
+</navigation>

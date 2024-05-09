@@ -1,21 +1,10 @@
 package com.margdarshakendra.margdarshak
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.lifecycle.lifecycleScope
-import cn.pedant.SweetAlert.SweetAlertDialog
-import com.faltenreich.skeletonlayout.createSkeleton
 import com.margdarshakendra.margdarshak.databinding.ActivityPdfViewerBinding
 import com.margdarshakendra.margdarshak.utils.Constants.TAG
-import com.rajat.pdfviewer.HeaderData
-import com.rajat.pdfviewer.PdfRendererView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import java.io.IOException
 
 class PdfViewerActivity : AppCompatActivity() {
 
@@ -37,11 +26,11 @@ class PdfViewerActivity : AppCompatActivity() {
         val url = "https://docs.google.com/gview?embedded=true&url=$pdfUrl"
         binding.pdfWebView.loadUrl(url)*/
 
-        if (!pdfUrl.isNullOrBlank()) {
+        /*if (!pdfUrl.isNullOrBlank()) {
 
-            try{
-                binding.pdfView.initWithUrl(pdfUrl, HeaderData(),lifecycleScope, lifecycle)
-            }catch (e : Exception){
+            try {
+                binding.pdfView.initWithUrl(pdfUrl, HeaderData(), lifecycleScope, lifecycle)
+            } catch (e: Exception) {
                 val sweetAlertDialog = SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
                 sweetAlertDialog.contentText = e.message
                 sweetAlertDialog.show()
@@ -50,7 +39,7 @@ class PdfViewerActivity : AppCompatActivity() {
                 }
             }
 
-            binding.pdfView.statusListener = object : PdfRendererView.StatusCallBack{
+            binding.pdfView.statusListener = object : PdfRendererView.StatusCallBack {
                 override fun onPdfLoadStart() {
                     super.onPdfLoadStart()
                     binding.spinKit.visibility = View.VISIBLE
@@ -61,7 +50,7 @@ class PdfViewerActivity : AppCompatActivity() {
                     binding.spinKit.visibility = View.GONE
                 }
             }
-        }
+        }*/
 
     }
 }

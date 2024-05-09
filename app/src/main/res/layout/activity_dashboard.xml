@@ -107,6 +107,15 @@
 
              </TableRow>-->
 
+            <!--<androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                android:layout_above="@id/bottomNavigationView"
+                app:navGraph="@navigation/bottom_nav_graph" />-->
+
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigationView"
                 style="@style/Widget.MaterialComponents.BottomNavigationView"
@@ -121,7 +130,13 @@
                 app:itemTextAppearanceActiveBoldEnabled="false"
                 app:itemTextColor="@color/checkbox_color"
                 app:labelVisibilityMode="labeled"
-                app:menu="@menu/bottom_menu" />
+                app:menu="@menu/bottom_menu" >
+
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
 
         </RelativeLayout>
 
@@ -157,7 +172,6 @@
                 android:layout_toEndOf="@id/profileImage"
                 android:ellipsize="marquee"
                 android:layout_marginVertical="40dp"
-                android:layout_toRightOf="@id/profileImage"
                 android:singleLine="true"
                 android:text="User Name"
                 android:textColor="@color/black45"

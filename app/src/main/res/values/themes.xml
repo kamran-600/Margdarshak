@@ -13,7 +13,7 @@
         <item name="colorPrimary">@color/upperBlue</item>
         <item name="colorAccent">@color/upperBlue</item>
         <item name="android:datePickerStyle">@style/datePicker</item>
-        <item name="pdfView_disableScreenshots">true</item>
+        <!--<item name="pdfView_disableScreenshots">true</item>-->
     </style>
 
     <style name="Theme.Margdarshakendra" parent="Base.Theme.Margdarshakendra" >
